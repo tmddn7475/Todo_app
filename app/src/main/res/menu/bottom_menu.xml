@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bottom_home"
+        android:enabled="true"
+        android:icon="@drawable/baseline_calendar_today_24"
+        android:title="오늘"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/bottom_calender"
+        android:enabled="true"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="달력"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_search"
+        android:enabled="true"
+        android:icon="@drawable/baseline_search_24"
+        android:title="검색"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_diary"
+        android:enabled="true"
+        android:icon="@drawable/baseline_edit_24"
+        android:title="일기"
+        app:showAsAction="ifRoom"/>
+</menu>
