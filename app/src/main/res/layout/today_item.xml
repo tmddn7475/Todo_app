@@ -11,8 +11,8 @@
         app:cardCornerRadius="8dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,11 +75,11 @@
                     app:cardCornerRadius="6dp">
 
                     <ImageView
-                        android:id="@+id/today_check"
+                        android:id="@+id/today_delete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="3dp"
-                        android:src="@drawable/baseline_check_24" />
+                        android:src="@drawable/baseline_delete_24" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -129,7 +129,7 @@
                 android:paddingBottom="6dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:text="dasdasdssdasds"/>
+                android:text=""/>
 
             <TextView
                 android:id="@+id/today_desc"

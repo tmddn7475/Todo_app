@@ -8,14 +8,22 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import com.example.todo.MainActivity
 import com.example.todo.R
+import com.example.todo.RoomDB.TodoDatabase
+import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.FragmentAddTodoBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class AddTodoFragment : BottomSheetDialogFragment() {
 
+    private lateinit var db: TodoDatabase
     private var _binding: FragmentAddTodoBinding? = null
     private val binding get() = _binding!!
 
@@ -25,6 +33,8 @@ class AddTodoFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddTodoBinding.inflate(inflater, container, false)
+
+        db = TodoDatabase.getInstance(requireContext())!!
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -44,6 +54,7 @@ class AddTodoFragment : BottomSheetDialogFragment() {
             }
         }
 
+        // date
         binding.todoDate.setOnClickListener{
             context?.let { it1 ->
                 DatePickerDialog(it1, { _, year, month, day ->
@@ -80,8 +91,32 @@ class AddTodoFragment : BottomSheetDialogFragment() {
             }
         })
 
+        // 일정 저장
         binding.todoSave.setOnClickListener{
+            val title: String = binding.addTodoTitle.text.toString()
+            val startDate: String = binding.todoDate.text.toString()
+            val endDate: String = binding.todoDate2.text.toString()
+            val startTime: String
+            val endTime: String
+            if(binding.addTodoSwitch.isChecked){
+                startTime = "all day"
+                endTime = "all day"
+            } else {
+                startTime = binding.todoTime.text.toString()
+                endTime= binding.todoTime2.text.toString()
+            }
+            val location: String = binding.todoLocation.text.toString()
+            val desc: String = binding.todoDescription.text.toString()
+            val alert: String = binding.todoAlert.text.toString()
 
+            if(title.isEmpty()){
+                Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate,
+                    startTime = startTime, endTime = endTime, location = location, description = desc, alert = alert)
+                addData(todoEntity)
+                dismiss()
+            }
         }
 
         return binding.root
@@ -97,5 +132,22 @@ class AddTodoFragment : BottomSheetDialogFragment() {
         view.findViewById<TextView>(R.id.todo_cancel).setOnClickListener{
             dismiss()
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun addData(entity: TodoEntity){
+        val mainActivity = (activity as MainActivity)
+        val todayFragment = mainActivity.todayFragment
+
+        CoroutineScope(Dispatchers.IO).launch {
+            db.todoDAO().saveTodo(entity)
+            activity?.runOnUiThread{
+                if(todayFragment.isAdded){
+                    todayFragment.todayListAdapter.addListItem(entity)
+                    todayFragment.todayListAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+
     }
 }
