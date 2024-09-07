@@ -137,14 +137,13 @@ class AddTodoFragment : BottomSheetDialogFragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun addData(entity: TodoEntity){
         val mainActivity = (activity as MainActivity)
-        val todayFragment = mainActivity.todayFragment
+        val homeFragment = mainActivity.homeFragment
 
         CoroutineScope(Dispatchers.IO).launch {
             db.todoDAO().saveTodo(entity)
             activity?.runOnUiThread{
-                if(todayFragment.isAdded){
-                    todayFragment.todayListAdapter.addListItem(entity)
-                    todayFragment.todayListAdapter.notifyDataSetChanged()
+                if(homeFragment.isAdded){
+                    homeFragment.updateTodoList()
                 }
             }
         }

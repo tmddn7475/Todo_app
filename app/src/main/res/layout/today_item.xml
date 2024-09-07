@@ -29,48 +29,44 @@
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="6dp">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/baseline_access_time_24" />
-
                 <TextView
-                    android:id="@+id/today_time"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/today_title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/imageView"
-                    android:text="12:00 ~ 13:00"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="6dp"
-                    android:layout_toEndOf="@+id/today_time"
-                    android:src="@drawable/baseline_location_pin_24" />
-
-                <TextView
-                    android:id="@+id/today_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/imageView2"
-                    android:text="gwangju"
-                    android:textSize="14sp" />
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@+id/cardView4"
+                    android:maxLines="1"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:id="@+id/cardView4"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="6dp"
                     android:layout_toStartOf="@+id/cardView2"
+                    app:cardBackgroundColor="@color/blue_dark"
+                    app:cardCornerRadius="6dp">
+
+                    <ImageView
+                        android:id="@+id/today_done"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_check_24" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="6dp"
+                    android:layout_toStartOf="@+id/cardView"
                     app:cardBackgroundColor="@color/blue_dark"
                     app:cardCornerRadius="6dp">
 
@@ -84,28 +80,9 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView2"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="6dp"
-                    android:layout_toStartOf="@+id/cardView"
-                    app:cardBackgroundColor="@color/blue_dark"
-                    app:cardCornerRadius="6dp">
-
-                    <ImageView
-                        android:id="@+id/today_edit"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="3dp"
-                        android:src="@drawable/baseline_edit_24" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     app:cardBackgroundColor="@color/blue_dark"
@@ -121,15 +98,54 @@
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/today_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
-                android:paddingBottom="6dp"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:text=""/>
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/baseline_access_time_24" />
+
+                <TextView
+                    android:id="@+id/today_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_toEndOf="@+id/imageView"
+                    android:gravity="top"
+                    android:text="하루 종일"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/today_time"
+                    android:src="@drawable/baseline_location_pin_24" />
+
+                <TextView
+                    android:id="@+id/today_location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="6dp"
+                    android:gravity="top"
+                    android:layout_toEndOf="@+id/imageView2"
+                    android:text="광주"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/today_desc"

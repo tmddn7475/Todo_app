@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.todo.Fragment1.TodayFragment
+import com.example.todo.Fragment1.HomeFragment
 import com.example.todo.Fragment2.AddTodoFragment
 import com.example.todo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -14,19 +14,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var addTodoFragment: AddTodoFragment
     private lateinit var binding: ActivityMainBinding
-    lateinit var todayFragment: TodayFragment
+    lateinit var homeFragment: HomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        todayFragment = TodayFragment()
-        addTodoFragment = AddTodoFragment()
+        homeFragment = HomeFragment()
 
-        supportFragmentManager.beginTransaction().replace(R.id.container, todayFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container, homeFragment).commit()
 
         binding.addTodo.setOnClickListener{
+            addTodoFragment = AddTodoFragment()
             addTodoFragment.show(supportFragmentManager, addTodoFragment.tag)
         }
 

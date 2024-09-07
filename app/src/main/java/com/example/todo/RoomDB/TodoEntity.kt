@@ -14,5 +14,6 @@ data class TodoEntity(
     var endTime:String = "",
     var location:String = "",
     var description:String = "",
-    var alert: String = ""
+    var alert: String = "",
+    var isDone: Boolean = false
 )
