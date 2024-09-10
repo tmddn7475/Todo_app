@@ -175,7 +175,7 @@
         android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:drawableLeftCompat="@drawable/baseline_alarm_24" />
+        app:drawableLeftCompat="@drawable/baseline_notifications_active_24" />
 
     <View
         android:layout_width="match_parent"

@@ -4,4 +4,6 @@
         <item name="colorPrimary">@color/grayDark</item>
         <item name="android:windowBackground">@color/black</item>
     </style>
+
+    <style name="Theme.Todo" parent="Base.Theme.Todo" />
 </resources>

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
-import com.example.todo.TodoDetailActivity
+import com.example.todo.Activity.TodoDetailActivity
 import com.example.todo.databinding.TodayItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
