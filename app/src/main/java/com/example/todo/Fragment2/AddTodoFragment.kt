@@ -9,19 +9,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.example.todo.Interface.SelectTimeInterface
 import com.example.todo.MainActivity
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
+import com.example.todo.SelectTimeDialog
 import com.example.todo.databinding.FragmentAddTodoBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 
-class AddTodoFragment : BottomSheetDialogFragment() {
+class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
 
     private lateinit var db: TodoDatabase
     private var _binding: FragmentAddTodoBinding? = null
@@ -60,6 +65,7 @@ class AddTodoFragment : BottomSheetDialogFragment() {
                 DatePickerDialog(it1, { _, year, month, day ->
                     run {
                         binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
+                        compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())
                     }
                 }, year, month, day)
             }?.show()
@@ -70,9 +76,19 @@ class AddTodoFragment : BottomSheetDialogFragment() {
                 DatePickerDialog(it1, { _, year, month, day ->
                     run {
                         binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
+                        compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())
                     }
                 }, year, month, day)
             }?.show()
+        }
+
+        // time
+        binding.todoTime.setOnClickListener{
+            SelectTimeDialog(binding.todoTime, this).show(parentFragmentManager, "selectTimeDialog")
+        }
+
+        binding.todoTime2.setOnClickListener{
+            SelectTimeDialog(binding.todoTime2, this).show(parentFragmentManager, "selectTimeDialog")
         }
 
         // description
@@ -147,6 +163,43 @@ class AddTodoFragment : BottomSheetDialogFragment() {
                 }
             }
         }
+    }
 
+    @SuppressLint("SimpleDateFormat")
+    private fun compareDates(selectedDate: String, comparisonDate: String){
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+        try {
+            // 문자열을 Date 객체로 변환
+            val date1: Date = dateFormat.parse(selectedDate)!!
+            val date2: Date = dateFormat.parse(comparisonDate)!!
+
+            if(date1.after(date2)){
+                binding.todoDate2.text = selectedDate
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun compareTime(selectTime: String, comparisonTime: String){
+        val dateFormat = SimpleDateFormat("HH:mm")
+        try {
+            // 문자열을 Date 객체로 변환
+            val time1: Date = dateFormat.parse(selectTime)!!
+            val time2: Date = dateFormat.parse(comparisonTime)!!
+
+            if(time1.after(time2)){
+                binding.todoTime2.text = selectTime
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+    }
+
+
+    override fun selected(textView: TextView, time: String) {
+        textView.text = time
+        compareTime(binding.todoTime.text.toString(), binding.todoTime2.text.toString())
     }
 }
