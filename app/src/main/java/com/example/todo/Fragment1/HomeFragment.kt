@@ -13,6 +13,9 @@ import com.example.todo.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class HomeFragment : Fragment() {
 
@@ -41,12 +44,40 @@ class HomeFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             todayListAdapter.clearList()
             val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
-            for(item in data){
-                todayListAdapter.addListItem(item)
-            }
             activity?.runOnUiThread{
+                for(item in data){
+                    if(todayTodos(item.startDate, item.endDate)){
+                        todayListAdapter.addListItem(item)
+                    }
+                }
                 todayListAdapter.notifyDataSetChanged()
             }
         }
+    }
+
+    // 오늘 할일 가져오기
+    @SuppressLint("SimpleDateFormat")
+    private fun todayTodos(startDate: String, endDate: String): Boolean {
+        var bool = false
+
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val date = Date(System.currentTimeMillis())
+
+        val simpleDate: String = dateFormat.format(date)
+
+        try {
+            // 문자열을 Date 객체로 변환
+            val today: Date = dateFormat.parse(simpleDate)!!
+            val date1: Date = dateFormat.parse(startDate)!!
+            val date2: Date = dateFormat.parse(endDate)!!
+
+            if(today.after(date1) && today.before(date2) || today == date1 || today == date2){
+                bool = true
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        return bool
     }
 }
