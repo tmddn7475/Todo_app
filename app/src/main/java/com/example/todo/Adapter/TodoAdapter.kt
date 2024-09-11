@@ -117,6 +117,7 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
             binding.root.setOnClickListener {
                 val intent = Intent(binding.root.context, TodoDetailActivity::class.java)
+                intent.putExtra("todo", todoItem.id)
                 binding.root.context.startActivity(intent)
             }
         }

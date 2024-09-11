@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="drawable">#FF000000</color>
-    <color name="dialog">#FFFFFFFF</color>
-    <color name="gray">#E7E7E7</color>"
+    <color name="gray">#3E3E3E</color>"
     <color name="blue_dark">#00B3EF</color>
-    <color name="text">#101010</color>
+    <color name="drawable">#FFFFFFFF</color>
+    <color name="dialog">#FF000000</color>
+    <color name="text">#FFFFFFFF</color>
 </resources>

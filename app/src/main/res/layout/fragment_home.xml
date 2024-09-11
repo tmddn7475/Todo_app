@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="오늘 할 일"
+                android:textColor="@color/text"
                 android:textStyle="bold"
                 android:layout_marginStart="6dp"
                 android:layout_centerVertical="true"

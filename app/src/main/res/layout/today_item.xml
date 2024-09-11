@@ -39,6 +39,7 @@
                     android:layout_toStartOf="@+id/cardView4"
                     android:maxLines="1"
                     android:textSize="24sp"
+                    android:textColor="@color/text"
                     android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
@@ -120,6 +121,7 @@
                     android:layout_toEndOf="@+id/imageView"
                     android:gravity="top"
                     android:text="하루 종일"
+                    android:textColor="@color/text"
                     android:maxLines="1"
                     android:textSize="14sp" />
 
@@ -142,6 +144,7 @@
                     android:gravity="top"
                     android:layout_toEndOf="@+id/imageView2"
                     android:text="광주"
+                    android:textColor="@color/text"
                     android:maxLines="1"
                     android:textSize="14sp" />
 
@@ -152,6 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:textColor="@color/text"
                 android:paddingHorizontal="8dp"
                 android:paddingBottom="6dp"
                 android:visibility="gone"/>
