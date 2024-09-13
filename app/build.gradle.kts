@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     id("com.google.devtools.ksp")
     alias(libs.plugins.android.application)
@@ -43,6 +41,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.view)
+    implementation(libs.compose)
+
     implementation (libs.androidx.room.runtime)
     annotationProcessor (libs.androidx.room.room.compiler)
     implementation(libs.androidx.room.ktx)

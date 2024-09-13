@@ -35,13 +35,16 @@ class TodoDetailActivity : AppCompatActivity() {
                 binding.todoDetailTitle.text = data.title
                 binding.todoDetailDate1.text = data.startDate
                 binding.todoDetailDate2.text = data.endDate
-                binding.todoDetailTime.text = "${data.startTime} ~ ${data.endTime}"
+                if(data.startDate == "all day"){
+                    binding.todoDetailTime.text = "all day"
+                } else {
+                    binding.todoDetailTime.text = "${data.startTime} ~ ${data.endTime}"
+                }
                 binding.todoDetailAlarm.text = data.alert
                 binding.todoDetailLocation.text = data.location
                 binding.todoDetailDescription.text = data.description
             }
         }
-
 
         binding.todoDetailBackBtn.setOnClickListener {
             finish()
