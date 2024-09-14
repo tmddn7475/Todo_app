@@ -1,9 +1,0 @@
-<resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Todo" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/gray</item>
-        <item name="android:windowBackground">@color/black</item>
-    </style>
-
-    <style name="Theme.Todo" parent="Base.Theme.Todo" />
-</resources>

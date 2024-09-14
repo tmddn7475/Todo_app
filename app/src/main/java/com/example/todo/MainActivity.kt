@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.todo.Fragment1.CalenderFragment
+import com.example.todo.Fragment1.CalendarFragment
 import com.example.todo.Fragment1.HomeFragment
 import com.example.todo.Fragment1.SearchFragment
 import com.example.todo.Fragment2.AddTodoFragment
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addTodoFragment: AddTodoFragment
     private lateinit var binding: ActivityMainBinding
     lateinit var homeFragment: HomeFragment
-    lateinit var calenderFragment: CalenderFragment
+    lateinit var calendarFragment: CalendarFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,14 +25,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         homeFragment = HomeFragment()
-        calenderFragment = CalenderFragment()
+        calendarFragment = CalendarFragment()
 
         supportFragmentManager.beginTransaction().replace(R.id.container, homeFragment).commit()
         binding.bottomNavigationView.setOnItemSelectedListener {
             replaceFragment(
                 when (it.itemId) {
                     R.id.bottom_home -> homeFragment
-                    R.id.bottom_calender -> calenderFragment
+                    R.id.bottom_calender -> calendarFragment
                     else -> SearchFragment()
                 }
             )

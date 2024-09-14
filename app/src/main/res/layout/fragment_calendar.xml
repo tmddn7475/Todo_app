@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:background="@color/background"
-    tools:context=".Fragment1.CalenderFragment">
+    tools:context=".Fragment1.CalendarFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/exFiveAppBarLayout"
@@ -27,7 +27,6 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -39,11 +38,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:textSize="22sp"
+                android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/exFiveNextMonthImage"
                 app:layout_constraintStart_toEndOf="@id/exFivePreviousMonthImage"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="April 2018" />
+                tools:text="2024-09" />
 
             <ImageView
                 android:id="@+id/exFiveNextMonthImage"
@@ -68,13 +68,13 @@
             android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cv_dayViewResource="@layout/calender_day"
-            app:cv_monthHeaderResource="@layout/calender_header"
+            app:cv_dayViewResource="@layout/calendar_day"
+            app:cv_monthHeaderResource="@layout/calendar_header"
             app:cv_outDateStyle="endOfGrid"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/gray"/>
 
         <androidx.recyclerview.widget.RecyclerView

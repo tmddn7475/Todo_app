@@ -2,6 +2,7 @@ package com.example.todo.Fragment1
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +11,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
-import com.example.todo.databinding.CalenderDayBinding
-import com.example.todo.databinding.CalenderHeaderBinding
-import com.example.todo.databinding.FragmentCalenderBinding
+import com.example.todo.RoomDB.TodoDatabase
+import com.example.todo.RoomDB.TodoEntity
+import com.example.todo.databinding.CalendarDayBinding
+import com.example.todo.databinding.CalendarHeaderBinding
+import com.example.todo.databinding.FragmentCalendarBinding
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.DayPosition
@@ -25,31 +26,44 @@ import com.kizitonwose.calendar.core.previousMonth
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import com.kizitonwose.calendar.view.ViewContainer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 
-class CalenderFragment : Fragment() {
+class CalendarFragment : Fragment() {
 
-    private var _binding: FragmentCalenderBinding? = null
+    private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
     private var selectedDate: LocalDate? = null
+    private lateinit var db: TodoDatabase
+    private lateinit var todo: List<TodoEntity>
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCalenderBinding.inflate(inflater, container, false)
+        _binding = FragmentCalendarBinding.inflate(inflater, container, false)
+
+        db = TodoDatabase.getInstance(requireContext())!!
+
+        CoroutineScope(Dispatchers.IO).launch {
+            todo = db.todoDAO().getTodo()
+            activity?.runOnUiThread{
+                for(item in todo){
+                    Log.i("todo", item.startDate)
+                }
+            }
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        }
 
         val daysOfWeek = daysOfWeek()
         val currentMonth = YearMonth.now()
@@ -58,6 +72,10 @@ class CalenderFragment : Fragment() {
         configureBinders(daysOfWeek)
         binding.calendar.setup(startMonth, endMonth, daysOfWeek.first())
         binding.calendar.scrollToMonth(currentMonth)
+
+        selectedDate = LocalDate.now()
+
+        Log.i("ewadwee", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))
 
         binding.calendar.monthScrollListener = { month ->
             binding.exFiveMonthYearText.text = month.yearMonth.toString()
@@ -84,7 +102,7 @@ class CalenderFragment : Fragment() {
     private fun configureBinders(daysOfWeek: List<DayOfWeek>){
         class DayViewContainer(view: View) : ViewContainer(view) {
             lateinit var day: CalendarDay // Will be set when this container is bound.
-            val binding = CalenderDayBinding.bind(view)
+            val binding = CalendarDayBinding.bind(view)
 
             init {
                 view.setOnClickListener {
@@ -92,10 +110,11 @@ class CalenderFragment : Fragment() {
                         if (selectedDate != day.date) {
                             val oldDate = selectedDate
                             selectedDate = day.date
-                            val binding = this@CalenderFragment.binding
+                            val binding = this@CalendarFragment.binding
                             binding.calendar.notifyDateChanged(day.date)
                             oldDate?.let { binding.calendar.notifyDateChanged(it) }
                             //updateAdapterForDate(day.date)
+                            Log.i("dsad", day.date.toString())
                         }
                     }
                 }
@@ -110,15 +129,6 @@ class CalenderFragment : Fragment() {
                 val layout = container.binding.dayLayout
                 textView.text = data.date.dayOfMonth.toString()
 
-                val todo1 = container.binding.dayTodo1
-                val todo2 = container.binding.dayTodo2
-                val todo3 = container.binding.dayTodo3
-                val todo4 = container.binding.dayTodo4
-                todo1.background = null
-                todo2.background = null
-                todo3.background = null
-                todo4.background = null
-
                 if (data.position == DayPosition.MonthDate) {
                     container.binding.dayText.setTextColor(ContextCompat.getColor(view.context, R.color.text))
                     view.setBackgroundColor(if (selectedDate == data.date) ContextCompat.getColor(view.context, R.color.gray) else 0)
@@ -130,7 +140,7 @@ class CalenderFragment : Fragment() {
         }
 
         class MonthViewContainer(view: View) : ViewContainer(view) {
-            val legendLayout = CalenderHeaderBinding.bind(view).legendLayout.root
+            val legendLayout = CalendarHeaderBinding.bind(view).legendLayout.root
         }
 
         val typeFace = Typeface.create("sans-serif-light", Typeface.NORMAL)
