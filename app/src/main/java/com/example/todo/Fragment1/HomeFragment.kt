@@ -63,7 +63,6 @@ class HomeFragment : Fragment() {
 
         val dateFormat = SimpleDateFormat("yyyy.MM.dd")
         val date = Date(System.currentTimeMillis())
-
         val simpleDate: String = dateFormat.format(date)
 
         try {

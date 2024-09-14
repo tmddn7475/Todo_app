@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+class TodoAdapter: RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var list : ArrayList<TodoEntity> = ArrayList()
     private lateinit var roomDatabase: TodoDatabase
@@ -38,7 +37,8 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
         }
     }
 
-    inner class TodoViewHolder(private val binding: TodayItemBinding) : RecyclerView.ViewHolder(binding.root) { // binding.root에 있는 binding은 앞쪽에 선언했던 변수임
+    inner class TodoViewHolder(private val binding: TodayItemBinding): RecyclerView.ViewHolder(binding.root) {
+        // binding.root에 있는 binding은 앞쪽에 선언했던 변수임
         // viewHolder = 각 리스트 아이템들을 보관하는 객체
         @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
         fun bind(todoItem : TodoEntity) {
@@ -48,8 +48,6 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
                 binding.todayTitle.paintFlags = binding.todayTitle.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
             }
             binding.todayTitle.setSingleLine(true)
-            binding.todayTitle.ellipsize = TextUtils.TruncateAt.MARQUEE // 흐르게 만들기
-            binding.todayTitle.isSelected = true
 
             // 날짜
             if(todoItem.startTime == "all day" && todoItem.startDate == todoItem.endDate){

@@ -3,6 +3,7 @@ package com.example.todo
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.todo.Fragment1.CalendarFragment
 import com.example.todo.Fragment1.HomeFragment
@@ -57,7 +58,9 @@ class MainActivity : AppCompatActivity() {
             if (System.currentTimeMillis() > backPressedTime + 2000) {
                 backPressedTime = System.currentTimeMillis()
                 Snackbar.make(findViewById(R.id.main), "뒤로 버튼을 한번 더 누르면 종료됩니다", Snackbar.LENGTH_SHORT)
-                    .setAnchorView(R.id.bottomNavigationView).show()
+                    .setAnchorView(R.id.bottomNavigationView)
+                    .setTextColor(ContextCompat.getColor(this@MainActivity, R.color.text))
+                    .setBackgroundTint(ContextCompat.getColor(this@MainActivity, R.color.gray)).show()
             } else if (System.currentTimeMillis() <= backPressedTime + 2000) {
                 finishAffinity()
             }

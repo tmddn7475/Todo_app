@@ -182,14 +182,14 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun compareTime(selectTime: String, comparisonTime: String){
+    private fun compareTime(selectedDate: String, comparisonDate: String, selectTime: String, comparisonTime: String){
         val dateFormat = SimpleDateFormat("HH:mm")
         try {
             // 문자열을 Date 객체로 변환
             val time1: Date = dateFormat.parse(selectTime)!!
             val time2: Date = dateFormat.parse(comparisonTime)!!
 
-            if(time1.after(time2)){
+            if(time1.after(time2) && selectedDate == comparisonDate){
                 binding.todoTime2.text = selectTime
             }
         } catch (e: ParseException) {
@@ -200,6 +200,6 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
 
     override fun selected(textView: TextView, time: String) {
         textView.text = time
-        compareTime(binding.todoTime.text.toString(), binding.todoTime2.text.toString())
+        compareTime(binding.todoDate.text.toString(), binding.todoDate2.text.toString(), binding.todoTime.text.toString(), binding.todoTime2.text.toString())
     }
 }
