@@ -129,6 +129,29 @@ class CalendarFragment : Fragment() {
         calendarTodoAdapter.notifyDataSetChanged()
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private fun getTodos(date: String): Int {
+        var result = 0
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+
+        for(todo in todoList){
+            try {
+                // 문자열을 Date 객체로 변환
+                val today: Date = dateFormat.parse(date)!!
+                val date1: Date = dateFormat.parse(todo.startDate)!!
+                val date2: Date = dateFormat.parse(todo.endDate)!!
+
+                if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
+                    result++
+                }
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+        }
+
+        return result
+    }
+
     private fun configureBinders(daysOfWeek: List<DayOfWeek>){
         class DayViewContainer(view: View) : ViewContainer(view) {
             lateinit var day: CalendarDay // Will be set when this container is bound.
@@ -149,6 +172,7 @@ class CalendarFragment : Fragment() {
                 }
             }
         }
+
         binding.calendar.dayBinder = object : MonthDayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
             override fun bind(container: DayViewContainer, data: CalendarDay) {
@@ -157,6 +181,21 @@ class CalendarFragment : Fragment() {
                 val textView = container.binding.dayText
                 val layout = container.binding.dayLayout
                 textView.text = data.date.dayOfMonth.toString()
+
+                when (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))) {
+                    1 -> {
+                        container.binding.dayTodo1.visibility = View.VISIBLE
+                    }
+                    2 -> {
+                        container.binding.dayTodo1.visibility = View.VISIBLE
+                        container.binding.dayTodo2.visibility = View.VISIBLE
+                    }
+                    3 -> {
+                        container.binding.dayTodo1.visibility = View.VISIBLE
+                        container.binding.dayTodo2.visibility = View.VISIBLE
+                        container.binding.dayTodo3.visibility = View.VISIBLE
+                    }
+                }
 
                 if (data.position == DayPosition.MonthDate) {
                     container.binding.dayText.setTextColor(ContextCompat.getColor(view.context, R.color.text))
