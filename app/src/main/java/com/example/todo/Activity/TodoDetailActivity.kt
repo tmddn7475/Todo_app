@@ -35,8 +35,8 @@ class TodoDetailActivity : AppCompatActivity() {
                 binding.todoDetailTitle.text = data.title
                 binding.todoDetailDate1.text = data.startDate
                 binding.todoDetailDate2.text = data.endDate
-                if(data.startDate == "all day"){
-                    binding.todoDetailTime.text = "all day"
+                if(data.startTime == "all day"){
+                    binding.todoDetailTime.text = "하루 종일"
                 } else {
                     binding.todoDetailTime.text = "${data.startTime} ~ ${data.endTime}"
                 }

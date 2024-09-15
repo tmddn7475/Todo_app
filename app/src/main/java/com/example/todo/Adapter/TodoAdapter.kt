@@ -1,5 +1,8 @@
 package com.example.todo.Adapter
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,6 +10,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
@@ -107,9 +111,11 @@ class TodoAdapter: RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
                 if(binding.todayDesc.visibility == View.GONE && todoItem.description != ""){
                     binding.todayDesc.visibility = View.VISIBLE
                     binding.todayMore.setImageResource(R.drawable.baseline_keyboard_arrow_up_24)
+                    expandView(binding.cardView3, binding.todayDesc)
                 } else {
                     binding.todayDesc.visibility = View.GONE
                     binding.todayMore.setImageResource(R.drawable.baseline_keyboard_arrow_down_24)
+                    collapseView(binding.cardView3, binding.todayDesc)
                 }
             }
 
@@ -135,5 +141,56 @@ class TodoAdapter: RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    // 애니메이션
+    private fun expandView(view: View, textView: TextView) {
+        // 현재 높이 측정
+        val initialHeight = view.height
+
+        // 원하는 최종 높이 설정 (예: 500px)
+        val targetHeight = view.height + measureViewHeight(textView)
+
+        val animator = ValueAnimator.ofInt(initialHeight, targetHeight)
+        animator.addUpdateListener { animation ->
+            val animatedValue = animation.animatedValue as Int
+            val layoutParams = view.layoutParams
+            layoutParams.height = animatedValue
+            view.layoutParams = layoutParams
+        }
+
+        // 애니메이션 시간 설정
+        animator.duration = 300
+        animator.start()
+    }
+
+    private fun collapseView(view: View, textView: TextView) {
+        val initialHeight = view.height
+        val animator = ValueAnimator.ofInt(initialHeight, initialHeight - textView.height)
+
+        animator.addUpdateListener { animation ->
+            val animatedValue = animation.animatedValue as Int
+            val layoutParams = view.layoutParams
+            layoutParams.height = animatedValue
+            view.layoutParams = layoutParams
+        }
+
+        animator.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                view.visibility = View.VISIBLE
+            }
+        })
+
+        animator.duration = 200
+        animator.start()
+    }
+
+    // View가 GONE 상태에서도 높이 측정 가능
+    private fun measureViewHeight(view: View): Int {
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        return view.measuredHeight
     }
 }

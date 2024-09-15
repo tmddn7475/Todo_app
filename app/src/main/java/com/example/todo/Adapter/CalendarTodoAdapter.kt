@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.Activity.TodoDetailActivity
 import com.example.todo.RoomDB.TodoDatabase
@@ -13,8 +15,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>() {
+class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>(), Filterable {
     private var list : ArrayList<TodoEntity> = ArrayList()
+    private var filterList : ArrayList<TodoEntity> = list
     private lateinit var roomDatabase: TodoDatabase
 
     fun clearList(){
@@ -45,6 +48,8 @@ class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>(
                 binding.time.text = "하루 종일"
             } else if (todoItem.startDate == todoItem.endDate) {
                 binding.time.text = todoItem.startTime + " ~ " + todoItem.endTime
+            } else if (todoItem.startTime == "all day") {
+                binding.time.text = "${todoItem.startDate} ~ ${todoItem.endDate}"
             } else {
                 binding.time.text = "${todoItem.startDate} / ${todoItem.startTime} ~ ${todoItem.endDate} / ${todoItem.endTime}"
             }
@@ -78,10 +83,38 @@ class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(filterList[position])
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return filterList.size
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charString = constraint.toString().trim()
+                filterList = if (charString.isBlank()) {
+                    list
+                } else {
+                    val filteredList = ArrayList<TodoEntity>()
+                    for (name in list) {
+                        if(name.title.lowercase().contains(charString.lowercase())) {
+                            filteredList.add(name)
+                        }
+                    }
+                    filteredList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = filterList
+                return filterResults
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filterList = results?.values as ArrayList<TodoEntity>
+                notifyDataSetChanged()
+            }
+        }
     }
 }

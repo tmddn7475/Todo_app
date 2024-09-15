@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
                 when (it.itemId) {
                     R.id.bottom_home -> homeFragment
                     R.id.bottom_calender -> calendarFragment
-                    else -> SearchFragment()
+                    R.id.bottom_search -> SearchFragment()
+                    else -> ProfileFragment()
                 }
             )
             true

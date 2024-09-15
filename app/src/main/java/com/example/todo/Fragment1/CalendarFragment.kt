@@ -143,6 +143,9 @@ class CalendarFragment : Fragment() {
 
                 if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
                     result++
+                    if(result == 3){
+                        break
+                    }
                 }
             } catch (e: ParseException) {
                 e.printStackTrace()
