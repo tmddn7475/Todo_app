@@ -39,9 +39,7 @@ class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>(
         @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
         fun bind(todoItem : TodoEntity) {
             binding.title.text = todoItem.title
-            if(todoItem.isDone){
-                binding.checkBox.isChecked = true
-            }
+            binding.checkBox.isChecked = todoItem.isDone
 
             // 날짜
             if(todoItem.startTime == "all day" && todoItem.startDate == todoItem.endDate){
