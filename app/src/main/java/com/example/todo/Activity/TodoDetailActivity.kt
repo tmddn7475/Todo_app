@@ -19,8 +19,7 @@ class TodoDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
-
-    lateinit var data: TodoEntity
+    private lateinit var data: TodoEntity
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -13,7 +13,6 @@ import com.example.todo.Fragment2.AddTodoFragment
 import com.example.todo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var addTodoFragment: AddTodoFragment

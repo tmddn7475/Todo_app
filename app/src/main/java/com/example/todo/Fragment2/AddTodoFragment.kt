@@ -169,6 +169,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
         }
     }
 
+    // 날짜 비교
     @SuppressLint("SimpleDateFormat")
     private fun compareDates(selectedDate: String, comparisonDate: String){
         val dateFormat = SimpleDateFormat("yyyy.MM.dd")
@@ -200,7 +201,6 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
             e.printStackTrace()
         }
     }
-
 
     override fun selected(textView: TextView, time: String) {
         textView.text = time
