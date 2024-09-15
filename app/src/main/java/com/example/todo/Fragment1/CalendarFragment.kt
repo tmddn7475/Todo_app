@@ -190,12 +190,20 @@ class CalendarFragment : Fragment() {
                 textView.text = data.date.dayOfMonth.toString()
 
                 when (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))) {
+                    0 -> {
+                        container.binding.dayTodo1.visibility = View.GONE
+                        container.binding.dayTodo2.visibility = View.GONE
+                        container.binding.dayTodo3.visibility = View.GONE
+                    }
                     1 -> {
                         container.binding.dayTodo1.visibility = View.VISIBLE
+                        container.binding.dayTodo2.visibility = View.GONE
+                        container.binding.dayTodo3.visibility = View.GONE
                     }
                     2 -> {
                         container.binding.dayTodo1.visibility = View.VISIBLE
                         container.binding.dayTodo2.visibility = View.VISIBLE
+                        container.binding.dayTodo3.visibility = View.GONE
                     }
                     3 -> {
                         container.binding.dayTodo1.visibility = View.VISIBLE
