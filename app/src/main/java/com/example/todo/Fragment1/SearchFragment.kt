@@ -32,7 +32,6 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         db = TodoDatabase.getInstance(requireContext())!!
-
         CoroutineScope(Dispatchers.IO).launch {
             calendarTodoAdapter.clearList()
             val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
