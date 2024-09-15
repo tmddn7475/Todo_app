@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.Dialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

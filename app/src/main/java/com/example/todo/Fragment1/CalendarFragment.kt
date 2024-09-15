@@ -56,16 +56,29 @@ class CalendarFragment : Fragment() {
     ): View {
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         db = TodoDatabase.getInstance(requireContext())!!
-        CoroutineScope(Dispatchers.IO).launch {
-            todoList = db.todoDAO().getTodo()
-        }
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        refresh()
+
+        binding.exFiveNextMonthImage.setOnClickListener {
+            binding.calendar.findFirstVisibleMonth()?.let {
+                binding.calendar.smoothScrollToMonth(it.yearMonth.nextMonth)
+            }
+        }
+
+        binding.exFivePreviousMonthImage.setOnClickListener {
+            binding.calendar.findFirstVisibleMonth()?.let {
+                binding.calendar.smoothScrollToMonth(it.yearMonth.previousMonth)
+            }
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun refresh(){
         val daysOfWeek = daysOfWeek()
         val currentMonth = YearMonth.now()
         val startMonth = currentMonth.minusMonths(200)
@@ -92,41 +105,32 @@ class CalendarFragment : Fragment() {
                 binding.calendar.notifyDateChanged(it)
             }
         }
-
-        binding.exFiveNextMonthImage.setOnClickListener {
-            binding.calendar.findFirstVisibleMonth()?.let {
-                binding.calendar.smoothScrollToMonth(it.yearMonth.nextMonth)
-            }
-        }
-
-        binding.exFivePreviousMonthImage.setOnClickListener {
-            binding.calendar.findFirstVisibleMonth()?.let {
-                binding.calendar.smoothScrollToMonth(it.yearMonth.previousMonth)
-            }
-        }
     }
 
     @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged")
     private fun updateAdapter(date: String){
         calendarTodoAdapter.clearList()
+        CoroutineScope(Dispatchers.IO).launch {
+            todoList = db.todoDAO().getTodo()
+            activity?.runOnUiThread{
+                val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+                for(todo in todoList){
+                    try {
+                        // 문자열을 Date 객체로 변환
+                        val today: Date = dateFormat.parse(date)!!
+                        val date1: Date = dateFormat.parse(todo.startDate)!!
+                        val date2: Date = dateFormat.parse(todo.endDate)!!
 
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
-
-        for(todo in todoList){
-            try {
-                // 문자열을 Date 객체로 변환
-                val today: Date = dateFormat.parse(date)!!
-                val date1: Date = dateFormat.parse(todo.startDate)!!
-                val date2: Date = dateFormat.parse(todo.endDate)!!
-
-                if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
-                    calendarTodoAdapter.addListItem(todo)
+                        if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
+                            calendarTodoAdapter.addListItem(todo)
+                        }
+                    } catch (e: ParseException) {
+                        e.printStackTrace()
+                    }
                 }
-            } catch (e: ParseException) {
-                e.printStackTrace()
+                calendarTodoAdapter.notifyDataSetChanged()
             }
         }
-        calendarTodoAdapter.notifyDataSetChanged()
     }
 
     @SuppressLint("SimpleDateFormat")

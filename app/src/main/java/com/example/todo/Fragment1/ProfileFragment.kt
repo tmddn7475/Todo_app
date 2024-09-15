@@ -1,10 +1,11 @@
-package com.example.todo
+package com.example.todo.Fragment1
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.todo.R
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(

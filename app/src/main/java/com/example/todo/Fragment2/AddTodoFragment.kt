@@ -14,7 +14,7 @@ import com.example.todo.MainActivity
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
-import com.example.todo.SelectTimeDialog
+import com.example.todo.Dialog.SelectTimeDialog
 import com.example.todo.databinding.FragmentAddTodoBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -142,24 +142,28 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
         super.onViewCreated(view, savedInstanceState)
 
         val bottomSheetBehavior = BottomSheetBehavior.from<View>(view.parent as View)
-        bottomSheetBehavior.maxWidth = ViewGroup.LayoutParams.MATCH_PARENT
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
+        bottomSheetBehavior.peekHeight = view.measuredHeight
 
         view.findViewById<TextView>(R.id.todo_cancel).setOnClickListener{
             dismiss()
         }
     }
 
+    // 할 일 추가
     @SuppressLint("NotifyDataSetChanged")
     private fun addData(entity: TodoEntity){
         val mainActivity = (activity as MainActivity)
         val homeFragment = mainActivity.homeFragment
+        val calendarFragment = mainActivity.calendarFragment
 
         CoroutineScope(Dispatchers.IO).launch {
             db.todoDAO().saveTodo(entity)
             activity?.runOnUiThread{
                 if(homeFragment.isAdded){
                     homeFragment.updateTodoList()
+                } else if (calendarFragment.isAdded) {
+                    calendarFragment.refresh()
                 }
             }
         }

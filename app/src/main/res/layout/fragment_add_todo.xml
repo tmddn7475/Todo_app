@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background"
+    android:background="@color/gray"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment2.AddTodoFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="12dp"
+        android:textSize="18sp"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:text="할 일 추가하기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/add_todo_title"
         android:inputType="text"
         android:hint="제목"
+        android:layout_below="@+id/title"
         android:textColor="@color/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:layout_marginHorizontal="12dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/add_todo_title"
         android:layout_marginTop="4dp"
         android:layout_marginHorizontal="12dp">
 
@@ -55,7 +72,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="2024.09.20"
                 android:textColor="@color/text"
                 android:textSize="18sp" />
 
@@ -88,9 +104,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_below="@+id/constraintLayout1"
         android:layout_marginHorizontal="12dp">
 
         <TextView
@@ -124,7 +142,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="2024.09.20"
                 android:textColor="@color/text"
                 android:textSize="18sp" />
 
@@ -155,9 +172,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
+        android:layout_below="@+id/constraintLayout2"
         android:layout_marginHorizontal="12dp"
         android:orientation="horizontal">
 
@@ -187,13 +206,16 @@
         android:textColor="@color/text"
         android:drawablePadding="16dp"
         android:textSize="18sp"
+        android:layout_below="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:drawableLeftCompat="@drawable/baseline_notifications_active_24" />
 
     <View
+        android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@+id/todo_alert"
         android:layout_marginHorizontal="15dp"
         android:background="@color/drawable"/>
 
@@ -205,6 +227,7 @@
         android:textColor="@color/text"
         android:textSize="18sp"
         android:maxLength="30"
+        android:layout_below="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -212,14 +235,18 @@
         app:drawableLeftCompat="@drawable/baseline_location_pin_24"/>
 
     <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@+id/todo_location"
         android:layout_marginHorizontal="15dp"
         android:background="@color/drawable"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view2"
+        android:layout_above="@id/linearLayout2"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="8dp">
 
@@ -235,7 +262,7 @@
         <EditText
             android:id="@+id/todo_description"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="40dp"
             android:gravity="start"
             android:hint="세부 메모"
@@ -252,17 +279,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/todo_cancel"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:background="@color/gray"
+            android:background="@color/gray2"
             android:gravity="center"
+            android:layout_weight="1"
             android:text="취소"
             android:textColor="@color/text"
             android:textSize="20sp"
@@ -270,11 +299,11 @@
 
         <TextView
             android:id="@+id/todo_save"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:background="@color/blue_dark"
             android:gravity="center"
+            android:layout_weight="1"
             android:text="저장"
             android:textColor="@color/text"
             android:textSize="20sp"
@@ -282,4 +311,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
