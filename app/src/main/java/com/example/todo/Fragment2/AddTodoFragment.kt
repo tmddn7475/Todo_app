@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Interface.SelectTimeInterface
 import com.example.todo.MainActivity
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.Dialog.SelectTimeDialog
+import com.example.todo.Interface.SelectAlarmInterface
 import com.example.todo.databinding.FragmentAddTodoBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -25,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 
-class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
+class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, SelectAlarmInterface {
 
     private lateinit var db: TodoDatabase
     private var _binding: FragmentAddTodoBinding? = null
@@ -90,21 +92,10 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
             SelectTimeDialog(binding.todoTime2, this).show(parentFragmentManager, "selectTimeDialog")
         }
 
-        // description
-        /*binding.todoDescription.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                if (binding.todoDescription.hasFocus()) {
-                    v!!.parent.requestDisallowInterceptTouchEvent(true)
-                    when (event!!.action and MotionEvent.ACTION_MASK) {
-                        MotionEvent.ACTION_SCROLL -> {
-                            v.parent.requestDisallowInterceptTouchEvent(false)
-                            return true
-                        }
-                    }
-                }
-                return false
-            }
-        })*/
+        // Alarm
+        binding.todoAlarm.setOnClickListener{
+            SelectAlarmDialog(binding.todoAlarm, this).show(parentFragmentManager, "selectAlarmDialog")
+        }
 
         // 일정 저장
         binding.todoSave.setOnClickListener{
@@ -122,7 +113,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
             }
             val location: String = binding.todoLocation.text.toString()
             val desc: String = binding.todoDescription.text.toString()
-            val alert: String = binding.todoAlert.text.toString()
+            val alert: String = binding.todoAlarm.text.toString()
 
             if(title.isEmpty()){
                 Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
@@ -202,8 +193,12 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
         }
     }
 
-    override fun selected(textView: TextView, time: String) {
-        textView.text = time
+    override fun selected(textView: TextView, str: String) {
+        textView.text = str
         compareTime(binding.todoDate.text.toString(), binding.todoDate2.text.toString(), binding.todoTime.text.toString(), binding.todoTime2.text.toString())
+    }
+
+    override fun selectedAlarm(textView: TextView, str: String) {
+        textView.text = str
     }
 }

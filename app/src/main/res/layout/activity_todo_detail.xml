@@ -178,7 +178,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Alert"
+                    android:text="Alarm"
                     android:textColor="@color/text"
                     android:textSize="18sp"
                     android:drawablePadding="8dp"

@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.todo.Interface.SelectTimeInterface
 import com.example.todo.databinding.DialogSelectTimeBinding
 
-class SelectTimeDialog(var textView: TextView, var selectTimeInterface: SelectTimeInterface): DialogFragment() {
+class SelectTimeDialog(private var textView: TextView, private var selectTimeInterface: SelectTimeInterface): DialogFragment() {
     private var _binding: DialogSelectTimeBinding? = null
     private val binding get() = _binding!!
 
