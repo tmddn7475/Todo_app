@@ -18,12 +18,18 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 
+@SuppressLint("SimpleDateFormat", "NotifyDataSetChanged", "SetTextI18n")
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: TodoDatabase
     private lateinit var todayListAdapter: TodoAdapter
+
+    private var num: Int = 0
+    private val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+    private val date = Date(System.currentTimeMillis())
+    private val simpleDate: String = dateFormat.format(date)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,17 +45,25 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
-
-    @SuppressLint("NotifyDataSetChanged")
+    
+    // 리스트 업데이트
     fun updateTodoList(){
         CoroutineScope(Dispatchers.IO).launch {
             todayListAdapter.clearList()
             val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
             activity?.runOnUiThread{
+                num = 0
                 for(item in data){
                     if(todayTodos(item.startDate, item.endDate)){
                         todayListAdapter.addListItem(item)
+                        num++
                     }
+                }
+                binding.text1.text = simpleDate
+                if(num <= 1){
+                    binding.text2.text = "You have $num task today"
+                } else {
+                    binding.text2.text = "You have $num tasks today"
                 }
                 todayListAdapter.notifyDataSetChanged()
             }
@@ -57,13 +71,8 @@ class HomeFragment : Fragment() {
     }
 
     // 오늘 할일 가져오기
-    @SuppressLint("SimpleDateFormat")
     private fun todayTodos(startDate: String, endDate: String): Boolean {
         var bool = false
-
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
-        val date = Date(System.currentTimeMillis())
-        val simpleDate: String = dateFormat.format(date)
 
         try {
             // 문자열을 Date 객체로 변환

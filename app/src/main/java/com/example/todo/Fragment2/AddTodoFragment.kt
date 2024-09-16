@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -92,7 +91,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
         }
 
         // description
-        binding.todoDescription.setOnTouchListener(object : View.OnTouchListener {
+        /*binding.todoDescription.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 if (binding.todoDescription.hasFocus()) {
                     v!!.parent.requestDisallowInterceptTouchEvent(true)
@@ -105,7 +104,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
                 }
                 return false
             }
-        })
+        })*/
 
         // 일정 저장
         binding.todoSave.setOnClickListener{
@@ -144,6 +143,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface {
         val bottomSheetBehavior = BottomSheetBehavior.from<View>(view.parent as View)
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
         bottomSheetBehavior.peekHeight = view.measuredHeight
+        bottomSheetBehavior.isDraggable = false
 
         view.findViewById<TextView>(R.id.todo_cancel).setOnClickListener{
             dismiss()
