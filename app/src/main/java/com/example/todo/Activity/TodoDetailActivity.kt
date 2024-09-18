@@ -2,6 +2,7 @@ package com.example.todo.Activity
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.todo.databinding.ActivityTodoDetailBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInterface {
 
@@ -39,6 +41,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         binding.todoDetailTitle.ellipsize = TextUtils.TruncateAt.MARQUEE // 흐르게 만들기
         binding.todoDetailTitle.isSelected = true
 
+        // TodoEntity 가져오기
         CoroutineScope(Dispatchers.IO).launch {
             data = db.todoDAO().selectOne(id)
 
@@ -61,8 +64,8 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 binding.editDate2.text = data.endDate
                 if(data.startTime == "all day"){
                     binding.editSwitch.isChecked = true
-                    binding.editTime.visibility = View.GONE
-                    binding.editTime2.visibility = View.GONE
+                    binding.materialCardView2.visibility = View.GONE
+                    binding.materialCardView4.visibility = View.GONE
                 } else {
                     binding.editSwitch.isChecked = false
                     binding.editTime.text = data.startTime
@@ -78,7 +81,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             finish()
         }
 
-        // 수정
+        // TodoEntity 수정
         binding.todoDetailEditBtn.setOnClickListener{
             binding.toolbar.visibility = View.GONE
             binding.scrollView.visibility = View.GONE
@@ -96,6 +99,23 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             }
         }
 
+        // 날짜
+        binding.editDate.setOnClickListener{
+            val cal = Calendar.getInstance()
+            val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                binding.editDate.text = "${year}.${month+1}.${day}"
+            }
+            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+        binding.editDate2.setOnClickListener{
+            val cal = Calendar.getInstance()
+            val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                binding.editDate2.text = "${year}.${month+1}.${day}"
+            }
+            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
         // time
         binding.editTime.setOnClickListener{
             SelectTimeDialog(binding.editTime, this).show(supportFragmentManager, "selectTimeDialog")
@@ -108,6 +128,31 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         // Alarm
         binding.editAlarm.setOnClickListener{
             SelectAlarmDialog(binding.editAlarm, this).show(supportFragmentManager, "selectAlarmDialog")
+        }
+
+        // 수정본 저장
+        binding.editSave.setOnClickListener{
+            data.title = binding.editTitle.text.toString()
+            data.startDate = binding.editDate.text.toString()
+            data.endDate = binding.editDate2.text.toString()
+            if(binding.editSwitch.isChecked){
+                data.startTime = "all day"
+                data.endTime = "all day"
+            } else {
+                data.startTime = binding.editTime.text.toString()
+                data.endTime = binding.editTime2.text.toString()
+            }
+            data.alert = binding.editAlarm.text.toString()
+            data.location = binding.editLocation.text.toString()
+            data.description = binding.editDescription.text.toString()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                db.todoDAO().update(data)
+                runOnUiThread{
+                    Toast.makeText(this@TodoDetailActivity, "수정되었습니다", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
         }
 
         binding.editCancel.setOnClickListener{
