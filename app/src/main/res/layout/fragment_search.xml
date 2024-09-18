@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment1.SearchFragment">
+    tools:context=".Fragment.SearchFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"

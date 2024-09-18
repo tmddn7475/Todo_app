@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:background="@color/background"
-    tools:context=".Fragment1.CalendarFragment">
+    tools:context=".Fragment.CalendarFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:background="@color/background"

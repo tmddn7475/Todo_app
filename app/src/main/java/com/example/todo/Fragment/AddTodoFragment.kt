@@ -1,4 +1,4 @@
-package com.example.todo.Fragment2
+package com.example.todo.Fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.example.todo.Object.Command
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Interface.SelectTimeInterface
 import com.example.todo.MainActivity
@@ -22,10 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 
 class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, SelectAlarmInterface {
 
@@ -66,7 +64,9 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
                 DatePickerDialog(it1, { _, year, month, day ->
                     run {
                         binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-                        compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())
+                        if(Command.compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())){
+                            binding.todoDate2.text = binding.todoDate.text.toString()
+                        }
                     }
                 }, year, month, day)
             }?.show()
@@ -77,7 +77,9 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
                 DatePickerDialog(it1, { _, year, month, day ->
                     run {
                         binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-                        compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())
+                        if(Command.compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())){
+                            binding.todoDate2.text = binding.todoDate.text.toString()
+                        }
                     }
                 }, year, month, day)
             }?.show()
@@ -160,42 +162,11 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
         }
     }
 
-    // 날짜 비교
-    @SuppressLint("SimpleDateFormat")
-    private fun compareDates(selectedDate: String, comparisonDate: String){
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
-        try {
-            // 문자열을 Date 객체로 변환
-            val date1: Date = dateFormat.parse(selectedDate)!!
-            val date2: Date = dateFormat.parse(comparisonDate)!!
-
-            if(date1.after(date2)){
-                binding.todoDate2.text = selectedDate
-            }
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private fun compareTime(selectedDate: String, comparisonDate: String, selectTime: String, comparisonTime: String){
-        val dateFormat = SimpleDateFormat("HH:mm")
-        try {
-            // 문자열을 Date 객체로 변환
-            val time1: Date = dateFormat.parse(selectTime)!!
-            val time2: Date = dateFormat.parse(comparisonTime)!!
-
-            if(time1.after(time2) && selectedDate == comparisonDate){
-                binding.todoTime2.text = selectTime
-            }
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-    }
-
     override fun selected(textView: TextView, str: String) {
         textView.text = str
-        compareTime(binding.todoDate.text.toString(), binding.todoDate2.text.toString(), binding.todoTime.text.toString(), binding.todoTime2.text.toString())
+        if(Command.compareTime(binding.todoDate.text.toString(), binding.todoDate2.text.toString(), binding.todoTime.text.toString(), binding.todoTime2.text.toString())){
+            binding.todoTime2.text = str
+        }
     }
 
     override fun selectedAlarm(textView: TextView, str: String) {

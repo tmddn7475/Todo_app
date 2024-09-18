@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.todo.Object.Command
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Dialog.SelectTimeDialog
 import com.example.todo.Interface.SelectAlarmInterface
@@ -33,6 +34,10 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         super.onCreate(savedInstanceState)
         binding = ActivityTodoDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val mainActivity = MainActivity.getInstance()
+        val homeFragment = mainActivity?.homeFragment
+        val calendarFragment = mainActivity?.calendarFragment
 
         val id = intent.getLongExtra("todo", 0)
         db = TodoDatabase.getInstance(this)!!
@@ -104,6 +109,9 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             val cal = Calendar.getInstance()
             val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 binding.editDate.text = "${year}.${month+1}.${day}"
+                if(Command.compareDates(binding.editDate.text.toString(), binding.editDate2.text.toString())){
+                    binding.editDate2.text = binding.editDate.text.toString()
+                }
             }
             DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
         }
@@ -112,6 +120,9 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             val cal = Calendar.getInstance()
             val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 binding.editDate2.text = "${year}.${month+1}.${day}"
+                if(Command.compareDates(binding.editDate.text.toString(), binding.editDate2.text.toString())){
+                    binding.editDate2.text = binding.editDate.text.toString()
+                }
             }
             DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
         }
@@ -149,7 +160,12 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             CoroutineScope(Dispatchers.IO).launch {
                 db.todoDAO().update(data)
                 runOnUiThread{
-                    Toast.makeText(this@TodoDetailActivity, "수정되었습니다", Toast.LENGTH_SHORT).show()
+                    if(homeFragment?.isAdded!!){
+                        homeFragment.updateTodoList()
+                    } else if (calendarFragment?.isAdded!!) {
+                        calendarFragment.refresh()
+                    }
+                    Toast.makeText(binding.root.context, "수정되었습니다", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }
@@ -161,10 +177,6 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         // 삭제
         binding.todoDetailDeleteBtn.setOnClickListener{
-            val mainActivity = MainActivity.getInstance()
-            val homeFragment = mainActivity?.homeFragment
-            val calendarFragment = mainActivity?.calendarFragment
-
             AlertDialog.Builder(binding.root.context).setMessage("해당 일정을 삭제하시겠습니까?")
                 .setNegativeButton("아니요"){ dialog, _ ->
                     dialog.dismiss()
@@ -183,11 +195,12 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     }
                 }.show()
         }
-
     }
-
     override fun selected(textView: TextView, str: String) {
         textView.text = str
+        if(Command.compareTime(binding.editDate.text.toString(), binding.editDate2.text.toString(), binding.editTime.text.toString(), binding.editTime2.text.toString())){
+            binding.editTime2.text = str
+        }
     }
 
     override fun selectedAlarm(textView: TextView, str: String) {

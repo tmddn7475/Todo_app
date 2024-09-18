@@ -5,11 +5,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.todo.Fragment1.CalendarFragment
-import com.example.todo.Fragment1.HomeFragment
-import com.example.todo.Fragment1.ProfileFragment
-import com.example.todo.Fragment1.SearchFragment
-import com.example.todo.Fragment2.AddTodoFragment
+import com.example.todo.Fragment.CalendarFragment
+import com.example.todo.Fragment.HomeFragment
+import com.example.todo.Fragment.ProfileFragment
+import com.example.todo.Fragment.SearchFragment
+import com.example.todo.Fragment.AddTodoFragment
 import com.example.todo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 

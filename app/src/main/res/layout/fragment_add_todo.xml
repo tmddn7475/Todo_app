@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/gray"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment2.AddTodoFragment">
+    tools:context=".Fragment.AddTodoFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
