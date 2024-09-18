@@ -143,30 +143,34 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         // 수정본 저장
         binding.editSave.setOnClickListener{
-            data.title = binding.editTitle.text.toString()
-            data.startDate = binding.editDate.text.toString()
-            data.endDate = binding.editDate2.text.toString()
-            if(binding.editSwitch.isChecked){
-                data.startTime = "all day"
-                data.endTime = "all day"
+            if(binding.editTitle.text.trim().isEmpty()){
+                Toast.makeText(this@TodoDetailActivity, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
-                data.startTime = binding.editTime.text.toString()
-                data.endTime = binding.editTime2.text.toString()
-            }
-            data.alert = binding.editAlarm.text.toString()
-            data.location = binding.editLocation.text.toString()
-            data.description = binding.editDescription.text.toString()
+                data.title = binding.editTitle.text.toString()
+                data.startDate = binding.editDate.text.toString()
+                data.endDate = binding.editDate2.text.toString()
+                if(binding.editSwitch.isChecked){
+                    data.startTime = "all day"
+                    data.endTime = "all day"
+                } else {
+                    data.startTime = binding.editTime.text.toString()
+                    data.endTime = binding.editTime2.text.toString()
+                }
+                data.alert = binding.editAlarm.text.toString()
+                data.location = binding.editLocation.text.toString()
+                data.description = binding.editDescription.text.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                db.todoDAO().update(data)
-                runOnUiThread{
-                    if(homeFragment?.isAdded!!){
-                        homeFragment.updateTodoList()
-                    } else if (calendarFragment?.isAdded!!) {
-                        calendarFragment.refresh()
+                CoroutineScope(Dispatchers.IO).launch {
+                    db.todoDAO().update(data)
+                    runOnUiThread{
+                        if(homeFragment?.isAdded!!){
+                            homeFragment.updateTodoList()
+                        } else if (calendarFragment?.isAdded!!) {
+                            calendarFragment.refresh()
+                        }
+                        Toast.makeText(this@TodoDetailActivity, "수정되었습니다", Toast.LENGTH_SHORT).show()
+                        finish()
                     }
-                    Toast.makeText(binding.root.context, "수정되었습니다", Toast.LENGTH_SHORT).show()
-                    finish()
                 }
             }
         }

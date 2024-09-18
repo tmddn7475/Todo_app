@@ -250,7 +250,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
                 android:hint="제목"
                 android:inputType="text"
                 android:textColor="@color/text" />
