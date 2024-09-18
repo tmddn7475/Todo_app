@@ -1,12 +1,17 @@
 package com.example.todo.Activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.todo.Dialog.SelectAlarmDialog
+import com.example.todo.Dialog.SelectTimeDialog
+import com.example.todo.Interface.SelectAlarmInterface
+import com.example.todo.Interface.SelectTimeInterface
 import com.example.todo.MainActivity
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
@@ -15,7 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TodoDetailActivity : AppCompatActivity() {
+class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInterface {
 
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
@@ -49,10 +54,63 @@ class TodoDetailActivity : AppCompatActivity() {
                 binding.todoDetailAlarm.text = data.alert
                 binding.todoDetailLocation.text = data.location
                 binding.todoDetailDescription.text = data.description
+
+                // edit
+                binding.editTitle.setText(data.title)
+                binding.editDate.text = data.startDate
+                binding.editDate2.text = data.endDate
+                if(data.startTime == "all day"){
+                    binding.editSwitch.isChecked = true
+                    binding.editTime.visibility = View.GONE
+                    binding.editTime2.visibility = View.GONE
+                } else {
+                    binding.editSwitch.isChecked = false
+                    binding.editTime.text = data.startTime
+                    binding.editTime2.text = data.endTime
+                }
+                binding.editAlarm.text = data.alert
+                binding.editLocation.setText(data.location)
+                binding.editDescription.setText(data.description)
             }
         }
 
         binding.todoDetailBackBtn.setOnClickListener {
+            finish()
+        }
+
+        // 수정
+        binding.todoDetailEditBtn.setOnClickListener{
+            binding.toolbar.visibility = View.GONE
+            binding.scrollView.visibility = View.GONE
+            binding.editScroll.visibility = View.VISIBLE
+            binding.editLinear.visibility = View.VISIBLE
+        }
+
+        binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                binding.materialCardView2.visibility = View.GONE
+                binding.materialCardView4.visibility = View.GONE
+            } else {
+                binding.materialCardView2.visibility = View.VISIBLE
+                binding.materialCardView4.visibility = View.VISIBLE
+            }
+        }
+
+        // time
+        binding.editTime.setOnClickListener{
+            SelectTimeDialog(binding.editTime, this).show(supportFragmentManager, "selectTimeDialog")
+        }
+
+        binding.editTime2.setOnClickListener{
+            SelectTimeDialog(binding.editTime2, this).show(supportFragmentManager, "selectTimeDialog")
+        }
+
+        // Alarm
+        binding.editAlarm.setOnClickListener{
+            SelectAlarmDialog(binding.editAlarm, this).show(supportFragmentManager, "selectAlarmDialog")
+        }
+
+        binding.editCancel.setOnClickListener{
             finish()
         }
 
@@ -81,5 +139,13 @@ class TodoDetailActivity : AppCompatActivity() {
                 }.show()
         }
 
+    }
+
+    override fun selected(textView: TextView, str: String) {
+        textView.text = str
+    }
+
+    override fun selectedAlarm(textView: TextView, str: String) {
+        textView.text = str
     }
 }

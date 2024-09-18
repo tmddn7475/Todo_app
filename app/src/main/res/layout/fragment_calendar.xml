@@ -11,7 +11,6 @@
     tools:context=".Fragment1.CalendarFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/exFiveAppBarLayout"
         android:background="@color/background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -23,7 +22,7 @@
             android:padding="8dp">
 
             <ImageView
-                android:id="@+id/exFivePreviousMonthImage"
+                android:id="@+id/previousMonth"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -33,20 +32,20 @@
                 app:srcCompat="@drawable/baseline_chevron_left_24" />
 
             <TextView
-                android:id="@+id/exFiveMonthYearText"
+                android:id="@+id/monthText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:textSize="22sp"
                 android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/exFiveNextMonthImage"
-                app:layout_constraintStart_toEndOf="@id/exFivePreviousMonthImage"
+                app:layout_constraintEnd_toStartOf="@id/nextMonth"
+                app:layout_constraintStart_toEndOf="@id/previousMonth"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2024-09" />
 
             <ImageView
-                android:id="@+id/exFiveNextMonthImage"
+                android:id="@+id/nextMonth"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?attr/selectableItemBackgroundBorderless"

@@ -64,13 +64,18 @@ class CalendarFragment : Fragment() {
 
         refresh()
 
-        binding.exFiveNextMonthImage.setOnClickListener {
+        // 클릭하면 현재 월로 이동
+        binding.monthText.setOnClickListener{
+            refresh()
+        }
+
+        binding.nextMonth.setOnClickListener {
             binding.calendar.findFirstVisibleMonth()?.let {
                 binding.calendar.smoothScrollToMonth(it.yearMonth.nextMonth)
             }
         }
 
-        binding.exFivePreviousMonthImage.setOnClickListener {
+        binding.previousMonth.setOnClickListener {
             binding.calendar.findFirstVisibleMonth()?.let {
                 binding.calendar.smoothScrollToMonth(it.yearMonth.previousMonth)
             }
@@ -98,7 +103,7 @@ class CalendarFragment : Fragment() {
         calendarTodoAdapter.notifyDataSetChanged()
 
         binding.calendar.monthScrollListener = { month ->
-            binding.exFiveMonthYearText.text = month.yearMonth.toString()
+            binding.monthText.text = month.yearMonth.toString()
 
             selectedDate?.let {
                 selectedDate = LocalDate.now()
