@@ -86,7 +86,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             finish()
         }
 
-        // TodoEntity 수정
+        // 일정 수정
         binding.todoDetailEditBtn.setOnClickListener{
             binding.toolbar.visibility = View.GONE
             binding.scrollView.visibility = View.GONE
@@ -136,12 +136,12 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             SelectTimeDialog(binding.editTime2, this).show(supportFragmentManager, "selectTimeDialog")
         }
 
-        // Alarm
+        // 일정 Alarm
         binding.editAlarm.setOnClickListener{
             SelectAlarmDialog(binding.editAlarm, this).show(supportFragmentManager, "selectAlarmDialog")
         }
 
-        // 수정본 저장
+        // 일정 수정본 저장
         binding.editSave.setOnClickListener{
             if(binding.editTitle.text.trim().isEmpty()){
                 Toast.makeText(this@TodoDetailActivity, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
@@ -179,7 +179,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             finish()
         }
 
-        // 삭제
+        // 일정 삭제
         binding.todoDetailDeleteBtn.setOnClickListener{
             AlertDialog.Builder(binding.root.context).setMessage("해당 일정을 삭제하시겠습니까?")
                 .setNegativeButton("아니요"){ dialog, _ ->

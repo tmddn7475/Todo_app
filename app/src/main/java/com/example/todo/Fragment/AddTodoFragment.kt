@@ -3,6 +3,7 @@ package com.example.todo.Fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -117,12 +118,16 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
             val desc: String = binding.todoDescription.text.toString()
             val alert: String = binding.todoAlarm.text.toString()
 
+
+
             if(title.isEmpty()){
                 Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
                 val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate,
                     startTime = startTime, endTime = endTime, location = location, description = desc, alert = alert)
                 addData(todoEntity)
+
+                if(todoEntity.alert != "알림 없음") setNotification(todoEntity)
                 dismiss()
             }
         }
@@ -160,6 +165,42 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
                 }
             }
         }
+    }
+
+    private fun setNotification(data: TodoEntity){
+        val c = Calendar.getInstance()
+        val dateArr = data.startDate.split(".")
+
+        c.set(Calendar.YEAR, dateArr[0].toInt())
+        c.set(Calendar.MONTH, dateArr[1].toInt()-1)
+        c.set(Calendar.DAY_OF_MONTH, dateArr[2].toInt())
+
+        if(data.startTime == "all day"){
+            c.set(Calendar.HOUR_OF_DAY, 9)
+            c.set(Calendar.MINUTE, 0)
+        } else {
+            val timeArr = data.startTime.split(":")
+            c.set(Calendar.HOUR_OF_DAY, timeArr[0].toInt())
+            c.set(Calendar.MINUTE, timeArr[1].toInt())
+
+            when (data.alert) {
+                "5분 전" -> {
+                    c.add(Calendar.MINUTE, -5)
+                }
+                "10분 전" -> {
+                    c.add(Calendar.MINUTE, -10)
+                }
+                "1시간 전" -> {
+                    c.add(Calendar.HOUR, -1)
+                }
+                "1일 전" -> {
+                    c.add(Calendar.DAY_OF_MONTH, -1)
+                }
+            }
+        }
+
+        Log.i("alert", "success")
+        Command.scheduleNotification(requireContext(), c.timeInMillis, data.id.toInt(), data.title)
     }
 
     override fun selected(textView: TextView, str: String) {
