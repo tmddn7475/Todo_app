@@ -30,6 +30,7 @@ class SelectAlarmDialog(private var textView: TextView, private var selectAlarmI
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){
                 R.id.rg_none -> alarm = "알림 없음"
+                R.id.rg_on_time -> alarm = "정각"
                 R.id.rg_5_min -> alarm = "5분 전"
                 R.id.rg_10_min -> alarm = "10분 전"
                 R.id.rg_1_hour -> alarm = "1시간 전"
