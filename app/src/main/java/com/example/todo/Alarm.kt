@@ -5,14 +5,18 @@ import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.app.NotificationCompat
 
 class Alarm: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        val notificationId = intent?.getIntExtra("notification_id", 0)!!
-        val notification = intent.getStringExtra("notification_title")
-        if (context != null) {
-            createNotification(context, notification.toString(), notificationId)
+        if (Intent.ACTION_BOOT_COMPLETED == intent?.action) {
+            // 알람을 다시 설정하는 로직을 여기에 추가합니다.
+            val notificationId = intent.getIntExtra("notification_id", 0)
+            val notification = intent.getStringExtra("notification_title")
+            if (context != null) {
+                createNotification(context, notification.toString(), notificationId)
+            }
         }
     }
 
@@ -28,10 +32,11 @@ class Alarm: BroadcastReceiver() {
 
         val builder = NotificationCompat.Builder(context, "notify_001")
             .setSmallIcon(R.drawable.baseline_notifications_active_24)
-            .setContentTitle(context.getString(R.string.app_name))
+            .setContentTitle("title")
             .setContentText(notification)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
+        Log.i("alert", "success")
         notificationManager.notify(notificationId, builder.build())
     }
 }

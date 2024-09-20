@@ -24,7 +24,11 @@ class SelectTimeDialog(private var textView: TextView, private var selectTimeInt
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        val getTime = textView.text.toString().split(":")
+
         binding.timePicker.setIs24HourView(true)
+        binding.timePicker.hour = getTime[0].toInt()
+        binding.timePicker.minute = getTime[1].toInt()
 
         binding.timeBtnNo.setOnClickListener{
             dismiss()

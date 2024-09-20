@@ -46,19 +46,4 @@ object Command {
         }
         return bool
     }
-
-    @SuppressLint("ScheduleExactAlarm")
-    fun scheduleNotification(context: Context, timeInMillis: Long, requestCode: Int, title: String) {
-        val intent = Intent(context, Alarm::class.java).apply {
-            putExtra("notification_id", requestCode)
-            putExtra("notification_title", title)
-        }
-        // requestCode를 다르게 설정하여 고유한 PendingIntent 생성
-        val pendingIntent = PendingIntent.getBroadcast(
-            context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
-    }
 }
