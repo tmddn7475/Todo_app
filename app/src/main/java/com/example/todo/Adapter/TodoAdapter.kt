@@ -17,6 +17,7 @@ import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.Activity.TodoDetailActivity
+import com.example.todo.Object.Command
 import com.example.todo.databinding.TodayItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -99,8 +100,8 @@ class TodoAdapter: RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
                             list.remove(todoItem)
                             (binding.root.context as Activity).runOnUiThread {
                                 notifyDataSetChanged()
-                                Toast.makeText(binding.root.context, "삭제되었습니다", Toast.LENGTH_SHORT)
-                                    .show()
+                                Toast.makeText(binding.root.context, "삭제되었습니다", Toast.LENGTH_SHORT).show()
+                                Command.delAlarm(binding.root.context, todoItem)
                             }
                         }
                     }.show()

@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         calendarFragment = CalendarFragment()
         searchFragment = SearchFragment()
         profileFragment = ProfileFragment()
+        addTodoFragment = AddTodoFragment()
 
         // 프래그먼트 전환
         supportFragmentManager.beginTransaction().replace(R.id.container, homeFragment).commit()
@@ -59,8 +60,9 @@ class MainActivity : AppCompatActivity() {
 
         // addTodoFragment
         binding.addTodo.setOnClickListener{
-            addTodoFragment = AddTodoFragment()
-            addTodoFragment.show(supportFragmentManager, addTodoFragment.tag)
+            if(!addTodoFragment.isAdded){
+                addTodoFragment.show(supportFragmentManager, addTodoFragment.tag)
+            }
         }
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

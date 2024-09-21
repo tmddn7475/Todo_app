@@ -11,6 +11,29 @@ import androidx.core.app.NotificationCompat
 class Alarm: BroadcastReceiver() {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
+        if (intent != null) {
+            if (intent.action.equals("android.intent.action.BOOT_COMPLETED")) {
+                val title: String = intent.getStringExtra("title").toString()
+                val id: Int = intent.getIntExtra("id", 0)
+                createNotification(context!!, title, id)
+
+                /*functions = AlarmFunctions(context)
+                coroutineScope.launch {
+                    val db = AppDatabase.getInstance(context)
+                    val list = db!!.alarmDao.getAllAlarms()
+                    val size = db.alarmDao.getAllAlarms().size
+                    list.let {
+                        for (i in 0 until size){
+                            val time = list[i].time
+                            val code = list[i].alarm_code
+                            val content = list[i].content
+                            functions.callAlarm(time, code, content) // 알람 실행
+                        }
+                    }
+                }*/
+            }
+        }
+
         if(intent != null){
             val title: String = intent.getStringExtra("title").toString()
             val id: Int = intent.getIntExtra("id", 0)

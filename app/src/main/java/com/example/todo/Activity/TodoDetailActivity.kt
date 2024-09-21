@@ -170,6 +170,10 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                         } else if (calendarFragment?.isAdded!!) {
                             calendarFragment.refresh()
                         }
+                        Command.delAlarm(this@TodoDetailActivity, data)
+                        if(data.alert != "알림 없음"){
+                            Command.setAlarm(this@TodoDetailActivity, data)
+                        }
                         Toast.makeText(this@TodoDetailActivity, "수정되었습니다", Toast.LENGTH_SHORT).show()
                         finish()
                     }
