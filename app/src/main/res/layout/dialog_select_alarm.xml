@@ -71,6 +71,13 @@
             android:layout_weight="1"
             android:text="1일 전" />
 
+        <RadioButton
+            android:id="@+id/rg_all_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="당일 8:00" />
+
     </RadioGroup>
 
     <View

@@ -98,9 +98,11 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             if(isChecked){
                 binding.materialCardView2.visibility = View.GONE
                 binding.materialCardView4.visibility = View.GONE
+                binding.todoDetailAlarm.text = "알림 없음"
             } else {
                 binding.materialCardView2.visibility = View.VISIBLE
                 binding.materialCardView4.visibility = View.VISIBLE
+                binding.todoDetailAlarm.text = "알림 없음"
             }
         }
 
@@ -138,7 +140,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         // 일정 Alarm
         binding.editAlarm.setOnClickListener{
-            SelectAlarmDialog(binding.editAlarm, this).show(supportFragmentManager, "selectAlarmDialog")
+            SelectAlarmDialog(binding.editAlarm, this, binding.editSwitch.isChecked).show(supportFragmentManager, "selectAlarmDialog")
         }
 
         // 일정 수정본 저장

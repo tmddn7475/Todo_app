@@ -5,9 +5,12 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.example.todo.Alarm
+import com.example.todo.RoomDB.TodoEntity
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 
 object Command {
@@ -45,5 +48,63 @@ object Command {
             e.printStackTrace()
         }
         return bool
+    }
+
+    // 알림 설정
+    fun setAlarm(context: Context, data: TodoEntity){
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, Alarm::class.java)
+        intent.putExtra("title", data.title)
+        intent.putExtra("id", data.id.toInt())
+
+        val pIntent = PendingIntent.getBroadcast(
+            context, data.id.toInt(), intent, PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+        val c = Calendar.getInstance()
+        val dateArr = data.startDate.split(".")
+
+        c.set(Calendar.YEAR, dateArr[0].toInt())
+        c.set(Calendar.MONTH, dateArr[1].toInt()-1)
+        c.set(Calendar.DAY_OF_MONTH, dateArr[2].toInt())
+
+        for(i in dateArr){
+            Log.i("test", i)
+        }
+
+        if(data.startTime == "all day"){
+            c.set(Calendar.HOUR_OF_DAY, 8)
+            c.set(Calendar.MINUTE, 0)
+            c.set(Calendar.SECOND, 0)
+        } else {
+            val timeArr = data.startTime.split(":")
+            c.set(Calendar.HOUR_OF_DAY, timeArr[0].toInt())
+            c.set(Calendar.MINUTE, timeArr[1].toInt())
+            c.set(Calendar.SECOND, 0)
+
+            when (data.alert) {
+                "5분 전" -> {
+                    c.add(Calendar.MINUTE, -5)
+                }
+                "10분 전" -> {
+                    c.add(Calendar.MINUTE, -10)
+                }
+                "1시간 전" -> {
+                    c.add(Calendar.HOUR_OF_DAY, -1)
+                }
+                "1일 전" -> {
+                    c.add(Calendar.DAY_OF_MONTH, -1)
+                }
+            }
+        }
+
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, c.timeInMillis, pIntent)
+    }
+
+    // 알림 삭제
+    fun delAlarm(context: Context, data: TodoEntity){
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, Alarm::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, data.id.toInt(), intent, PendingIntent.FLAG_IMMUTABLE)
+        alarmManager.cancel(pendingIntent)
     }
 }

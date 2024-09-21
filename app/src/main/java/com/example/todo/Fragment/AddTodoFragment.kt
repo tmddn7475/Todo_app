@@ -7,7 +7,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +45,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
 
         db = TodoDatabase.getInstance(requireContext())!!
 
+        // 현재 시간 가져오기
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
@@ -64,17 +64,20 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
             binding.todoTime2.text = "${hour}:${minute}"
         }
 
+        // 하루종일
         binding.addTodoSwitch.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 binding.materialCardView2.visibility = View.GONE
                 binding.materialCardView4.visibility = View.GONE
+                binding.todoAlarm.text = "알림 없음"
             } else {
                 binding.materialCardView2.visibility = View.VISIBLE
                 binding.materialCardView4.visibility = View.VISIBLE
+                binding.todoAlarm.text = "알림 없음"
             }
         }
 
-        // date
+        // 날짜 설정
         binding.todoDate.setOnClickListener{
             context?.let { it1 ->
                 DatePickerDialog(it1, { _, year, month, day ->
@@ -101,7 +104,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
             }?.show()
         }
 
-        // time
+        // 시간 설정
         binding.todoTime.setOnClickListener{
             SelectTimeDialog(binding.todoTime, this).show(parentFragmentManager, "selectTimeDialog")
         }
@@ -110,9 +113,10 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
             SelectTimeDialog(binding.todoTime2, this).show(parentFragmentManager, "selectTimeDialog")
         }
 
-        // Alarm
+        // Alarm 설정
         binding.todoAlarm.setOnClickListener{
-            SelectAlarmDialog(binding.todoAlarm, this).show(parentFragmentManager, "selectAlarmDialog")
+            SelectAlarmDialog(binding.todoAlarm, this, binding.addTodoSwitch.isChecked)
+                .show(parentFragmentManager, "selectAlarmDialog")
         }
 
         // 일정 저장
@@ -131,15 +135,15 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
             }
             val location: String = binding.todoLocation.text.toString()
             val desc: String = binding.todoDescription.text.toString()
-            val alert: String = binding.todoAlarm.text.toString()
+            val alarm: String = binding.todoAlarm.text.toString()
 
             if(title.isEmpty()){
                 Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
                 val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate,
-                    startTime = startTime, endTime = endTime, location = location, description = desc, alert = alert)
+                    startTime = startTime, endTime = endTime, location = location, description = desc, alert = alarm)
                 addData(todoEntity)
-                if(todoEntity.alert != "알림 없음") setNotification(todoEntity)
+                if(todoEntity.alert != "알림 없음") Command.setAlarm(requireContext(), todoEntity)
                 dismiss()
             }
         }
@@ -177,62 +181,6 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
                 }
             }
         }
-    }
-
-    private fun setNotification(data: TodoEntity){
-        val c = Calendar.getInstance()
-        val dateArr = data.startDate.split(".")
-
-        c.set(Calendar.YEAR, dateArr[0].toInt())
-        c.set(Calendar.MONTH, dateArr[1].toInt()-1)
-        c.set(Calendar.DAY_OF_MONTH, dateArr[2].toInt())
-
-        for(i in dateArr){
-            Log.i("test", i)
-        }
-
-        if(data.startTime == "all day"){
-            c.set(Calendar.HOUR_OF_DAY, 9)
-            c.set(Calendar.MINUTE, 0)
-            c.set(Calendar.SECOND, 0)
-        } else {
-            val timeArr = data.startTime.split(":")
-            c.set(Calendar.HOUR_OF_DAY, timeArr[0].toInt())
-            c.set(Calendar.MINUTE, timeArr[1].toInt())
-            c.set(Calendar.SECOND, 0)
-
-            when (data.alert) {
-                "5분 전" -> {
-                    c.add(Calendar.MINUTE, -5)
-                }
-                "10분 전" -> {
-                    c.add(Calendar.MINUTE, -10)
-                }
-                "1시간 전" -> {
-                    c.add(Calendar.HOUR_OF_DAY, -1)
-                }
-                "1일 전" -> {
-                    c.add(Calendar.DAY_OF_MONTH, -1)
-                }
-            }
-        }
-
-        Log.i("alert", "success")
-        scheduleNotification(requireContext(), c.timeInMillis, data.id.toInt(), data.title)
-    }
-
-    @SuppressLint("ScheduleExactAlarm")
-    fun scheduleNotification(context: Context, timeInMillis: Long, requestCode: Int, title: String) {
-        val intent = Intent(context, Alarm::class.java)
-        intent.putExtra("notification_id", requestCode)
-        intent.putExtra("notification_title", title)
-
-        // requestCode를 다르게 설정하여 고유한 PendingIntent 생성
-        val pendingIntent = PendingIntent.getBroadcast(
-            context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
     }
 
     override fun selected(textView: TextView, str: String) {
