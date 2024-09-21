@@ -1,18 +1,13 @@
 package com.example.todo.Fragment
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
 import android.app.DatePickerDialog
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.example.todo.Alarm
 import com.example.todo.Object.Command
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Interface.SelectTimeInterface
@@ -64,7 +59,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
             binding.todoTime2.text = "${hour}:${minute}"
         }
 
-        // 하루종일
+        // 하루종일 체크
         binding.addTodoSwitch.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 binding.materialCardView2.visibility = View.GONE
