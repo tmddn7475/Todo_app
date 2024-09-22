@@ -11,4 +11,5 @@
     <color name="dialog">#FF000000</color>
     <color name="text">#FFFFFFFF</color>
     <color name="background">#000000</color>
+    <color name="intro">#D4E7EB</color>
 </resources>

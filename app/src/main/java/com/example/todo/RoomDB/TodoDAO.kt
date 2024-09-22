@@ -9,10 +9,11 @@ import androidx.room.Update
 
 @Dao
 interface TodoDAO {
+    // TodoEntity
     @Query("select * from todo ORDER BY startDate")
     fun getTodo(): List<TodoEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // 알람은 중복되지 않게 저장
     fun saveTodo(todoEntity: TodoEntity)
 
     @Query("select * from todo where id = (:id)")

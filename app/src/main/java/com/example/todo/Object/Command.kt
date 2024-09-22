@@ -6,7 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.todo.Alarm
+import com.example.todo.Alarm.AlarmReceiver
 import com.example.todo.RoomDB.TodoEntity
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -53,7 +53,7 @@ object Command {
     // 알림 설정
     fun setAlarm(context: Context, data: TodoEntity){
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, Alarm::class.java)
+        val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("title", data.title)
         intent.putExtra("id", data.id.toInt())
 
@@ -103,7 +103,7 @@ object Command {
     // 알림 삭제
     fun delAlarm(context: Context, data: TodoEntity){
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, Alarm::class.java)
+        val intent = Intent(context, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(context, data.id.toInt(), intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.cancel(pendingIntent)
     }

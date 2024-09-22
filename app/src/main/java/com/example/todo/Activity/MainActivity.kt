@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.Activity
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
@@ -10,6 +10,7 @@ import com.example.todo.Fragment.HomeFragment
 import com.example.todo.Fragment.ProfileFragment
 import com.example.todo.Fragment.SearchFragment
 import com.example.todo.Fragment.AddTodoFragment
+import com.example.todo.R
 import com.example.todo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 

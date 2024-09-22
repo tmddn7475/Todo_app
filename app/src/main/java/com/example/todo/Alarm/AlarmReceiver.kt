@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.Alarm
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -7,33 +7,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import com.example.todo.R
 
-class Alarm: BroadcastReceiver() {
+class AlarmReceiver: BroadcastReceiver() {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent != null) {
-            if (intent.action.equals("android.intent.action.BOOT_COMPLETED")) {
-                val title: String = intent.getStringExtra("title").toString()
-                val id: Int = intent.getIntExtra("id", 0)
-                createNotification(context!!, title, id)
-
-                /*functions = AlarmFunctions(context)
-                coroutineScope.launch {
-                    val db = AppDatabase.getInstance(context)
-                    val list = db!!.alarmDao.getAllAlarms()
-                    val size = db.alarmDao.getAllAlarms().size
-                    list.let {
-                        for (i in 0 until size){
-                            val time = list[i].time
-                            val code = list[i].alarm_code
-                            val content = list[i].content
-                            functions.callAlarm(time, code, content) // 알람 실행
-                        }
-                    }
-                }*/
-            }
-        }
-
         if(intent != null){
             val title: String = intent.getStringExtra("title").toString()
             val id: Int = intent.getIntExtra("id", 0)
@@ -54,8 +32,8 @@ class Alarm: BroadcastReceiver() {
 
         val builder = NotificationCompat.Builder(context, "notify_001")
             .setSmallIcon(R.drawable.baseline_notifications_active_24)
-            .setContentTitle(context.getString(R.string.app_name))
-            .setContentText(title)
+            .setWhen(System.currentTimeMillis())
+            .setContentTitle(title)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         notificationManager.notify(id, builder.build())

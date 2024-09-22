@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.example.todo.Object.Command
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Interface.SelectTimeInterface
-import com.example.todo.MainActivity
+import com.example.todo.Activity.MainActivity
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
@@ -168,6 +168,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
 
         CoroutineScope(Dispatchers.IO).launch {
             db.todoDAO().saveTodo(entity)
+
             activity?.runOnUiThread{
                 if(homeFragment.isAdded){
                     homeFragment.updateTodoList()

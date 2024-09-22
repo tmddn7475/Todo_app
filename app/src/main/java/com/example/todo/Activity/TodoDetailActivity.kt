@@ -14,7 +14,6 @@ import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Dialog.SelectTimeDialog
 import com.example.todo.Interface.SelectAlarmInterface
 import com.example.todo.Interface.SelectTimeInterface
-import com.example.todo.MainActivity
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.ActivityTodoDetailBinding
