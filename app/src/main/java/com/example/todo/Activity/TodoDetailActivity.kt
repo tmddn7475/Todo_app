@@ -97,11 +97,11 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             if(isChecked){
                 binding.materialCardView2.visibility = View.GONE
                 binding.materialCardView4.visibility = View.GONE
-                binding.todoDetailAlarm.text = "알림 없음"
+                binding.editAlarm.text = "알림 없음"
             } else {
                 binding.materialCardView2.visibility = View.VISIBLE
                 binding.materialCardView4.visibility = View.VISIBLE
-                binding.todoDetailAlarm.text = "알림 없음"
+                binding.editAlarm.text = "알림 없음"
             }
         }
 
@@ -169,6 +169,8 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                         } else if (calendarFragment?.isAdded!!) {
                             calendarFragment.refresh()
                         }
+                        
+                        // 알림
                         Command.delAlarm(this@TodoDetailActivity, data)
                         if(data.alert != "알림 없음"){
                             Command.setAlarm(this@TodoDetailActivity, data)
