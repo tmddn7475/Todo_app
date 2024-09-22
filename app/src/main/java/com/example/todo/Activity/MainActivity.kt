@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
     companion object {
         private var instance: MainActivity? = null
-        fun getInstance(): MainActivity? 		{
+        fun getInstance(): MainActivity? {
             return instance
         }
     }
