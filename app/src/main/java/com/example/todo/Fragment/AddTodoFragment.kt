@@ -46,18 +46,12 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
+
 
         binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
         binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-
-        if(minute < 10){
-            binding.todoTime.text = "${hour}:0${minute}"
-            binding.todoTime2.text = "${hour}:0${minute}"
-        } else {
-            binding.todoTime.text = "${hour}:${minute}"
-            binding.todoTime2.text = "${hour}:${minute}"
-        }
+        binding.todoTime.text = "${hour}:00"
+        binding.todoTime2.text = "${hour+1}:00"
 
         // 하루종일 체크
         binding.addTodoSwitch.setOnCheckedChangeListener { _, isChecked ->
