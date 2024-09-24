@@ -21,32 +21,14 @@
             android:textSize="12sp"
             tools:text="24" />
 
-        <View
+        <ImageView
             android:id="@+id/dayTodo1"
-            android:layout_width="match_parent"
+            android:layout_width="8dp"
             android:layout_height="8dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="22dp"
-            android:background="@color/blue_dark"
-            android:visibility="gone" />
-
-        <View
-            android:id="@+id/dayTodo2"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="12dp"
-            android:background="@color/green"
-            android:visibility="gone" />
-
-        <View
-            android:id="@+id/dayTodo3"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_gravity="bottom"
-            android:background="@color/purple"
-            android:layout_marginBottom="2dp"
-            android:visibility="gone" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/shape"
+            android:visibility="visible" />
 
     </FrameLayout>
 
