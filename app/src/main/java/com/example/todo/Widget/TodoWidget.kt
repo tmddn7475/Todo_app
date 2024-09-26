@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.Widget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.RemoteViews
+import com.example.todo.R
 
 class TodoWidget : AppWidgetProvider() {
     override fun onUpdate(

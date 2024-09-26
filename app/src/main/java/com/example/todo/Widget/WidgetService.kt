@@ -1,11 +1,11 @@
-package com.example.todo
+package com.example.todo.Widget
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import kotlinx.coroutines.runBlocking
@@ -41,7 +41,6 @@ class TodoViewsFactory(private val context: Context) : RemoteViewsService.Remote
 
     @SuppressLint("RemoteViewLayout")
     override fun getViewAt(position: Int): RemoteViews {
-        Log.d("TodoViewsFactory", "Getting view at position: $position")
         val listviewWidget = RemoteViews(context.packageName, R.layout.widget_item)
         listviewWidget.setTextViewText(R.id.item_title, data[position].title)
 
