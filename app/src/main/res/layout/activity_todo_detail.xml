@@ -23,30 +23,13 @@
             android:layout_height="36dp"
             android:src="@drawable/baseline_arrow_back_24"/>
 
-        <ImageView
-            android:id="@+id/todo_detail_delete_btn"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="6dp"
-            android:src="@drawable/baseline_delete_24" />
-
-        <ImageView
-            android:id="@+id/todo_detail_edit_btn"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_toStartOf="@+id/todo_detail_delete_btn"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="6dp"
-            android:src="@drawable/baseline_edit_24" />
-
     </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -58,14 +41,14 @@
 
             <TextView
                 android:id="@+id/todo_detail_title"
-                android:textColor="@color/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:paddingHorizontal="14dp"
                 android:paddingVertical="12dp"
+                android:textColor="@color/text"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -86,10 +69,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
                     android:text="시작 날짜"
                     android:textColor="@color/text"
                     android:textSize="18sp"
-                    android:drawablePadding="8dp"
                     app:drawableLeftCompat="@drawable/baseline_calendar_month_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,10 +99,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
                     android:text="끝나는 날"
                     android:textColor="@color/text"
                     android:textSize="18sp"
-                    android:layout_marginStart="32dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -145,10 +128,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
                     android:text="시간"
                     android:textColor="@color/text"
                     android:textSize="18sp"
-                    android:drawablePadding="8dp"
                     app:drawableLeftCompat="@drawable/baseline_access_time_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -166,8 +149,8 @@
                     android:id="@+id/todo_detail_alarm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text"
                     android:text="dasdsaw"
+                    android:textColor="@color/text"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -176,10 +159,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
                     android:text="알림"
                     android:textColor="@color/text"
                     android:textSize="18sp"
-                    android:drawablePadding="8dp"
                     app:drawableLeftCompat="@drawable/baseline_notifications_active_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -191,12 +174,12 @@
                 android:id="@+id/todo_detail_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/text"
                 android:drawablePadding="8dp"
-                app:drawableLeftCompat="@drawable/baseline_location_pin_24"
                 android:paddingHorizontal="12dp"
-                android:paddingBottom="12dp" />
+                android:paddingBottom="12dp"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                app:drawableLeftCompat="@drawable/baseline_location_pin_24" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -207,8 +190,8 @@
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/baseline_article_24"
                     android:layout_marginTop="2dp"
+                    android:src="@drawable/baseline_article_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -216,9 +199,9 @@
                     android:id="@+id/todo_detail_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/text"
                     android:layout_marginStart="31dp"
+                    android:textColor="@color/text"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -229,6 +212,79 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/todo_detail_copy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/gray"
+            android:paddingBottom="4dp"
+            android:paddingTop="8dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="복사"
+            android:textSize="16sp"
+            android:textColor="@color/text"
+            app:drawableTopCompat="@drawable/baseline_file_copy_24" />
+
+        <TextView
+            android:id="@+id/todo_detail_edit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="4dp"
+            android:paddingTop="8dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:backgroundTint="@color/gray"
+            android:text="수정"
+            android:textSize="16sp"
+            android:textColor="@color/text"
+            app:drawableTopCompat="@drawable/baseline_edit_24" />
+
+        <TextView
+            android:id="@+id/todo_detail_share_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="4dp"
+            android:paddingTop="8dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:backgroundTint="@color/gray"
+            android:text="공유"
+            android:textSize="16sp"
+            android:textColor="@color/text"
+            app:drawableTopCompat="@drawable/baseline_share_24" />
+
+        <TextView
+            android:id="@+id/todo_detail_delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/gray"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:text="삭제"
+            android:textSize="16sp"
+            android:textColor="@color/text"
+            app:drawableTopCompat="@drawable/baseline_delete_24" />
+
+    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/edit_scroll"

@@ -93,6 +93,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         binding.todoDetailEditBtn.setOnClickListener{
             binding.toolbar.visibility = View.GONE
             binding.scrollView.visibility = View.GONE
+            binding.linearLayout3.visibility = View.GONE
             binding.editScroll.visibility = View.VISIBLE
             binding.editLinear.visibility = View.VISIBLE
         }
