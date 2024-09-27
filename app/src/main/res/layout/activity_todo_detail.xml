@@ -149,7 +149,6 @@
                     android:id="@+id/todo_detail_alarm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="dasdsaw"
                     android:textColor="@color/text"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -216,7 +215,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         android:background="@drawable/rounded"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -226,7 +225,7 @@
         <TextView
             android:id="@+id/todo_detail_copy_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:backgroundTint="@color/gray"
             android:paddingBottom="4dp"
@@ -241,7 +240,7 @@
         <TextView
             android:id="@+id/todo_detail_edit_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:paddingBottom="4dp"
             android:paddingTop="8dp"
@@ -256,7 +255,7 @@
         <TextView
             android:id="@+id/todo_detail_share_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:paddingBottom="4dp"
             android:paddingTop="8dp"
@@ -271,7 +270,7 @@
         <TextView
             android:id="@+id/todo_detail_delete_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:backgroundTint="@color/gray"
             android:drawablePadding="5dp"
