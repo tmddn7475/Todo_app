@@ -1,6 +1,7 @@
 package com.example.todo.Widget
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
@@ -8,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.RemoteViews
+import com.example.todo.Activity.TodoDetailActivity
 import com.example.todo.R
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -21,11 +23,17 @@ class TodoWidget : AppWidgetProvider() {
         for (appWidgetId in appWidgetIds) {
             val intent = Intent(context, WidgetService::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)) // 고유한 데이터 URI 생성
+            intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
 
             val views = RemoteViews(context.packageName, R.layout.todo_widget)
             views.setTextViewText(R.id.widget_title, getToday())
             views.setRemoteAdapter(R.id.widget_list, intent)
+
+            // 클릭 시 TodoDetailActivity 실행
+            val clickIntent = Intent(context, TodoDetailActivity::class.java)
+            val pendingIntent = PendingIntent.getActivity(
+                context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+            views.setPendingIntentTemplate(R.id.widget_list, pendingIntent)
 
             // 위젯을 새로고침
             appWidgetManager.updateAppWidget(appWidgetId, views)

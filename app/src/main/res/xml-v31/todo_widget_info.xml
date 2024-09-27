@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/todo_widget"
     android:initialLayout="@layout/todo_widget"
     android:minWidth="250dp"
@@ -9,5 +8,5 @@
     android:resizeMode="vertical"
     android:targetCellWidth="4"
     android:targetCellHeight="2"
-    android:updatePeriodMillis="86400000"
+    android:updatePeriodMillis="3600000"
     android:widgetCategory="home_screen" />

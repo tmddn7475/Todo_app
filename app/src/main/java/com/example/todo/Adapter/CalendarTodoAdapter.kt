@@ -66,7 +66,7 @@ class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>(
 
             binding.root.setOnClickListener {
                 val intent = Intent(binding.root.context, TodoDetailActivity::class.java)
-                intent.putExtra("todo", todoItem.id)
+                intent.putExtra("id", todoItem.id)
                 binding.root.context.startActivity(intent)
             }
         }

@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -27,6 +28,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
     private lateinit var data: TodoEntity
+    private var id: Long = 0
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +40,10 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         val homeFragment = mainActivity?.homeFragment
         val calendarFragment = mainActivity?.calendarFragment
 
-        val id = intent.getLongExtra("todo", 0)
         db = TodoDatabase.getInstance(this)!!
+        id = intent.getLongExtra("id", 1)
+
+        Log.d("TodoDetailActivity", "Received item_position: $id")
 
         binding.todoDetailTitle.setSingleLine(true)
         binding.todoDetailTitle.ellipsize = TextUtils.TruncateAt.MARQUEE // 흐르게 만들기

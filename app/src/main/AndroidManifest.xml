@@ -20,6 +20,7 @@
 
         <receiver
             android:name=".Widget.TodoWidget"
+            android:label="오늘 일정 목록"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -31,8 +32,7 @@
 
         <service
             android:name=".Widget.WidgetService"
-            android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS">
             <intent-filter>
                 <action android:name="android.widget.RemoteViewsService" />

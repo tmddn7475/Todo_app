@@ -3,7 +3,6 @@ package com.example.todo.Widget
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.view.View
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.example.todo.R
@@ -72,13 +71,22 @@ class TodoViewsFactory(private val context: Context) : RemoteViewsService.Remote
 
     @SuppressLint("RemoteViewLayout")
     override fun getViewAt(position: Int): RemoteViews {
+        // listItem 제목, 시간
         val listviewWidget = RemoteViews(context.packageName, R.layout.widget_item)
         listviewWidget.setTextViewText(R.id.item_title, data[position].title)
-        if(data[position].startTime == "all day"){
+
+        if(data[position].startTime == "all day" && data[position].startDate == data[position].endDate){
             listviewWidget.setTextViewText(R.id.item_time, "하루 종일")
-        } else {
+        } else if (data[position].startDate == data[position].endDate) {
             listviewWidget.setTextViewText(R.id.item_time, "${data[position].startTime} ~ ${data[position].endTime}")
+        } else {
+            listviewWidget.setTextViewText(R.id.item_time, "${data[position].startDate} ~ ${data[position].endDate}")
         }
+
+        // 클릭 시 실행될 Intent 생성 및 데이터 추가
+        val intent = Intent()
+        intent.putExtra("id", data[position].id)
+        listviewWidget.setOnClickFillInIntent(R.id.item_main, intent)
 
         return listviewWidget
     }
