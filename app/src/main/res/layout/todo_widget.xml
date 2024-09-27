@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="12dp"
         android:paddingVertical="6dp"
-        android:text="오늘 할일"
+        android:text="2024.09.01"
         android:textColor="@color/text"
         android:textSize="18sp" />
 
@@ -23,17 +23,5 @@
         tools:listitem="@layout/widget_item"
         android:divider="@android:color/transparent"
         android:paddingVertical="2dp"/>
-
-    <TextView
-        android:id="@+id/widget_empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/widget_title"
-        android:gravity="center"
-        android:text="Launch App to View Items"
-        android:textColor="@color/text"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
 
 </RelativeLayout>

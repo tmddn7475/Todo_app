@@ -6,8 +6,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.todo.Alarm.AlarmReceiver
 import com.example.todo.RoomDB.TodoEntity
+import com.example.todo.Widget.WidgetViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -106,5 +109,11 @@ object Command {
         val intent = Intent(context, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(context, data.id.toInt(), intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.cancel(pendingIntent)
+    }
+
+    fun widgetUpdate(owner: ViewModelStoreOwner){
+        val widgetViewModel = ViewModelProvider(owner)[WidgetViewModel::class.java]
+
+        widgetViewModel.updateWidget()
     }
 }

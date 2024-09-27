@@ -11,14 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.todo.Fragment.AddTodoFragment
 import com.example.todo.Fragment.CalendarFragment
 import com.example.todo.Fragment.HomeFragment
 import com.example.todo.Fragment.ProfileFragment
 import com.example.todo.Fragment.SearchFragment
-import com.example.todo.Fragment.AddTodoFragment
 import com.example.todo.R
 import com.example.todo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+
 
 class MainActivity : AppCompatActivity() {
 

@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        todayListAdapter = TodoAdapter()
+        todayListAdapter = TodoAdapter(this)
         binding.todayList.adapter = todayListAdapter
         db = TodoDatabase.getInstance(requireContext())!!
 

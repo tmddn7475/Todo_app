@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
@@ -23,7 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TodoAdapter: RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+class TodoAdapter(private val viewModelStoreOwner: ViewModelStoreOwner): RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var list : ArrayList<TodoEntity> = ArrayList()
     private lateinit var roomDatabase: TodoDatabase
@@ -102,6 +103,7 @@ class TodoAdapter: RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
                                 notifyDataSetChanged()
                                 Toast.makeText(binding.root.context, "삭제되었습니다", Toast.LENGTH_SHORT).show()
                                 Command.delAlarm(binding.root.context, todoItem)
+                                Command.widgetUpdate(viewModelStoreOwner)
                             }
                         }
                     }.show()

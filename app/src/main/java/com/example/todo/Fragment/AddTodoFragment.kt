@@ -37,7 +37,6 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddTodoBinding.inflate(inflater, container, false)
-
         db = TodoDatabase.getInstance(requireContext())!!
 
         // 현재 시간 가져오기
@@ -46,7 +45,6 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
-
 
         binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
         binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
@@ -133,6 +131,7 @@ class AddTodoFragment : BottomSheetDialogFragment(), SelectTimeInterface, Select
                     startTime = startTime, endTime = endTime, location = location, description = desc, alert = alarm)
                 addData(todoEntity)
                 if(todoEntity.alert != "알림 없음") Command.setAlarm(requireContext(), todoEntity)
+                Command.widgetUpdate(this)
                 dismiss()
             }
         }
