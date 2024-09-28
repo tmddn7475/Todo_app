@@ -3,6 +3,7 @@ package com.example.todo.Activity
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.todo.AddTodoActivity
 import com.example.todo.Object.Command
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Dialog.SelectTimeDialog
@@ -63,8 +65,17 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     binding.todoDetailTime.text = "${data.startTime} ~ ${data.endTime}"
                 }
                 binding.todoDetailAlarm.text = data.alert
-                binding.todoDetailLocation.text = data.location
-                binding.todoDetailDescription.text = data.description
+
+                if(data.location.isEmpty()){
+                    binding.todoDetailLocation.visibility = View.GONE
+                } else {
+                    binding.todoDetailLocation.text = data.location
+                }
+                if(data.description.isEmpty()){
+                    binding.todoDetailDescriptionIcon.visibility = View.GONE
+                } else {
+                    binding.todoDetailDescription.text = data.description
+                }
 
                 // edit
                 binding.editTitle.setText(data.title)
@@ -87,6 +98,13 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         binding.todoDetailBackBtn.setOnClickListener {
             finish()
+        }
+
+        // 일정 복사
+        binding.todoDetailCopyBtn.setOnClickListener{
+            finish()
+            val intent = Intent(this, AddTodoActivity::class.java)
+            startActivity(intent)
         }
 
         // 일정 수정

@@ -1,6 +1,7 @@
 package com.example.todo.Activity
 
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.todo.Fragment.AddTodoFragment
+import com.example.todo.AddTodoActivity
 import com.example.todo.Fragment.CalendarFragment
 import com.example.todo.Fragment.HomeFragment
 import com.example.todo.Fragment.ProfileFragment
@@ -23,7 +24,6 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var addTodoFragment: AddTodoFragment
     private lateinit var binding: ActivityMainBinding
     lateinit var homeFragment: HomeFragment
     lateinit var calendarFragment: CalendarFragment
@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         calendarFragment = CalendarFragment()
         searchFragment = SearchFragment()
         profileFragment = ProfileFragment()
-        addTodoFragment = AddTodoFragment()
 
         // 프래그먼트 전환
         supportFragmentManager.beginTransaction().replace(R.id.container, homeFragment).commit()
@@ -70,9 +69,8 @@ class MainActivity : AppCompatActivity() {
 
         // addTodoFragment
         binding.addTodo.setOnClickListener{
-            if(!addTodoFragment.isAdded){
-                addTodoFragment.show(supportFragmentManager, addTodoFragment.tag)
-            }
+            val intent = Intent(this, AddTodoActivity::class.java)
+            startActivity(intent)
         }
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

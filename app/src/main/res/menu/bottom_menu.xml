@@ -24,7 +24,7 @@
     <item
         android:id="@+id/bottom_diary"
         android:enabled="true"
-        android:icon="@drawable/baseline_edit_24"
-        android:title="일기"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="내 정보"
         app:showAsAction="ifRoom"/>
 </menu>
