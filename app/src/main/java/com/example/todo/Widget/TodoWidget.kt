@@ -10,6 +10,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.RemoteViews
 import com.example.todo.Activity.TodoDetailActivity
+import com.example.todo.AddTodoActivity
 import com.example.todo.R
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -34,6 +35,11 @@ class TodoWidget : AppWidgetProvider() {
             val pendingIntent = PendingIntent.getActivity(
                 context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
             views.setPendingIntentTemplate(R.id.widget_list, pendingIntent)
+
+            val newTodoIntent = Intent(context, AddTodoActivity::class.java)
+            val newTodoPendingIntent = PendingIntent.getActivity(
+                context, 0, newTodoIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+            views.setOnClickPendingIntent(R.id.widget_new_todo, newTodoPendingIntent)
 
             // 위젯을 새로고침
             appWidgetManager.updateAppWidget(appWidgetId, views)

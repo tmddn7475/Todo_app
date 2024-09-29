@@ -16,13 +16,14 @@ class AlarmReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if(intent != null){
             val title: String = intent.getStringExtra("title").toString()
+            val time: String = intent.getStringExtra("time").toString()
             val id: Int = intent.getIntExtra("id", 0)
 
-            createNotification(context!!, title, id)
+            createNotification(context!!, title, id, time)
         }
     }
 
-    private fun createNotification(context: Context, title: String, id: Int) {
+    private fun createNotification(context: Context, title: String, id: Int, time: String) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val channel = NotificationChannel(
@@ -42,6 +43,7 @@ class AlarmReceiver: BroadcastReceiver() {
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setWhen(System.currentTimeMillis())
             .setContentTitle(title)
+            .setContentText(time)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 

@@ -59,6 +59,7 @@ object Command {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("title", data.title)
         intent.putExtra("id", data.id.toInt())
+        intent.putExtra("time", data.startTime)
 
         val pIntent = PendingIntent.getBroadcast(
             context, data.id.toInt(), intent, PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE)
