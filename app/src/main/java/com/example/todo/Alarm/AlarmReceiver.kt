@@ -8,7 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import com.example.todo.Activity.MainActivity
+import com.example.todo.Activity.TodoDetailActivity
 import com.example.todo.R
 
 class AlarmReceiver: BroadcastReceiver() {
@@ -33,7 +33,7 @@ class AlarmReceiver: BroadcastReceiver() {
         notificationManager.createNotificationChannel(channel)
 
         // 알림 클릭 시 MainActivity로 이동
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val intent = Intent(context, TodoDetailActivity::class.java).putExtra("id", id).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
