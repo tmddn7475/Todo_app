@@ -10,7 +10,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.RemoteViews
 import com.example.todo.Activity.TodoDetailActivity
-import com.example.todo.AddTodoActivity
+import com.example.todo.Activity.AddTodoActivity
 import com.example.todo.R
 import java.text.SimpleDateFormat
 import java.util.Date

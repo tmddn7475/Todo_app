@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.Activity
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.todo.Activity.MainActivity
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Dialog.SelectTimeDialog
 import com.example.todo.Interface.SelectAlarmInterface
@@ -124,7 +123,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
                 val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate,
                     startTime = startTime, endTime = endTime, location = location, description = desc, alert = alarm)
                 addData(todoEntity)
-                if(todoEntity.alert != "알림 없음") Command.setAlarm(this, todoEntity)
+                if(alarm != "알림 없음") Command.setAlarm(this, todoEntity)
                 Command.widgetUpdate(this)
                 finish()
             }

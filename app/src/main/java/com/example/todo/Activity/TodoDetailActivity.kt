@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.todo.AddTodoActivity
 import com.example.todo.Object.Command
 import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Dialog.SelectTimeDialog

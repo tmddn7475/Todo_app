@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.todo.AddTodoActivity
 import com.example.todo.Fragment.CalendarFragment
 import com.example.todo.Fragment.HomeFragment
 import com.example.todo.Fragment.ProfileFragment
