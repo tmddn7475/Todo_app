@@ -184,12 +184,13 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 CoroutineScope(Dispatchers.IO).launch {
                     db.todoDAO().update(data)
                     runOnUiThread{
-                        if(homeFragment?.isAdded!!){
-                            homeFragment.updateTodoList()
-                        } else if (calendarFragment?.isAdded!!) {
-                            calendarFragment.refresh()
+                        if(mainActivity != null){
+                            if(homeFragment?.isAdded!!){
+                                homeFragment.updateTodoList()
+                            } else if (calendarFragment?.isAdded!!) {
+                                calendarFragment.refresh()
+                            }
                         }
-                        
                         // 알림
                         Command.delAlarm(this@TodoDetailActivity, data)
                         if(data.alert != "알림 없음"){
@@ -216,10 +217,12 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     CoroutineScope(Dispatchers.IO).launch {
                         db.todoDAO().delete(data)
                         runOnUiThread {
-                            if(homeFragment?.isAdded!!){
-                                homeFragment.updateTodoList()
-                            } else if (calendarFragment?.isAdded!!) {
-                                calendarFragment.refresh()
+                            if(mainActivity != null){
+                                if(homeFragment?.isAdded!!){
+                                    homeFragment.updateTodoList()
+                                } else if (calendarFragment?.isAdded!!) {
+                                    calendarFragment.refresh()
+                                }
                             }
                             Command.widgetUpdate(this@TodoDetailActivity)
                             Toast.makeText(binding.root.context, "삭제되었습니다", Toast.LENGTH_SHORT).show()
