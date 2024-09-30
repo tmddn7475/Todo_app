@@ -100,7 +100,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         binding.todoDetailCopyBtn.setOnClickListener {
             finish()
             val intent = Intent(this, AddTodoActivity::class.java)
-            intent.putExtra("todoData", data)
+            intent.putExtra("todoEntity", data)
             startActivity(intent)
         }
 

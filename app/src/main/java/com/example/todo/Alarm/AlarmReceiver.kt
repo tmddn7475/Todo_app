@@ -7,23 +7,23 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.todo.Activity.MainActivity
 import com.example.todo.R
+import com.example.todo.RoomDB.TodoEntity
+import java.io.Serializable
 
 class AlarmReceiver: BroadcastReceiver() {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
         if(intent != null){
-            val title: String = intent.getStringExtra("title").toString()
-            val time: String = intent.getStringExtra("time").toString()
-            val id: Int = intent.getIntExtra("id", 0)
-
-            createNotification(context!!, title, id, time)
+            val data: TodoEntity = intent.intentSerializable("todoEntity", TodoEntity::class.java)!!
+            createNotification(context!!, data)
         }
     }
 
-    private fun createNotification(context: Context, title: String, id: Int, time: String) {
+    private fun createNotification(context: Context, data: TodoEntity) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val channel = NotificationChannel(
@@ -42,15 +42,23 @@ class AlarmReceiver: BroadcastReceiver() {
         val builder = NotificationCompat.Builder(context, "notify_001")
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setWhen(System.currentTimeMillis())
-            .setContentTitle(title)
-            .setContentText(if (time == "all day"){
+            .setContentTitle(data.title)
+            .setContentText(if (data.startTime == "all day"){
                 "하루종일"
             } else {
-                time
+                data.startTime
             })
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-        notificationManager.notify(id, builder.build())
+        notificationManager.notify(data.id.toInt(), builder.build())
+    }
+
+    private fun <T: Serializable> Intent.intentSerializable(key: String, clazz: Class<T>): T? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            this.getSerializableExtra(key, clazz)
+        } else {
+            this.getSerializableExtra(key) as T?
+        }
     }
 }

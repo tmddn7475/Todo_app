@@ -37,7 +37,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
         db = TodoDatabase.getInstance(this@AddTodoActivity)!!
 
         // 데이터 가져오기
-        data = intent.intentSerializable("todoData", TodoEntity::class.java)
+        data = intent.intentSerializable("todoEntity", TodoEntity::class.java)
         if(data != null) copy(data!!)
 
         val calendar = Calendar.getInstance()
