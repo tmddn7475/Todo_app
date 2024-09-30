@@ -2,6 +2,8 @@ package com.example.todo.Activity
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -18,12 +20,14 @@ import com.example.todo.databinding.ActivityAddTodoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.Serializable
 import java.util.Calendar
 
 class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInterface {
 
     private lateinit var db: TodoDatabase
     private lateinit var binding: ActivityAddTodoBinding
+    private var data: TodoEntity? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,10 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
         binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         db = TodoDatabase.getInstance(this@AddTodoActivity)!!
+
+        // 데이터 가져오기
+        data = intent.intentSerializable("todoData", TodoEntity::class.java)
+        if(data != null) copy(data!!)
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -159,5 +167,33 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
 
     override fun selectedAlarm(textView: TextView, str: String) {
         textView.text = str
+    }
+
+    private fun copy(todos: TodoEntity) {
+        binding.addTodoTitle.setText(todos.title)
+        binding.todoDate.text = todos.startDate
+        binding.todoDate2.text = todos.endDate
+        if(todos.startTime == "all day"){
+            binding.addTodoSwitch.isChecked = true
+            binding.materialCardView2.visibility = View.GONE
+            binding.materialCardView4.visibility = View.GONE
+        } else {
+            binding.addTodoSwitch.isChecked = false
+            binding.materialCardView2.visibility = View.VISIBLE
+            binding.materialCardView4.visibility = View.VISIBLE
+            binding.todoTime.text = todos.startTime
+            binding.todoTime2.text = todos.endTime
+        }
+        binding.todoAlarm.text = todos.alert
+        binding.todoLocation.setText(todos.location)
+        binding.todoDescription.setText(todos.description)
+    }
+
+    private fun <T: Serializable> Intent.intentSerializable(key: String, clazz: Class<T>): T? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            this.getSerializableExtra(key, clazz)
+        } else {
+            this.getSerializableExtra(key) as T?
+        }
     }
 }

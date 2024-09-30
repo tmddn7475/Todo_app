@@ -43,7 +43,11 @@ class AlarmReceiver: BroadcastReceiver() {
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setWhen(System.currentTimeMillis())
             .setContentTitle(title)
-            .setContentText(time)
+            .setContentText(if (time == "all day"){
+                "하루종일"
+            } else {
+                time
+            })
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 

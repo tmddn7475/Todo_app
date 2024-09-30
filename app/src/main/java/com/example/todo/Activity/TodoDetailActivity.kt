@@ -6,7 +6,6 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -43,8 +42,6 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         db = TodoDatabase.getInstance(this)!!
         id = intent.getLongExtra("id", 1)
-
-        Log.d("TodoDetailActivity", "Received item_position: $id")
 
         binding.todoDetailTitle.setSingleLine(true)
         binding.todoDetailTitle.ellipsize = TextUtils.TruncateAt.MARQUEE // 흐르게 만들기
@@ -100,9 +97,10 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
         }
 
         // 일정 복사
-        binding.todoDetailCopyBtn.setOnClickListener{
+        binding.todoDetailCopyBtn.setOnClickListener {
             finish()
             val intent = Intent(this, AddTodoActivity::class.java)
+            intent.putExtra("todoData", data)
             startActivity(intent)
         }
 

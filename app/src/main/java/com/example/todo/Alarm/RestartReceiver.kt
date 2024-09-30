@@ -33,6 +33,7 @@ class RestartReceiver: BroadcastReceiver() {
         }
     }
 
+    // 일정 시작 날짜가 현재 날짜보다 빠를 경우 알람에 추가하지 않음
     @SuppressLint("SimpleDateFormat")
     private fun checkDate(day: String): Boolean {
         var bool = false
