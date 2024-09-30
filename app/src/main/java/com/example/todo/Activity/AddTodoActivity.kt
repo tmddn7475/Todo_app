@@ -141,17 +141,17 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
     // 할 일 추가
     @SuppressLint("NotifyDataSetChanged")
     private fun addData(entity: TodoEntity){
-        val mainActivity = MainActivity.getInstance()!!
-        val homeFragment = mainActivity.homeFragment
-        val calendarFragment = mainActivity.calendarFragment
-
         CoroutineScope(Dispatchers.IO).launch {
             db.todoDAO().saveTodo(entity)
 
             runOnUiThread{
-                if(homeFragment.isAdded){
+                val mainActivity = MainActivity.getInstance()
+                val homeFragment = mainActivity?.homeFragment
+                val calendarFragment = mainActivity?.calendarFragment
+
+                if(homeFragment?.isAdded == true){
                     homeFragment.updateTodoList()
-                } else if (calendarFragment.isAdded) {
+                } else if (calendarFragment?.isAdded == true) {
                     calendarFragment.refresh()
                 }
             }
