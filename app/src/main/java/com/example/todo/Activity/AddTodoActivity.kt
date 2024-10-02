@@ -128,8 +128,8 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
             if(title.isEmpty()){
                 Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
-                val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate,
-                    startTime = startTime, endTime = endTime, location = location, description = desc, alert = alarm)
+                val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate, startTime = startTime,
+                    endTime = endTime, location = location, description = desc, alert = alarm, priorityHigh = binding.addTodoSwitch2.isChecked)
                 addData(todoEntity)
                 if(alarm != "알림 없음") Command.setAlarm(this, todoEntity)
                 Command.widgetUpdate(this)
@@ -187,6 +187,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
         binding.todoAlarm.text = todos.alert
         binding.todoLocation.setText(todos.location)
         binding.todoDescription.setText(todos.description)
+        binding.addTodoSwitch2.isChecked = todos.priorityHigh
     }
 
     private fun <T: Serializable> Intent.intentSerializable(key: String, clazz: Class<T>): T? {

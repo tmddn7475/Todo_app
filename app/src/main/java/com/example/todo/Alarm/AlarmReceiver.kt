@@ -48,8 +48,9 @@ class AlarmReceiver: BroadcastReceiver() {
             } else {
                 data.startTime
             })
+            .setAutoCancel(true)
             .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         notificationManager.notify(data.id.toInt(), builder.build())
     }

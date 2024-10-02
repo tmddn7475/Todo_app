@@ -50,10 +50,17 @@ class TodoAdapter(private val viewModelStoreOwner: ViewModelStoreOwner): Recycle
         fun bind(todoItem : TodoEntity) {
             // 제목
             binding.todayTitle.text = todoItem.title
+            binding.todayTitle.setSingleLine(true)
+            
+            // 작업 완료 시 취소선
             if(todoItem.isDone){
                 binding.todayTitle.paintFlags = binding.todayTitle.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
             }
-            binding.todayTitle.setSingleLine(true)
+            if(todoItem.priorityHigh){
+                binding.todayPriority.visibility = View.VISIBLE
+            } else {
+                binding.todayPriority.visibility = View.GONE
+            }
 
             // 날짜
             if(todoItem.startTime == "all day" && todoItem.startDate == todoItem.endDate){

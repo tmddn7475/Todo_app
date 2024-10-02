@@ -52,6 +52,11 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             data = db.todoDAO().selectOne(id)
 
             runOnUiThread{
+                if(data.priorityHigh){
+                    binding.todoDetailPriority.visibility = View.VISIBLE
+                } else {
+                    binding.todoDetailPriority.visibility = View.GONE
+                }
                 binding.todoDetailTitle.text = data.title
                 binding.todoDetailDate1.text = data.startDate
                 binding.todoDetailDate2.text = data.endDate
@@ -78,11 +83,11 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 binding.editDate.text = data.startDate
                 binding.editDate2.text = data.endDate
                 if(data.startTime == "all day"){
-                    binding.editSwitch.isChecked = true
+                    binding.addTodoSwitch.isChecked = true
                     binding.materialCardView2.visibility = View.GONE
                     binding.materialCardView4.visibility = View.GONE
                 } else {
-                    binding.editSwitch.isChecked = false
+                    binding.addTodoSwitch.isChecked = false
                     binding.editTime.text = data.startTime
                     binding.editTime2.text = data.endTime
                 }
@@ -113,7 +118,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             binding.editLinear.visibility = View.VISIBLE
         }
 
-        binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
+        binding.addTodoSwitch.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 binding.materialCardView2.visibility = View.GONE
                 binding.materialCardView4.visibility = View.GONE
@@ -159,7 +164,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         // 일정 Alarm
         binding.editAlarm.setOnClickListener{
-            SelectAlarmDialog(binding.editAlarm, this, binding.editSwitch.isChecked).show(supportFragmentManager, "selectAlarmDialog")
+            SelectAlarmDialog(binding.editAlarm, this, binding.addTodoSwitch.isChecked).show(supportFragmentManager, "selectAlarmDialog")
         }
 
         // 일정 수정본 저장
@@ -170,7 +175,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 data.title = binding.editTitle.text.toString()
                 data.startDate = binding.editDate.text.toString()
                 data.endDate = binding.editDate2.text.toString()
-                if(binding.editSwitch.isChecked){
+                if(binding.addTodoSwitch.isChecked){
                     data.startTime = "all day"
                     data.endTime = "all day"
                 } else {
