@@ -82,6 +82,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 binding.editTitle.setText(data.title)
                 binding.editDate.text = data.startDate
                 binding.editDate2.text = data.endDate
+
                 if(data.startTime == "all day"){
                     binding.addTodoSwitch.isChecked = true
                     binding.materialCardView2.visibility = View.GONE
@@ -91,6 +92,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     binding.editTime.text = data.startTime
                     binding.editTime2.text = data.endTime
                 }
+                binding.addTodoSwitch2.isChecked = data.priorityHigh
                 binding.editAlarm.text = data.alert
                 binding.editLocation.setText(data.location)
                 binding.editDescription.setText(data.description)
@@ -182,6 +184,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     data.startTime = binding.editTime.text.toString()
                     data.endTime = binding.editTime2.text.toString()
                 }
+                data.priorityHigh = binding.addTodoSwitch2.isChecked
                 data.alert = binding.editAlarm.text.toString()
                 data.location = binding.editLocation.text.toString()
                 data.description = binding.editDescription.text.toString()
