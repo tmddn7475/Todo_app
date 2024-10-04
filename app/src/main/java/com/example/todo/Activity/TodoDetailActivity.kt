@@ -111,6 +111,33 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             startActivity(intent)
         }
 
+        // 일정 공유
+        binding.todoDetailShareBtn.setOnClickListener{
+            val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
+            intent.type = "text/plain"
+
+            var text = "${data.title}\n"
+
+            text += if(data.startDate == data.endDate){
+                if(data.startTime == "all day"){
+                    "하루 종일\n"
+                } else {
+                    "${data.startTime} ~ ${data.endTime}\n"
+                }
+            } else {
+                "${data.startDate} ~ ${data.startDate}\n"
+            }
+            if(data.location.isNotEmpty()) text += "${data.location}\n"
+            if(data.description.isNotEmpty()) text += "${data.description}\n"
+
+            val text2 = "https://github.com/tmddn7475"
+
+            intent.putExtra(Intent.EXTRA_TEXT, "$text\n$text2")
+
+            val chooserTitle = "친구에게 공유하기"
+            startActivity(Intent.createChooser(intent, chooserTitle))
+        }
+
         // 일정 수정
         binding.todoDetailEditBtn.setOnClickListener{
             binding.toolbar.visibility = View.GONE
