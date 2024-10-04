@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.compose)
 
     implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.preference.ktx)
     annotationProcessor (libs.androidx.room.room.compiler)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.room.compiler)

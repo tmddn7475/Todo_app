@@ -1,12 +1,14 @@
 package com.example.todo.Fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.todo.Activity.setting.SettingActivity
 import com.example.todo.Adapter.TodoAdapter
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
@@ -42,6 +44,11 @@ class HomeFragment : Fragment() {
         db = TodoDatabase.getInstance(requireContext())!!
 
         updateTodoList()
+
+        binding.todaySetting.setOnClickListener{
+            val intent = Intent(requireContext(), SettingActivity::class.java)
+            startActivity(intent)
+        }
 
         return binding.root
     }

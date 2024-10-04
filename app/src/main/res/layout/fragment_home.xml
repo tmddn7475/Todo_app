@@ -24,12 +24,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="dasdsad"
                 android:textColor="@color/text"
                 android:textStyle="bold"
                 android:layout_marginStart="6dp"
                 android:layout_centerVertical="true"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                tools:ignore="RelativeOverlap" />
 
             <ImageView
                 android:id="@+id/today_setting"

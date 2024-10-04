@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="dark_mode"
+        android:icon="@drawable/baseline_dark_mode_24"
+        android:title="화면 모드 설정"/>
+
+    <ListPreference
+        android:key="app_language"
+        android:icon="@drawable/baseline_language_24"
+        android:title="언어"/>
+
+    <Preference
+        android:key="app_rating"
+        android:icon="@drawable/baseline_star_rate_24"
+        android:title="앱 평가하기"/>
+
+    <Preference
+        android:key="app_share"
+        android:icon="@drawable/baseline_share_24"
+        android:title="앱 공유하기"/>
+
+    <Preference
+        android:key="app_version"
+        android:title="버전"
+        android:summary="1.0.0"/>
+
+</androidx.preference.PreferenceScreen>
