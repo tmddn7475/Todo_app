@@ -58,8 +58,18 @@
             android:id="@+id/today_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/today_item"/>
+
+        <TextView
+            android:id="@+id/text3"
+            android:text="일정을 추가해주세요"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

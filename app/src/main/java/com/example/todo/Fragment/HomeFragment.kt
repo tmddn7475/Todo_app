@@ -67,6 +67,12 @@ class HomeFragment : Fragment() {
                     }
                 }
                 binding.text1.text = simpleDate
+                if(num == 0){
+                    binding.todayList.visibility = View.GONE
+                } else {
+                    binding.todayList.visibility = View.VISIBLE
+                }
+
                 if(num <= 1){
                     binding.text2.text = "You have $num task today"
                 } else {
