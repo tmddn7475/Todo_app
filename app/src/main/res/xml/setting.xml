@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Preference
+        android:key="todo_reset"
+        android:icon="@drawable/baseline_delete_24"
+        android:title="초기화" />
+
     <ListPreference
         android:key="dark_mode"
         android:icon="@drawable/baseline_dark_mode_24"
+        android:entries="@array/display_mode"
+        android:entryValues="@array/display_mode_value"
+        android:defaultValue="system"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
         android:title="화면 모드 설정"/>
-
-    <ListPreference
-        android:key="app_language"
-        android:icon="@drawable/baseline_language_24"
-        android:title="언어"/>
 
     <Preference
         android:key="app_rating"
@@ -23,6 +28,7 @@
 
     <Preference
         android:key="app_version"
+        android:icon="@drawable/baseline_apps_24"
         android:title="버전"
         android:summary="1.0.0"/>
 

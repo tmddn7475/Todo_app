@@ -4,6 +4,7 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimary">@color/text</item>
         <item name="colorPrimaryContainer">@color/black</item>
+        <item name="colorSecondary">@color/blue_dark</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:statusBarColor">@color/black</item>
     </style>
@@ -13,16 +14,12 @@
     <style name="Theme.Todo.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
         <!-- Radius of the outer bound of widgets to make the rounded corners -->
         <item name="appWidgetRadius">16dp</item>
-        <!--
-        Radius of the inner view's bound of widgets to make the rounded corners.
-        It needs to be 8dp or less than the value of appWidgetRadius
-        -->
         <item name="appWidgetInnerRadius">8dp</item>
     </style>
 
     <style name="Theme.Todo.AppWidgetContainer" parent="Theme.Todo.AppWidgetContainerParent">
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
-        <item name="appWidgetPadding">16dp</item>
+        <item name="appWidgetPadding">12dp</item>
     </style>
 
 </resources>
