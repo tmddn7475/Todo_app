@@ -24,4 +24,13 @@
         tools:listitem="@layout/calendar_todo_item"
         android:visibility="visible"/>
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="일정이 존재하지 않습니다"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
 </FrameLayout>
