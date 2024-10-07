@@ -40,6 +40,12 @@ class SearchFragment : Fragment() {
                     calendarTodoAdapter.addListItem(item)
                 }
                 calendarTodoAdapter.notifyDataSetChanged()
+
+                if(calendarTodoAdapter.itemCount == 0){
+                    binding.text.visibility = View.VISIBLE
+                } else {
+                    binding.text.visibility = View.GONE
+                }
             }
         }
 
@@ -47,12 +53,6 @@ class SearchFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = calendarTodoAdapter
         }
-        if(calendarTodoAdapter.itemCount == 0){
-            binding.text.visibility = View.VISIBLE
-        } else {
-            binding.text.visibility = View.GONE
-        }
-
         calendarTodoAdapter.notifyDataSetChanged()
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -66,5 +66,10 @@ class SearchFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

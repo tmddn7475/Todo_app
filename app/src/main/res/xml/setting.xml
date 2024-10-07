@@ -17,6 +17,11 @@
         android:title="화면 모드 설정"/>
 
     <Preference
+        android:key="donation"
+        android:icon="@drawable/baseline_favorite_24"
+        android:title="기부하기"/>
+
+    <Preference
         android:key="app_rating"
         android:icon="@drawable/baseline_star_rate_24"
         android:title="앱 평가하기"/>
@@ -25,6 +30,11 @@
         android:key="app_share"
         android:icon="@drawable/baseline_share_24"
         android:title="앱 공유하기"/>
+
+    <Preference
+        android:key="app_faq"
+        android:icon="@drawable/baseline_question_answer_24"
+        android:title="FAQ"/>
 
     <Preference
         android:key="app_version"

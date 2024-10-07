@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.example.todo.Activity.FaqActivity
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -44,6 +45,10 @@ class SettingFragment: PreferenceFragmentCompat() {
                     }
                     true
                 }
+            }
+            "app_faq" -> {
+                val intent = Intent(requireContext(), FaqActivity::class.java)
+                startActivity(intent)
             }
             "app_share" -> {
                 val intent = Intent(Intent.ACTION_SEND_MULTIPLE)

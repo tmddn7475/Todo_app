@@ -103,4 +103,9 @@ class HomeFragment : Fragment() {
         Log.i("bool", bool.toString())
         return bool
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
