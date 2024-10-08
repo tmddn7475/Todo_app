@@ -39,13 +39,12 @@ class SearchFragment : Fragment() {
                 for(item in data){
                     calendarTodoAdapter.addListItem(item)
                 }
-                calendarTodoAdapter.notifyDataSetChanged()
-
                 if(calendarTodoAdapter.itemCount == 0){
                     binding.text.visibility = View.VISIBLE
                 } else {
                     binding.text.visibility = View.GONE
                 }
+                calendarTodoAdapter.notifyDataSetChanged()
             }
         }
 

@@ -19,6 +19,7 @@
         <ImageView
             android:id="@+id/faq_back_btn"
             android:padding="3dp"
+            android:contentDescription="@string/image"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentStart="true"
@@ -46,6 +47,8 @@
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:paddingVertical="4dp"
+                android:fontFamily="@font/narum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             

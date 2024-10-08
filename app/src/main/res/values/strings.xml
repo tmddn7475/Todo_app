@@ -4,4 +4,5 @@
     <string name="system">시스템 설정 모드</string>
     <string name="light">라이트 모드</string>
     <string name="dark">다크 모드</string>
+    <string name="image">image</string>
 </resources>

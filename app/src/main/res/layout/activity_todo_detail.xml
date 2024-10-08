@@ -20,6 +20,7 @@
 
         <ImageView
             android:id="@+id/todo_detail_back_btn"
+            android:contentDescription="@string/image"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/baseline_arrow_back_24"/>
@@ -47,24 +48,26 @@
                 android:paddingHorizontal="12dp"
                 android:paddingBottom="12dp"
                 android:paddingTop="4dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/todo_detail_priority"
+                    android:contentDescription="@string/image"
                     android:layout_width="32dp"
                     android:layout_height="35dp"
                     android:paddingStart="0dp"
                     android:paddingEnd="8dp"
-                    android:paddingTop="2dp"
                     android:src="@drawable/baseline_priority_high_24"
                     android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/todo_detail_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:maxLines="1"
                     android:text="테스트"
+                    android:fontFamily="@font/narum"
                     android:gravity="center_vertical"
                     android:textColor="@color/text"
                     android:textSize="24sp"
@@ -84,6 +87,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -95,6 +100,8 @@
                     android:text="시작 날짜"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:drawableLeftCompat="@drawable/baseline_calendar_month_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -114,6 +121,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -125,6 +134,8 @@
                     android:text="종료 날짜"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -143,6 +154,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -154,6 +167,8 @@
                     android:text="시간"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:drawableLeftCompat="@drawable/baseline_access_time_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -173,6 +188,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -184,6 +201,8 @@
                     android:text="알림"
                     android:textColor="@color/text"
                     android:textSize="18sp"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     app:drawableLeftCompat="@drawable/baseline_notifications_active_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -198,7 +217,10 @@
                 android:drawablePadding="8dp"
                 android:paddingHorizontal="12dp"
                 android:paddingBottom="12dp"
+                android:text="일곡동 "
                 android:textColor="@color/text"
+                android:fontFamily="@font/narum"
+                android:gravity="center_vertical"
                 android:textSize="18sp"
                 app:drawableLeftCompat="@drawable/baseline_location_pin_24" />
 
@@ -210,6 +232,7 @@
 
                 <ImageView
                     android:id="@+id/todo_detail_description_icon"
+                    android:contentDescription="@string/image"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_marginTop="2dp"
@@ -220,9 +243,11 @@
                 <TextView
                     android:id="@+id/todo_detail_description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="26dp"
                     android:layout_marginStart="31dp"
                     android:textColor="@color/text"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -251,6 +276,7 @@
             android:layout_height="70dp"
             android:layout_weight="1"
             android:backgroundTint="@color/gray"
+            android:fontFamily="@font/narum"
             android:paddingBottom="4dp"
             android:paddingTop="8dp"
             android:drawablePadding="5dp"
@@ -270,6 +296,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:backgroundTint="@color/gray"
+            android:fontFamily="@font/narum"
             android:text="수정"
             android:textSize="16sp"
             android:textColor="@color/text"
@@ -285,6 +312,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:backgroundTint="@color/gray"
+            android:fontFamily="@font/narum"
             android:text="공유"
             android:textSize="16sp"
             android:textColor="@color/text"
@@ -296,6 +324,7 @@
             android:layout_height="70dp"
             android:layout_weight="1"
             android:backgroundTint="@color/gray"
+            android:fontFamily="@font/narum"
             android:drawablePadding="5dp"
             android:gravity="center"
             android:paddingTop="8dp"
@@ -326,6 +355,7 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="12dp"
             android:hint="제목"
+            android:fontFamily="@font/narum"
             android:inputType="text"
             android:textColor="@color/text" />
 
@@ -342,6 +372,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="시작"
+                android:fontFamily="@font/narum"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -367,6 +398,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -391,6 +423,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="12:00"
+                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -411,6 +444,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="종료"
+                android:fontFamily="@font/narum"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -437,6 +471,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textColor="@color/text"
+                    android:fontFamily="@font/narum"
                     android:textSize="18sp" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -459,6 +494,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="12:00"
+                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -478,6 +514,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:text="하루 종일"
+                android:fontFamily="@font/narum"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
                 android:textSize="18sp" />
@@ -511,6 +548,7 @@
                 android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:text="중요"
+                android:fontFamily="@font/narum"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
                 android:textSize="18sp"
@@ -541,6 +579,7 @@
             android:drawablePadding="16dp"
             android:paddingVertical="8dp"
             android:text="알림 없음"
+            android:fontFamily="@font/narum"
             android:textColor="@color/text"
             android:textSize="18sp"
             app:drawableLeftCompat="@drawable/baseline_notifications_active_24" />
@@ -559,6 +598,8 @@
             android:layout_marginHorizontal="15dp"
             android:background="@android:color/transparent"
             android:drawablePadding="16dp"
+            android:fontFamily="@font/narum"
+            android:inputType="text"
             android:hint="장소 추가"
             android:maxLength="30"
             android:paddingVertical="8dp"
@@ -580,6 +621,7 @@
             android:layout_marginVertical="8dp">
 
             <ImageView
+                android:contentDescription="@string/image"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginStart="1dp"
@@ -596,6 +638,8 @@
                 android:background="@android:color/transparent"
                 android:gravity="start"
                 android:hint="세부 메모"
+                android:paddingTop="4dp"
+                android:fontFamily="@font/narum"
                 android:inputType="textMultiLine"
                 android:maxLength="2000"
                 android:textColor="@color/text"
@@ -626,6 +670,7 @@
             android:layout_weight="1"
             android:background="@color/gray2"
             android:gravity="center"
+            android:fontFamily="@font/narum"
             android:text="취소"
             android:textColor="@color/text"
             android:textSize="20sp"
@@ -638,6 +683,7 @@
             android:layout_weight="1"
             android:background="@color/blue_dark"
             android:gravity="center"
+            android:fontFamily="@font/narum"
             android:text="저장"
             android:textColor="@color/text"
             android:textSize="20sp"

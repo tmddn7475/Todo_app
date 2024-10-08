@@ -42,10 +42,10 @@
 
                     <ImageView
                         android:id="@+id/today_priority"
+                        android:contentDescription="@string/image"
                         android:layout_width="26dp"
                         android:layout_height="32dp"
                         android:paddingStart="0dp"
-                        android:paddingTop="2dp"
                         android:paddingEnd="6dp"
                         android:src="@drawable/baseline_priority_high_24"
                         android:visibility="visible" />
@@ -56,6 +56,7 @@
                         android:layout_height="32dp"
                         android:layout_weight="1"
                         android:maxLines="1"
+                        android:fontFamily="@font/narum"
                         android:gravity="center_vertical"
                         android:textColor="@color/text"
                         android:textSize="22sp"
@@ -75,6 +76,7 @@
 
                     <ImageView
                         android:id="@+id/today_done"
+                        android:contentDescription="@string/image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="3dp"
@@ -94,6 +96,7 @@
 
                     <ImageView
                         android:id="@+id/today_delete"
+                        android:contentDescription="@string/image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="3dp"
@@ -112,6 +115,7 @@
 
                     <ImageView
                         android:id="@+id/today_more"
+                        android:contentDescription="@string/image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="3dp"
@@ -128,6 +132,7 @@
 
                 <ImageView
                     android:id="@+id/imageView"
+                    android:contentDescription="@string/image"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
@@ -136,17 +141,19 @@
                 <TextView
                     android:id="@+id/today_time"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="6dp"
+                    android:fontFamily="@font/narum"
                     android:layout_toEndOf="@+id/imageView"
-                    android:gravity="top"
+                    android:gravity="center_vertical"
                     android:textColor="@color/text"
                     android:maxLines="1"
                     android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"
+                    android:contentDescription="@string/image"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="6dp"
@@ -157,11 +164,12 @@
                 <TextView
                     android:id="@+id/today_location"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="6dp"
-                    android:gravity="top"
+                    android:fontFamily="@font/narum"
+                    android:gravity="center_vertical"
                     android:layout_toEndOf="@+id/imageView2"
                     android:textColor="@color/text"
                     android:maxLines="1"
@@ -175,6 +183,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="@color/text"
+                android:fontFamily="@font/narum"
                 android:paddingHorizontal="10dp"
                 android:paddingBottom="6dp"
                 android:visibility="gone"/>

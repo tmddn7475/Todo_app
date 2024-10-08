@@ -14,14 +14,15 @@
         android:layout_toStartOf="@+id/widget_new_todo"
         android:paddingHorizontal="12dp"
         android:paddingVertical="6dp"
-        android:text="2024.09.01"
+        android:gravity="center_vertical"
         android:textColor="@color/text"
         android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/widget_new_todo"
+        android:contentDescription="@string/image"
         android:layout_width="32dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_above="@+id/widget_list"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"

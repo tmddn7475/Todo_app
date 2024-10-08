@@ -40,7 +40,7 @@
                 android:layout_toEndOf="@+id/checkBox"
                 android:gravity="center_vertical"
                 android:layout_marginStart="8dp"
-                android:text="전승우"
+                android:fontFamily="@font/narum"
                 android:maxLines="1"
                 android:textColor="@color/text"
                 android:textSize="16sp" />
@@ -53,9 +53,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="8dp"
                 android:layout_toEndOf="@+id/checkBox"
+                android:fontFamily="@font/narum"
                 android:gravity="bottom"
                 android:maxLines="1"
-                android:text="2024.03.03 18:00 ~ 2024.04.03 11:00"
                 android:textColor="@color/gray2"
                 android:textSize="11sp" />
 

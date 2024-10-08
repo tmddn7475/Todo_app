@@ -12,6 +12,7 @@
         app:searchIcon="@drawable/baseline_search_24"
         app:queryBackground="@null"
         android:layout_width="match_parent"
+        android:fontFamily="@font/narum"
         android:layout_height="48dp"
         android:inputType="textPersonName"/>
 
@@ -30,6 +31,7 @@
         android:layout_height="match_parent"
         android:text="일정이 존재하지 않습니다"
         android:textColor="@color/text"
+        android:visibility="gone"
         android:textSize="18sp"
         android:gravity="center"/>
 
