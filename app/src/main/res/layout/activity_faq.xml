@@ -48,7 +48,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:paddingVertical="4dp"
-                android:fontFamily="@font/narum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             

@@ -22,7 +22,6 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="12dp"
             android:text="할 일 추가하기"
-            android:fontFamily="@font/narum"
             android:textColor="@color/text"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -33,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/narum"
             android:hint="제목"
             android:inputType="text"
             android:textColor="@color/text" />
@@ -51,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="시작"
-                android:fontFamily="@font/narum"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +74,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -102,7 +98,6 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="12:00"
-                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -123,7 +118,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="종료"
-                android:fontFamily="@font/narum"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -149,7 +143,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -173,7 +166,6 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="12:00"
-                    android:fontFamily="@font/narum"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -193,7 +185,6 @@
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:text="하루 종일"
-                android:fontFamily="@font/narum"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
                 android:textSize="18sp" />
@@ -226,7 +217,6 @@
                 android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:text="중요"
-                android:fontFamily="@font/narum"
                 android:paddingVertical="8dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
@@ -259,7 +249,6 @@
             android:paddingVertical="8dp"
             android:text="알림 없음"
             android:gravity="center_vertical"
-            android:fontFamily="@font/narum"
             android:textColor="@color/text"
             android:textSize="18sp"
             app:drawableLeftCompat="@drawable/baseline_notifications_active_24" />
@@ -281,7 +270,6 @@
             android:hint="장소"
             android:inputType="text"
             android:gravity="center_vertical"
-            android:fontFamily="@font/narum"
             android:maxLength="30"
             android:paddingVertical="8dp"
             android:textColor="@color/text"
@@ -320,7 +308,6 @@
                 android:gravity="start"
                 android:hint="세부 메모"
                 android:paddingTop="4dp"
-                android:fontFamily="@font/narum"
                 android:inputType="textMultiLine"
                 android:maxLength="2000"
                 android:textColor="@color/text"
@@ -350,7 +337,6 @@
             android:background="@color/gray"
             android:gravity="center"
             android:text="취소"
-            android:fontFamily="@font/narum"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -363,7 +349,6 @@
             android:background="@color/blue_dark"
             android:gravity="center"
             android:text="저장"
-            android:fontFamily="@font/narum"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />

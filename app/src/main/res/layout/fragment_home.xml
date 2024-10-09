@@ -26,7 +26,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="6dp"
-                android:fontFamily="@font/narum"
                 android:layout_toStartOf="@+id/today_setting"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
@@ -51,7 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:fontFamily="@font/narum"
             android:textColor="@color/text"
             android:layout_marginHorizontal="12dp"
             android:layout_marginBottom="6dp"/>
@@ -68,7 +66,6 @@
             android:id="@+id/text3"
             android:text="일정이 존재하지 않습니다"
             android:textColor="@color/text"
-            android:fontFamily="@font/narum"
             android:textSize="18sp"
             android:gravity="center"
             android:layout_width="match_parent"

@@ -19,7 +19,6 @@
             android:gravity="center"
             android:textColor="@color/text"
             android:textSize="12sp"
-            android:fontFamily="@font/narum"
             tools:text="24" />
 
         <ImageView

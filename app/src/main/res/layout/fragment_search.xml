@@ -12,7 +12,6 @@
         app:searchIcon="@drawable/baseline_search_24"
         app:queryBackground="@null"
         android:layout_width="match_parent"
-        android:fontFamily="@font/narum"
         android:layout_height="48dp"
         android:inputType="textPersonName"/>
 

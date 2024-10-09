@@ -7,5 +7,4 @@
     android:gravity="center"
     android:textColor="@color/text"
     android:textSize="14sp"
-    android:fontFamily="@font/narum"
     tools:text="SUN" />
