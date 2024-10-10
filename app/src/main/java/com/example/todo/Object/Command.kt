@@ -112,7 +112,6 @@ object Command {
 
     fun widgetUpdate(owner: ViewModelStoreOwner){
         val widgetViewModel = ViewModelProvider(owner)[WidgetViewModel::class.java]
-
         widgetViewModel.updateWidget()
     }
 }

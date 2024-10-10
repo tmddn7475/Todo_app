@@ -15,6 +15,7 @@ import com.example.todo.Dialog.SelectAlarmDialog
 import com.example.todo.Dialog.SelectTimeDialog
 import com.example.todo.Interface.SelectAlarmInterface
 import com.example.todo.Interface.SelectTimeInterface
+import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.ActivityTodoDetailBinding
@@ -52,6 +53,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
             data = db.todoDAO().selectOne(id)
 
             runOnUiThread{
+                // 중요
                 if(data.priorityHigh){
                     binding.todoDetailPriority.visibility = View.VISIBLE
                 } else {
@@ -60,6 +62,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 binding.todoDetailTitle.text = data.title
                 binding.todoDetailDate1.text = data.startDate
                 binding.todoDetailDate2.text = data.endDate
+                // 시간
                 if(data.startTime == "all day"){
                     binding.todoDetailTime.text = "하루 종일"
                 } else {
@@ -76,6 +79,11 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     binding.todoDetailDescriptionIcon.visibility = View.GONE
                 } else {
                     binding.todoDetailDescription.text = data.description
+                }
+                if(data.isDone){
+                    binding.todoDetailIsDone.setImageResource(R.drawable.baseline_check_box_24)
+                } else {
+                    binding.todoDetailIsDone.setImageResource(R.drawable.baseline_check_box_outline_blank_24)
                 }
 
                 // edit
@@ -101,6 +109,20 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
 
         binding.todoDetailBackBtn.setOnClickListener {
             finish()
+        }
+
+        binding.todoDetailIsDone.setOnClickListener {
+            if(data.isDone){
+                data.isDone = false
+                updateItem(data)
+                Toast.makeText(this, "해당 일정을 실행 취소로 표시하였습니다", Toast.LENGTH_SHORT).show()
+                binding.todoDetailIsDone.setImageResource(R.drawable.baseline_check_box_outline_blank_24)
+            } else {
+                data.isDone = true
+                updateItem(data)
+                Toast.makeText(this, "해당 일정을 완료로 표시하였습니다", Toast.LENGTH_SHORT).show()
+                binding.todoDetailIsDone.setImageResource(R.drawable.baseline_check_box_24)
+            }
         }
 
         // 일정 복사
@@ -267,6 +289,13 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 }.show()
         }
     }
+
+    private fun updateItem(todoEntity: TodoEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            db.todoDAO().update(todoEntity)
+        }
+    }
+
     override fun selected(textView: TextView, str: String) {
         textView.text = str
         if(Command.compareTime(binding.editDate.text.toString(), binding.editDate2.text.toString(), binding.editTime.text.toString(), binding.editTime2.text.toString())){
