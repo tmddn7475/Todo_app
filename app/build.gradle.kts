@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(libs.view)
     implementation(libs.compose)
+    implementation (libs.mpandroidchart)
 
     implementation (libs.androidx.room.runtime)
     implementation(libs.androidx.preference.ktx)
