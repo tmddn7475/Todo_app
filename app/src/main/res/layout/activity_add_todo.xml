@@ -33,7 +33,6 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="4dp"
             android:hint="제목"
-            android:fontFamily="@font/narum"
             android:inputType="text"
             android:textColor="@color/text" />
 
@@ -269,7 +268,6 @@
             android:background="@android:color/transparent"
             android:drawablePadding="16dp"
             android:hint="장소"
-            android:fontFamily="@font/narum"
             android:inputType="text"
             android:gravity="center_vertical"
             android:maxLength="30"
@@ -309,7 +307,6 @@
                 android:background="@android:color/transparent"
                 android:gravity="start"
                 android:hint="세부 메모"
-                android:fontFamily="@font/narum"
                 android:paddingTop="4dp"
                 android:inputType="textMultiLine"
                 android:maxLength="2000"

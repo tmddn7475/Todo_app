@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity() {
         // 사이드 네비게이션 바
         binding.sideNavigationView.setNavigationItemSelectedListener {
             when (it.itemId){
+                R.id.side_priority -> {
+                    val intent = Intent(this, PriorityActivity::class.java)
+                    startActivity(intent)
+                }
                 R.id.side_faq -> {
                     val intent = Intent(this, FaqActivity::class.java)
                     startActivity(intent)

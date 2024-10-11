@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:gravity="bottom"
-    android:background="#D4E7EB"
+    android:background="@color/gray"
     android:orientation="vertical">
 
     <TextView
@@ -15,7 +15,7 @@
         android:paddingHorizontal="32dp"
         android:paddingBottom="16dp"
         android:textSize="40sp"
-        android:textColor="@color/black"
+        android:textColor="@color/text"
         android:textStyle="bold"/>
 
 </LinearLayout>
