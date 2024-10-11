@@ -18,6 +18,7 @@ import com.example.todo.Fragment.CalendarFragment
 import com.example.todo.Fragment.HomeFragment
 import com.example.todo.Fragment.ProfileFragment
 import com.example.todo.Fragment.SearchFragment
+import com.example.todo.Object.Command
 import com.example.todo.R
 import com.example.todo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -45,7 +46,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
+        Command.getDisplayMode(this)
         // 알림 권한 요청
         requestNotificationPermission(this)
 
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.side_setting -> {
                     val intent = Intent(this, SettingActivity::class.java)
                     startActivity(intent)
+                    finishAffinity()
                 }
             }
             return@setNavigationItemSelectedListener false

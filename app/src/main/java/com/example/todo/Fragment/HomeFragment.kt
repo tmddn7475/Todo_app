@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
         binding.todaySetting.setOnClickListener{
             val intent = Intent(requireContext(), SettingActivity::class.java)
             startActivity(intent)
+            activity?.finishAffinity()
         }
 
         return binding.root
