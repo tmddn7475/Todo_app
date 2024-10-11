@@ -54,9 +54,8 @@ class SettingFragment: PreferenceFragmentCompat() {
                 val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
                 intent.type = "text/plain"
 
-                val text2 = "https://github.com/tmddn7475"
-
-                intent.putExtra(Intent.EXTRA_TEXT, text2)
+                val text = "https://github.com/tmddn7475"
+                intent.putExtra(Intent.EXTRA_TEXT, text)
 
                 val chooserTitle = "친구에게 공유하기"
                 startActivity(Intent.createChooser(intent, chooserTitle))

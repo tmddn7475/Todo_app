@@ -57,7 +57,7 @@
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:paddingVertical="4dp"
+                android:paddingVertical="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             
@@ -65,6 +65,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/blue_dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="6dp"
+                android:text="알림을 받기 위해서는 "
+                android:textColor="@color/text"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
