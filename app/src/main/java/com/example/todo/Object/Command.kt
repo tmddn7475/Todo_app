@@ -1,13 +1,11 @@
 package com.example.todo.Object
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.todo.Alarm.AlarmReceiver
@@ -102,30 +100,6 @@ object Command {
         }
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, c.timeInMillis, pIntent)
-    }
-
-    fun getDisplayMode(activity: Activity){
-        // preference
-        val preference = activity.getSharedPreferences("com.example.todo_preferences", Activity.MODE_PRIVATE)
-        val editor = preference.edit()
-
-        val current: String = preference.getString("display_mode", "system").toString()
-        editor.putString("display_mode", current)
-        editor.apply() // 저장
-
-        // 다크 모드 설정
-        val str = preference.getString("display_mode", null).toString()
-        when (str){
-            "system" -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            }
-            "light" -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-            "dark" -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-        }
     }
 
     // 알림 삭제

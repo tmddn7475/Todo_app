@@ -2,10 +2,10 @@ package com.example.todo.Fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.todo.databinding.FragmentProfileBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
@@ -100,6 +100,7 @@ class ProfileFragment : Fragment() {
 
         val data = BarData(barDataSet)
         data.barWidth = 0.6f
+
         barChart.data = data
         barChart.invalidate()
     }
