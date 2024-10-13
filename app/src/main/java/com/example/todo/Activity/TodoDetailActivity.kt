@@ -118,6 +118,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 Toast.makeText(this, "해당 일정을 실행 취소로 표시하였습니다", Toast.LENGTH_SHORT).show()
                 binding.todoDetailIsDone.setImageResource(R.drawable.baseline_check_box_outline_blank_24)
             } else {
+                data.doneDate = Command.getToday()
                 data.isDone = true
                 updateItem(data)
                 Toast.makeText(this, "해당 일정을 완료로 표시하였습니다", Toast.LENGTH_SHORT).show()

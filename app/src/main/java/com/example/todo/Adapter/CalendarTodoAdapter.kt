@@ -8,6 +8,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.Activity.TodoDetailActivity
+import com.example.todo.Object.Command
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.CalendarTodoItemBinding
@@ -59,6 +60,7 @@ class CalendarTodoAdapter: RecyclerView.Adapter<CalendarTodoAdapter.ViewHolder>(
                     notifyDataSetChanged()
                 } else {
                     todoItem.isDone = true
+                    todoItem.doneDate = Command.getToday()
                     updateItem(todoItem)
                     notifyDataSetChanged()
                 }

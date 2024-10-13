@@ -17,5 +17,6 @@ data class TodoEntity(
     var description:String = "",
     var alert: String = "",
     var priorityHigh: Boolean = false,
-    var isDone: Boolean = false
+    var isDone: Boolean = false,
+    var doneDate: String = ""
 ) : Serializable

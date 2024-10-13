@@ -129,7 +129,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
                 Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
                 val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate, startTime = startTime,
-                    endTime = endTime, location = location, description = desc, alert = alarm, priorityHigh = binding.addTodoSwitch2.isChecked)
+                    endTime = endTime, location = location, description = desc, alert = alarm, priorityHigh = binding.addTodoSwitch2.isChecked, doneDate = Command.getToday())
                 addData(todoEntity)
                 if(alarm != "알림 없음") Command.setAlarm(this, todoEntity)
                 Command.widgetUpdate(this)

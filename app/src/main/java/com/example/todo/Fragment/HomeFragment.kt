@@ -3,7 +3,6 @@ package com.example.todo.Fragment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.example.todo.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -88,20 +86,13 @@ class HomeFragment : Fragment() {
     private fun todayTodos(startDate: String, endDate: String): Boolean {
         var bool = false
 
-        try {
-            // 문자열을 Date 객체로 변환
-            val today: Date = dateFormat.parse(simpleDate)!!
-            val date1: Date = dateFormat.parse(startDate)!!
-            val date2: Date = dateFormat.parse(endDate)!!
+        val today: Date = dateFormat.parse(simpleDate)!!
+        val date1: Date = dateFormat.parse(startDate)!!
+        val date2: Date = dateFormat.parse(endDate)!!
 
-            if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
-                bool = true
-            }
-        } catch (e: ParseException) {
-            e.printStackTrace()
+        if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
+            bool = true
         }
-
-        Log.i("bool", bool.toString())
         return bool
     }
 

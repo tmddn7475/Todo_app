@@ -13,11 +13,13 @@ import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.Widget.WidgetViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 
+@SuppressLint("SimpleDateFormat")
 object Command {
-    @SuppressLint("SimpleDateFormat")
     fun compareDates(selectedDate: String, comparisonDate: String): Boolean{
         val dateFormat = SimpleDateFormat("yyyy.MM.dd")
         var bool = false
@@ -35,7 +37,6 @@ object Command {
         return bool
     }
 
-    @SuppressLint("SimpleDateFormat")
     fun compareTime(selectedDate: String, comparisonDate: String, selectTime: String, comparisonTime: String): Boolean{
         val dateFormat = SimpleDateFormat("HH:mm")
         var bool = false
@@ -100,6 +101,12 @@ object Command {
         }
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, c.timeInMillis, pIntent)
+    }
+
+    fun getToday(): String {
+        val now = LocalDate.now()
+        val strNow = now.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
+        return strNow
     }
 
     // 알림 삭제

@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.todo.RoomDB.TodoDatabase
+import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.FragmentProfileBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
@@ -18,15 +20,26 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Date
 
+@SuppressLint("SimpleDateFormat")
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
     private var currentDate = LocalDate.now()
+    private val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+
+    private lateinit var db: TodoDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +47,9 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        initBarChart(binding.chart)
-        setData(binding.chart)
+        db = TodoDatabase.getInstance(requireContext())!!
 
+        initBarChart(binding.chart)
         updateWeekText(binding.chartDate)
 
         binding.chartDateImg.setOnClickListener{
@@ -80,7 +93,7 @@ class ProfileFragment : Fragment() {
         xAxis.granularity = 1f
         // x축 텍스트 컬러 설정
         xAxis.textSize = 12f
-        xAxis.textColor = Color.LTGRAY
+        xAxis.textColor = Color.GRAY
         // x축 선 설정 (default = true)
         xAxis.setDrawAxisLine(false)
         // 격자선 설정 (default = true)
@@ -91,7 +104,11 @@ class ProfileFragment : Fragment() {
         // 좌측 선 설정 (default = true)
         leftAxis.setDrawAxisLine(false)
         leftAxis.setDrawGridLines(false)
-        leftAxis.setDrawLabels(false)
+        leftAxis.setDrawLabels(true)
+        leftAxis.axisMaximum = 0f
+        leftAxis.axisMaximum = 10f
+        leftAxis.granularity = 2f
+        leftAxis.textColor = Color.GRAY
 
         val rightAxis: YAxis = barChart.axisRight
         // 우측 선 설정 (default = true)
@@ -101,28 +118,61 @@ class ProfileFragment : Fragment() {
     }
 
     // 차트 값 가져옴
-    private fun setData(barChart: BarChart) {
+    private fun setData(barChart: BarChart, startOfWeek: String, endOfWeek: String) {
         // Zoom In / Out 가능 여부 설정
         barChart.setScaleEnabled(false)
 
         val valueList = ArrayList<BarEntry>()
         val title = "완료한 작업"
 
-        // 임의 데이터
-        for (i in 0 until 7) {
-            valueList.add(BarEntry(i.toFloat(), 1 + (i * 1f)))
+        // 데이터 가져오기
+        CoroutineScope(Dispatchers.IO).launch {
+            val todoData = db.todoDAO().getTodo() as ArrayList<TodoEntity>
+            activity?.runOnUiThread {
+                val arr = getWeekRange(startOfWeek, endOfWeek, todoData)
+
+                for (i in arr.indices) {
+                    valueList.add(BarEntry(i.toFloat(), arr[i].toFloat()))
+                }
+                val barDataSet = BarDataSet(valueList, title)
+                // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
+                barDataSet.setColors(Color.rgb(0, 179, 239))
+                barDataSet.valueFormatter = MyValueFormatter()
+
+                val data = BarData(barDataSet)
+                data.barWidth = 0.6f
+
+                barChart.data = data
+                barChart.invalidate()
+            }
+        }
+    }
+
+    private fun getWeekRange(startOfWeek: String, endOfWeek: String, todo: ArrayList<TodoEntity>): Array<Int> {
+        val arr = arrayOf(0,0,0,0,0,0,0)
+
+        for(item in todo){
+            val start: Date = dateFormat.parse(startOfWeek)!!
+            val end: Date = dateFormat.parse(endOfWeek)!!
+            val dataDate: Date = dateFormat.parse(item.doneDate)!!
+
+            if(((start.after(end) && start.before(dataDate)) || start == end || start == dataDate) && item.isDone){
+                val calendar = Calendar.getInstance()
+                calendar.time = dataDate
+                val dayOfWeek: Int = calendar.get(Calendar.DAY_OF_WEEK)
+                when (dayOfWeek) {
+                    1 -> arr[0]++
+                    2 -> arr[1]++
+                    3 -> arr[2]++
+                    4 -> arr[3]++
+                    5 -> arr[4]++
+                    6 -> arr[5]++
+                    7 -> arr[6]++
+                }
+            }
         }
 
-        val barDataSet = BarDataSet(valueList, title)
-        // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
-        barDataSet.setColors(Color.rgb(0, 179, 239))
-        barDataSet.valueFormatter = MyValueFormatter()
-
-        val data = BarData(barDataSet)
-        data.barWidth = 0.6f
-
-        barChart.data = data
-        barChart.invalidate()
+        return arr
     }
 
     // 주의 시작일과 종료일을 가져오는 함수
@@ -130,8 +180,7 @@ class ProfileFragment : Fragment() {
         val startOfWeek = currentDate.with(DayOfWeek.SUNDAY)
         val endOfWeek = currentDate.plusWeeks(1).with(DayOfWeek.SATURDAY)
 
-        // 날짜 포맷 (원하는 형식으로 변경 가능)
-        val formatter = DateTimeFormatter.ofPattern("MM.dd")
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
         return Pair(startOfWeek.format(formatter), endOfWeek.format(formatter))
     }
 
@@ -139,8 +188,10 @@ class ProfileFragment : Fragment() {
     private fun updateWeekText(weekTextView: TextView) {
         val (startOfWeek, endOfWeek) = getCurrentWeek()
         weekTextView.text = "$startOfWeek ~ $endOfWeek"
+        setData(binding.chart, startOfWeek, endOfWeek)
     }
 
+    // 차트 x값
     inner class MyXAxisFormatter: ValueFormatter() {
         private val days = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
@@ -148,6 +199,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    // 차트 y값 소수점 안 나오게 변경
     inner class MyValueFormatter : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
             return value.toInt().toString()

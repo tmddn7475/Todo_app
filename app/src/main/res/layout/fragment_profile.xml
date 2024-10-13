@@ -5,70 +5,79 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ProfileFragment">
-    
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="@color/gray"
-        android:layout_margin="12dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:text="완료된 작업"
+            android:gravity="center_vertical"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="12dp"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingHorizontal="18dp">
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:text="완료된 작업"
-                    android:gravity="center"
-                    android:textColor="@color/text"
-                    android:textSize="16sp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/gray"
+            android:layout_margin="12dp">
 
-                <ImageView
-                    android:id="@+id/chart_date_img"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_toStartOf="@+id/chart_date"
-                    android:src="@drawable/baseline_chevron_left_24" />
-
-                <TextView
-                    android:id="@+id/chart_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_toStartOf="@+id/chart_date_img2"
-                    android:text="10.23 ~ 10.30"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
-                    android:gravity="center"
-                    android:textColor="@color/text"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:id="@+id/chart_date_img2"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/baseline_chevron_right_24" />
-
-            </RelativeLayout>
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/chart"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"/>
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingHorizontal="18dp">
 
-    </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/chart_date_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_toStartOf="@+id/chart_date"
+                        android:src="@drawable/baseline_chevron_left_24" />
 
+                    <TextView
+                        android:id="@+id/chart_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_toStartOf="@+id/chart_date_img2"
+                        android:text="2024.10.23 ~ 2024.10.30"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:gravity="center"
+                        android:textColor="@color/text"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/chart_date_img2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/baseline_chevron_right_24" />
+
+                </RelativeLayout>
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -92,6 +92,7 @@ class TodoAdapter(private val viewModelStoreOwner: ViewModelStoreOwner): Recycle
                 } else {
                     binding.todayTitle.paintFlags = binding.todayTitle.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
                     todoItem.isDone = true
+                    todoItem.doneDate = Command.getToday()
                     updateItem(todoItem)
                     notifyDataSetChanged()
                 }
