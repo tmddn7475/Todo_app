@@ -35,11 +35,9 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var db: TodoDatabase
     private var currentDate = LocalDate.now()
     private val dateFormat = SimpleDateFormat("yyyy.MM.dd")
-
-    private lateinit var db: TodoDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -140,7 +138,7 @@ class ProfileFragment : Fragment() {
                 barDataSet.valueFormatter = MyValueFormatter()
 
                 val data = BarData(barDataSet)
-                data.barWidth = 0.6f
+                data.barWidth = 0.5f
 
                 barChart.data = data
                 barChart.invalidate()
