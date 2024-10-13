@@ -6,23 +6,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.SearchFragment">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        app:iconifiedByDefault="false"
-        app:searchIcon="@drawable/baseline_search_24"
-        app:queryBackground="@null"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:inputType="textPersonName"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
-        android:nestedScrollingEnabled="false"
-        tools:listitem="@layout/calendar_todo_item"
-        android:visibility="visible"/>
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            app:iconifiedByDefault="false"
+            app:searchIcon="@drawable/baseline_search_24"
+            app:queryBackground="@null"
+            android:layout_width="match_parent"
+            android:paddingStart="4dp"
+            android:paddingEnd="0dp"
+            android:layout_height="48dp"
+            android:inputType="textPersonName"/>
+
+        <RadioGroup
+            android:id="@+id/search_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_marginVertical="6dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/search_all"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/text"
+                android:layout_marginStart="20dp"
+                android:paddingHorizontal="3dp"
+                android:text="전체" />
+
+            <RadioButton
+                android:id="@+id/search_done"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/text"
+                android:layout_marginStart="4dp"
+                android:paddingHorizontal="3dp"
+                android:text="완료된 작업" />
+
+            <RadioButton
+                android:id="@+id/search_not_done"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@color/text"
+                android:layout_marginStart="4dp"
+                android:paddingHorizontal="3dp"
+                android:text="비완료된 작업" />
+
+        </RadioGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/calendar_todo_item"
+            android:visibility="visible"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text"

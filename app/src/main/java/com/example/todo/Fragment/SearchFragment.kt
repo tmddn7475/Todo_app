@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.Adapter.CalendarTodoAdapter
+import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.FragmentSearchBinding
@@ -24,7 +25,6 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var db: TodoDatabase
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,19 +32,15 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         db = TodoDatabase.getInstance(requireContext())!!
-        CoroutineScope(Dispatchers.IO).launch {
-            calendarTodoAdapter.clearList()
-            val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
-            activity?.runOnUiThread{
-                for(item in data){
-                    calendarTodoAdapter.addListItem(item)
-                }
-                if(calendarTodoAdapter.itemCount == 0){
-                    binding.text.visibility = View.VISIBLE
-                } else {
-                    binding.text.visibility = View.GONE
-                }
-                calendarTodoAdapter.notifyDataSetChanged()
+        getData()
+
+        binding.searchAll.isChecked = true
+
+        binding.searchRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId){
+                R.id.search_all -> getData()
+                R.id.search_done -> getData()
+                R.id.search_not_done -> getData()
             }
         }
 
@@ -52,7 +48,6 @@ class SearchFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = calendarTodoAdapter
         }
-        calendarTodoAdapter.notifyDataSetChanged()
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -65,6 +60,35 @@ class SearchFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getData(){
+        CoroutineScope(Dispatchers.IO).launch {
+            calendarTodoAdapter.clearList()
+            val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
+            activity?.runOnUiThread{
+                for(item in data){
+                    if(binding.searchRadioGroup.checkedRadioButtonId == R.id.search_done){
+                        if(item.isDone){
+                            calendarTodoAdapter.addListItem(item)
+                        }
+                    } else if (binding.searchRadioGroup.checkedRadioButtonId == R.id.search_not_done){
+                        if(!item.isDone){
+                            calendarTodoAdapter.addListItem(item)
+                        }
+                    } else {
+                        calendarTodoAdapter.addListItem(item)
+                    }
+                }
+                if(calendarTodoAdapter.itemCount == 0){
+                    binding.text.visibility = View.VISIBLE
+                } else {
+                    binding.text.visibility = View.GONE
+                }
+                calendarTodoAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onDestroyView() {
