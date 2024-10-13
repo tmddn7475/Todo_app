@@ -1,10 +1,12 @@
 package com.example.todo.Fragment
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.todo.databinding.FragmentProfileBinding
 import com.github.mikephil.charting.charts.BarChart
@@ -16,11 +18,15 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private var currentDate = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +37,22 @@ class ProfileFragment : Fragment() {
         initBarChart(binding.chart)
         setData(binding.chart)
 
+        updateWeekText(binding.chartDate)
+
+        binding.chartDateImg.setOnClickListener{
+            currentDate = currentDate.minusWeeks(1) // 한 주 전으로 이동
+            updateWeekText(binding.chartDate)
+        }
+
+        binding.chartDateImg2.setOnClickListener{
+            currentDate = currentDate.plusWeeks(1) // 한 주 후로 이동
+            updateWeekText(binding.chartDate)
+        }
+
         return binding.root
     }
 
+    // 차트 설정
     private fun initBarChart(barChart: BarChart) {
         // 차트 회색 배경 설정 (default = false)
         barChart.setDrawGridBackground(false)
@@ -81,12 +100,13 @@ class ProfileFragment : Fragment() {
         rightAxis.setDrawLabels(false)
     }
 
+    // 차트 값 가져옴
     private fun setData(barChart: BarChart) {
         // Zoom In / Out 가능 여부 설정
         barChart.setScaleEnabled(false)
 
         val valueList = ArrayList<BarEntry>()
-        val title = "완료한 작업 수"
+        val title = "완료한 작업"
 
         // 임의 데이터
         for (i in 0 until 7) {
@@ -103,6 +123,22 @@ class ProfileFragment : Fragment() {
 
         barChart.data = data
         barChart.invalidate()
+    }
+
+    // 주의 시작일과 종료일을 가져오는 함수
+    private fun getCurrentWeek(): Pair<String, String> {
+        val startOfWeek = currentDate.with(DayOfWeek.SUNDAY)
+        val endOfWeek = currentDate.plusWeeks(1).with(DayOfWeek.SATURDAY)
+
+        // 날짜 포맷 (원하는 형식으로 변경 가능)
+        val formatter = DateTimeFormatter.ofPattern("MM.dd")
+        return Pair(startOfWeek.format(formatter), endOfWeek.format(formatter))
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateWeekText(weekTextView: TextView) {
+        val (startOfWeek, endOfWeek) = getCurrentWeek()
+        weekTextView.text = "$startOfWeek ~ $endOfWeek"
     }
 
     inner class MyXAxisFormatter: ValueFormatter() {

@@ -18,14 +18,47 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:text="완료된 작업"
-                android:paddingTop="8dp"
-                android:textSize="16sp"
-                android:textColor="@color/text"
-                android:paddingHorizontal="18dp"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingHorizontal="18dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:text="완료된 작업"
+                    android:gravity="center"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/chart_date_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_toStartOf="@+id/chart_date"
+                    android:src="@drawable/baseline_chevron_left_24" />
+
+                <TextView
+                    android:id="@+id/chart_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_toStartOf="@+id/chart_date_img2"
+                    android:text="10.23 ~ 10.30"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/chart_date_img2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/baseline_chevron_right_24" />
+
+            </RelativeLayout>
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/chart"
