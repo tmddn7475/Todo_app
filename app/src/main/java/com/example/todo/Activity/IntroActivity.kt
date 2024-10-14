@@ -18,12 +18,12 @@ class IntroActivity : AppCompatActivity() {
         val preference = getSharedPreferences("com.example.todo_preferences", Activity.MODE_PRIVATE)
         val editor = preference.edit()
 
-        val current: String = preference.getString("display_mode", "system").toString()
-        editor.putString("display_mode", current)
+        val current: String = preference.getString("dark_mode", "system").toString()
+        editor.putString("dark_mode", current)
         editor.apply() // 저장
 
         // 다크 모드 설정
-        val str = preference.getString("display_mode", null).toString()
+        val str = preference.getString("dark_mode", null).toString()
         when (str){
             "system" -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

@@ -1,13 +1,18 @@
 package com.example.todo.Fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.todo.Activity.FaqActivity
+import com.example.todo.Activity.PriorityActivity
+import com.example.todo.Activity.setting.SettingActivity
 import com.example.todo.RoomDB.TodoDatabase
 import com.example.todo.RoomDB.TodoEntity
 import com.example.todo.databinding.FragmentProfileBinding
@@ -50,14 +55,41 @@ class ProfileFragment : Fragment() {
         initBarChart(binding.chart)
         updateWeekText(binding.chartDate)
 
-        binding.chartDateImg.setOnClickListener{
+        binding.chartDateImg.setOnClickListener {
             currentDate = currentDate.minusWeeks(1) // 한 주 전으로 이동
             updateWeekText(binding.chartDate)
         }
 
-        binding.chartDateImg2.setOnClickListener{
+        binding.chartDateImg2.setOnClickListener {
             currentDate = currentDate.plusWeeks(1) // 한 주 후로 이동
             updateWeekText(binding.chartDate)
+        }
+
+        binding.profilePriority.setOnClickListener{
+            val intent = Intent(context, PriorityActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileFaq.setOnClickListener{
+            val intent = Intent(context, FaqActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileShare.setOnClickListener{
+            val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
+            intent.type = "text/plain"
+
+            val text = "https://github.com/tmddn7475"
+            intent.putExtra(Intent.EXTRA_TEXT, text)
+
+            val chooserTitle = "친구에게 공유하기"
+            startActivity(Intent.createChooser(intent, chooserTitle))
+        }
+
+        binding.profileSetting.setOnClickListener{
+            val intent = Intent(context, SettingActivity::class.java)
+            startActivity(intent)
+            activity?.finishAffinity()
         }
 
         return binding.root
@@ -125,13 +157,13 @@ class ProfileFragment : Fragment() {
 
         // 데이터 가져오기
         CoroutineScope(Dispatchers.IO).launch {
-            val todoData = db.todoDAO().getTodo() as ArrayList<TodoEntity>
+            val todoData = db.todoDAO().getTodo2() as ArrayList<TodoEntity>
             activity?.runOnUiThread {
                 val arr = getWeekRange(startOfWeek, endOfWeek, todoData)
-
                 for (i in arr.indices) {
                     valueList.add(BarEntry(i.toFloat(), arr[i].toFloat()))
                 }
+
                 val barDataSet = BarDataSet(valueList, title)
                 // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
                 barDataSet.setColors(Color.rgb(0, 179, 239))
@@ -154,7 +186,9 @@ class ProfileFragment : Fragment() {
             val end: Date = dateFormat.parse(endOfWeek)!!
             val dataDate: Date = dateFormat.parse(item.doneDate)!!
 
-            if(((start.after(end) && start.before(dataDate)) || start == end || start == dataDate) && item.isDone){
+            Log.i("doneDate", item.doneDate)
+
+            if((end.after(dataDate) && start.before(dataDate)) || dataDate == start || dataDate == end){
                 val calendar = Calendar.getInstance()
                 calendar.time = dataDate
                 val dayOfWeek: Int = calendar.get(Calendar.DAY_OF_WEEK)
@@ -175,8 +209,17 @@ class ProfileFragment : Fragment() {
 
     // 주의 시작일과 종료일을 가져오는 함수
     private fun getCurrentWeek(): Pair<String, String> {
-        val startOfWeek = currentDate.with(DayOfWeek.SUNDAY)
-        val endOfWeek = currentDate.plusWeeks(1).with(DayOfWeek.SATURDAY)
+        val startOfWeek = if(currentDate.dayOfWeek == DayOfWeek.SUNDAY) {
+            currentDate.with(DayOfWeek.SUNDAY)
+        } else {
+            currentDate.minusWeeks(1).with(DayOfWeek.SUNDAY)
+        }
+
+        val endOfWeek = if(currentDate.dayOfWeek == DayOfWeek.SUNDAY) {
+            currentDate.plusWeeks(1).with(DayOfWeek.SATURDAY)
+        } else {
+            currentDate.with(DayOfWeek.SATURDAY)
+        }
 
         val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
         return Pair(startOfWeek.format(formatter), endOfWeek.format(formatter))

@@ -6,14 +6,13 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.example.todo.Activity.setting.SettingActivity
 import com.example.todo.Fragment.CalendarFragment
 import com.example.todo.Fragment.HomeFragment
 import com.example.todo.Fragment.ProfileFragment
@@ -27,8 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var homeFragment: HomeFragment
     lateinit var calendarFragment: CalendarFragment
-    lateinit var searchFragment: SearchFragment
-    lateinit var profileFragment: ProfileFragment
+    private lateinit var searchFragment: SearchFragment
+    private lateinit var profileFragment: ProfileFragment
 
     // Acticity 변수화 및 반환
     init {
@@ -49,26 +48,6 @@ class MainActivity : AppCompatActivity() {
         // 알림 권한 요청
         requestNotificationPermission(this)
 
-        // 사이드 네비게이션 바
-        binding.sideNavigationView.setNavigationItemSelectedListener {
-            when (it.itemId){
-                R.id.side_priority -> {
-                    val intent = Intent(this, PriorityActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.side_faq -> {
-                    val intent = Intent(this, FaqActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.side_setting -> {
-                    val intent = Intent(this, SettingActivity::class.java)
-                    startActivity(intent)
-                    finishAffinity()
-                }
-            }
-            return@setNavigationItemSelectedListener false
-        }
-
         homeFragment = HomeFragment()
         calendarFragment = CalendarFragment()
         searchFragment = SearchFragment()
@@ -77,19 +56,29 @@ class MainActivity : AppCompatActivity() {
         // 프래그먼트 전환
         supportFragmentManager.beginTransaction().replace(R.id.container, homeFragment).commit()
         binding.bottomNavigationView.setOnItemSelectedListener {
-            replaceFragment(
-                when (it.itemId) {
-                    R.id.bottom_home -> homeFragment
-                    R.id.bottom_calender -> calendarFragment
-                    R.id.bottom_search -> searchFragment
-                    else -> profileFragment
+            when (it.itemId) {
+                R.id.bottom_home -> {
+                    replaceFragment(homeFragment)
+                    binding.addTodoCardView.visibility = View.VISIBLE
                 }
-            )
+                R.id.bottom_calender -> {
+                    replaceFragment(calendarFragment)
+                    binding.addTodoCardView.visibility = View.VISIBLE
+                }
+                R.id.bottom_search -> {
+                    replaceFragment(searchFragment)
+                    binding.addTodoCardView.visibility = View.GONE
+                }
+                else -> {
+                    replaceFragment(profileFragment)
+                    binding.addTodoCardView.visibility = View.GONE
+                }
+            }
             true
         }
 
-        // addTodoFragment
-        binding.addTodo.setOnClickListener{
+        // addTodoActivity
+        binding.addTodo.setOnClickListener {
             val intent = Intent(this, AddTodoActivity::class.java)
             startActivity(intent)
         }
@@ -135,24 +124,20 @@ class MainActivity : AppCompatActivity() {
     private var backPressedTime: Long = 0
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            // 사이드 네비게이션 바가 나온 상태일 경우 닫기
-            if(binding.main.isDrawerOpen(GravityCompat.START)){
-                binding.main.closeDrawers()
-            } else {
-                val fragment = supportFragmentManager.findFragmentById(R.id.container)
-                if(fragment is HomeFragment) {
-                    if (System.currentTimeMillis() > backPressedTime + 2000) {
-                        backPressedTime = System.currentTimeMillis()
-                        Snackbar.make(findViewById(R.id.main), "뒤로 버튼을 한번 더 누르면 종료됩니다", Snackbar.LENGTH_SHORT)
-                            .setAnchorView(R.id.bottomNavigationView)
-                            .setTextColor(ContextCompat.getColor(this@MainActivity, R.color.text))
-                            .setBackgroundTint(ContextCompat.getColor(this@MainActivity, R.color.gray)).show()
-                    } else if (System.currentTimeMillis() <= backPressedTime + 2000) {
-                        finishAffinity()
-                    }
-                } else {
-                    binding.bottomNavigationView.selectedItemId = R.id.bottom_home
+            val fragment = supportFragmentManager.findFragmentById(R.id.container)
+            if(fragment is HomeFragment) {
+                if (System.currentTimeMillis() > backPressedTime + 2000) {
+                    backPressedTime = System.currentTimeMillis()
+                    Snackbar.make(findViewById(R.id.main), "뒤로 버튼을 한번 더 누르면 종료됩니다", Snackbar.LENGTH_SHORT)
+                        .setAnchorView(R.id.bottomNavigationView)
+                        .setTextColor(ContextCompat.getColor(this@MainActivity, R.color.text))
+                        .setBackgroundTint(ContextCompat.getColor(this@MainActivity, R.color.gray)).show()
+                } else if (System.currentTimeMillis() <= backPressedTime + 2000) {
+                    finishAffinity()
                 }
+            } else {
+                binding.bottomNavigationView.selectedItemId = R.id.bottom_home
+                binding.addTodoCardView.visibility = View.VISIBLE
             }
         }
     }

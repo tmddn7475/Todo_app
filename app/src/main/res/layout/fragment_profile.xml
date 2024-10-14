@@ -1,83 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ProfileFragment">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="완료된 작업"
+        android:gravity="center_vertical"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="12dp"/>
 
-        <TextView
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/gray"
+        android:layout_margin="12dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="완료된 작업"
-            android:gravity="center_vertical"
-            android:textColor="@color/text"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"
-            android:paddingHorizontal="12dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/gray"
-            android:layout_margin="12dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingHorizontal="18dp">
 
-            <LinearLayout
+                <ImageView
+                    android:id="@+id/chart_date_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_toStartOf="@+id/chart_date"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/baseline_chevron_left_24" />
+
+                <TextView
+                    android:id="@+id/chart_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_toStartOf="@+id/chart_date_img2"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/chart_date_img2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/baseline_chevron_right_24" />
+
+            </RelativeLayout>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginBottom="12dp"/>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:paddingHorizontal="18dp">
+        </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/chart_date_img"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_toStartOf="@+id/chart_date"
-                        android:src="@drawable/baseline_chevron_left_24" />
+    </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/chart_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_toStartOf="@+id/chart_date_img2"
-                        android:text="2024.10.23 ~ 2024.10.30"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="6dp"
-                        android:gravity="center"
-                        android:textColor="@color/text"
-                        android:textSize="16sp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.25"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/gray"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="12dp">
 
-                    <ImageView
-                        android:id="@+id/chart_date_img2"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/baseline_chevron_right_24" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-                </RelativeLayout>
+            <TextView
+                android:id="@+id/profile_priority"
+                android:padding="12dp"
+                android:text="중요한 작업"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:drawableLeftCompat="@drawable/baseline_priority_high_24" />
 
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"/>
+            <View
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/profile_donate"
+                android:padding="12dp"
+                android:text="기부"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:drawableLeftCompat="@drawable/baseline_favorite_24" />
 
-        </androidx.cardview.widget.CardView>
+            <View
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/profile_faq"
+                android:padding="12dp"
+                android:text="FAQ"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:drawableLeftCompat="@drawable/baseline_question_answer_24" />
 
-</FrameLayout>
+            <View
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/profile_rate"
+                android:padding="12dp"
+                android:text="앱 평가하기"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:drawableLeftCompat="@drawable/baseline_star_rate_24" />
+
+            <View
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/profile_share"
+                android:padding="12dp"
+                android:text="앱 공유하기"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:drawableLeftCompat="@drawable/baseline_share_24" />
+
+            <View
+                android:background="@color/gray2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/profile_setting"
+                android:padding="12dp"
+                android:text="설정"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:drawableLeftCompat="@drawable/baseline_settings_24" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

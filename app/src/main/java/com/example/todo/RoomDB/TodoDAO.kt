@@ -13,6 +13,9 @@ interface TodoDAO {
     @Query("select * from todo ORDER BY startDate")
     suspend fun getTodo(): List<TodoEntity>
 
+    @Query("select * from todo where isDone is 1")
+    suspend fun getTodo2(): List<TodoEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE) // 알람은 중복되지 않게 저장
     fun saveTodo(todoEntity: TodoEntity)
 

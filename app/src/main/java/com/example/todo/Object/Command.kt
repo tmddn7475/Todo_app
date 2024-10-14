@@ -53,6 +53,13 @@ object Command {
         }
         return bool
     }
+    
+    // 오늘 날짜 가져오기
+    fun getToday(): String {
+        val current = LocalDate.now()
+        val strNow = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+        return current.format(strNow)
+    }
 
     // 알림 설정
     fun setAlarm(context: Context, data: TodoEntity){
@@ -101,12 +108,6 @@ object Command {
         }
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, c.timeInMillis, pIntent)
-    }
-
-    fun getToday(): String {
-        val now = LocalDate.now()
-        val strNow = now.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
-        return strNow
     }
 
     // 알림 삭제

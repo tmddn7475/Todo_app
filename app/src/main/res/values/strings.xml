@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Todo</string>
-    <string name="add_widget">Add widget</string>
-    <string name="system">시스템 설정 모드</string>
-    <string name="light">라이트 모드</string>
-    <string name="dark">다크 모드</string>
+    <string name="app_name">DailyList</string>
+    <string name="add_widget" translatable="false">Add widget</string>
+    <string name="system">system mode</string>
+    <string name="light">light mode</string>
+    <string name="dark">dark mode</string>
     <string name="image">image</string>
 </resources>
