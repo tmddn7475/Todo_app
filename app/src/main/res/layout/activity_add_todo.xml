@@ -307,7 +307,6 @@
                 android:background="@android:color/transparent"
                 android:gravity="start"
                 android:hint="세부 메모"
-                android:paddingTop="4dp"
                 android:inputType="textMultiLine"
                 android:maxLength="2000"
                 android:textColor="@color/text"
