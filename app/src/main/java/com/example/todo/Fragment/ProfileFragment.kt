@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.todo.Activity.AddTodoActivity
 import com.example.todo.Activity.FaqActivity
 import com.example.todo.Activity.PriorityActivity
 import com.example.todo.Activity.setting.SettingActivity
@@ -52,9 +53,11 @@ class ProfileFragment : Fragment() {
 
         db = TodoDatabase.getInstance(requireContext())!!
 
+        // 차트 설정
         initBarChart(binding.chart)
         updateWeekText(binding.chartDate)
 
+        // 차트 일정 변경
         binding.chartDateImg.setOnClickListener {
             currentDate = currentDate.minusWeeks(1) // 한 주 전으로 이동
             updateWeekText(binding.chartDate)
@@ -63,6 +66,12 @@ class ProfileFragment : Fragment() {
         binding.chartDateImg2.setOnClickListener {
             currentDate = currentDate.plusWeeks(1) // 한 주 후로 이동
             updateWeekText(binding.chartDate)
+        }
+
+        // 일정 추가
+        binding.profileAddTodo.setOnClickListener{
+            val intent = Intent(context, AddTodoActivity::class.java)
+            startActivity(intent)
         }
 
         binding.profilePriority.setOnClickListener{
