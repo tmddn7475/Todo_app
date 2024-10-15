@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.todo.Activity.AddTodoActivity
+import com.example.todo.Activity.DonateActivity
 import com.example.todo.Activity.FaqActivity
 import com.example.todo.Activity.PriorityActivity
 import com.example.todo.Activity.setting.SettingActivity
@@ -62,7 +63,6 @@ class ProfileFragment : Fragment() {
             currentDate = currentDate.minusWeeks(1) // 한 주 전으로 이동
             updateWeekText(binding.chartDate)
         }
-
         binding.chartDateImg2.setOnClickListener {
             currentDate = currentDate.plusWeeks(1) // 한 주 후로 이동
             updateWeekText(binding.chartDate)
@@ -76,6 +76,11 @@ class ProfileFragment : Fragment() {
 
         binding.profilePriority.setOnClickListener{
             val intent = Intent(context, PriorityActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileDonate.setOnClickListener{
+            val intent = Intent(context, DonateActivity::class.java)
             startActivity(intent)
         }
 
@@ -183,6 +188,7 @@ class ProfileFragment : Fragment() {
 
                 barChart.data = data
                 barChart.invalidate()
+                barChart.visibility = View.VISIBLE
             }
         }
     }

@@ -18,7 +18,7 @@
         android:title="화면 모드 설정"/>
 
     <Preference
-        android:key="donation"
+        android:key="donate"
         android:icon="@drawable/baseline_favorite_24"
         android:title="기부하기"/>
 

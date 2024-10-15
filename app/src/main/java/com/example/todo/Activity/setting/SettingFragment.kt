@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.example.todo.Activity.DonateActivity
 import com.example.todo.Activity.FaqActivity
 import com.example.todo.R
 import com.example.todo.RoomDB.TodoDatabase
@@ -45,6 +46,10 @@ class SettingFragment: PreferenceFragmentCompat() {
                     }
                     true
                 }
+            }
+            "donate" -> {
+                val intent = Intent(requireContext(), DonateActivity::class.java)
+                startActivity(intent)
             }
             "app_faq" -> {
                 val intent = Intent(requireContext(), FaqActivity::class.java)
