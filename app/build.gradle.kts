@@ -45,6 +45,9 @@ dependencies {
     implementation(libs.compose)
     implementation (libs.mpandroidchart)
 
+    implementation (libs.billing)
+    implementation(libs.billing.ktx)
+
     implementation (libs.androidx.room.runtime)
     implementation(libs.androidx.preference.ktx)
     annotationProcessor (libs.androidx.room.room.compiler)

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.6.1"
+billingKtx = "7.1.1"
 kotlin = "2.0.20"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -16,6 +17,8 @@ preferenceKtx = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+billing = { module = "com.android.billingclient:billing", version.ref = "billingKtx" }
+billing-ktx = { module = "com.android.billingclient:billing-ktx", version.ref = "billingKtx" }
 compose = { module = "com.kizitonwose.calendar:compose", version.ref = "view" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
