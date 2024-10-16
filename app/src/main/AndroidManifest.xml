@@ -31,7 +31,7 @@
             android:name=".Activity.setting.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.AddTodoActivity"
+            android:name="com.ithink.dailylist.Activity.AddTodoActivity"
             android:exported="false" />
 
         <receiver

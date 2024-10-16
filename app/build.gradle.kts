@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.todo"
+    namespace = "com.ithink.dailylist"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.todo"
+        applicationId = "com.ithink.dailylist"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
