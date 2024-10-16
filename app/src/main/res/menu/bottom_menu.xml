@@ -5,26 +5,26 @@
         android:id="@+id/bottom_home"
         android:enabled="true"
         android:icon="@drawable/baseline_home_filled_24"
-        android:title="홈"
+        android:title="@string/home"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/bottom_calender"
         android:enabled="true"
         android:icon="@drawable/baseline_calendar_month_24"
-        android:title="달력"
+        android:title="@string/calendar"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/bottom_search"
         android:enabled="true"
         android:icon="@drawable/baseline_search_24"
-        android:title="검색"
+        android:title="@string/search"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/bottom_diary"
         android:enabled="true"
         android:icon="@drawable/baseline_account_circle_24"
-        android:title="내 정보"
+        android:title="@string/mine"
         app:showAsAction="ifRoom"/>
 </menu>

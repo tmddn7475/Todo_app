@@ -75,7 +75,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:maxLines="1"
-                    android:text="테스트"
                     android:gravity="center_vertical"
                     android:textColor="@color/text"
                     android:textSize="24sp"
@@ -104,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
-                    android:text="시작 날짜"
+                    android:text="@string/start_date"
                     android:textColor="@color/text"
                     android:textSize="18sp"
                     android:gravity="center_vertical"
@@ -136,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="종료 날짜"
+                    android:text="@string/end_date"
                     android:textColor="@color/text"
                     android:textSize="18sp"
                     android:gravity="center_vertical"
@@ -167,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
-                    android:text="시간"
+                    android:text="@string/time"
                     android:textColor="@color/text"
                     android:textSize="18sp"
                     android:gravity="center_vertical"
@@ -199,7 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
-                    android:text="알림"
+                    android:text="@string/alert"
                     android:textColor="@color/text"
                     android:textSize="18sp"
                     android:gravity="center_vertical"
@@ -217,7 +216,6 @@
                 android:drawablePadding="8dp"
                 android:paddingHorizontal="12dp"
                 android:paddingBottom="12dp"
-                android:text="일곡동 "
                 android:textColor="@color/text"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
@@ -278,7 +276,7 @@
             android:paddingTop="8dp"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="복사"
+            android:text="@string/duplicate"
             android:textSize="16sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_file_copy_24" />
@@ -293,7 +291,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:backgroundTint="@color/gray"
-            android:text="수정"
+            android:text="@string/edit"
             android:textSize="16sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_edit_24" />
@@ -308,7 +306,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:backgroundTint="@color/gray"
-            android:text="공유"
+            android:text="@string/share"
             android:textSize="16sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_share_24" />
@@ -323,7 +321,7 @@
             android:gravity="center"
             android:paddingTop="8dp"
             android:paddingBottom="4dp"
-            android:text="삭제"
+            android:text="@string/delete"
             android:textSize="16sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_delete_24" />
@@ -348,7 +346,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="12dp"
-            android:hint="제목"
+            android:hint="@string/title"
             android:inputType="text"
             android:textColor="@color/text" />
 
@@ -364,7 +362,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="시작"
+                android:text="@string/start_date"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -413,7 +411,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="12:00"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -433,7 +430,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="종료"
+                android:text="@string/end_date"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -481,39 +478,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="12:00"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:paddingVertical="8dp"
-            android:orientation="horizontal">
+            android:paddingVertical="8dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:text="하루 종일"
+                android:text="@string/all_day"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:textSize="18sp" />
 
             <Switch
                 android:id="@+id/add_todo_switch"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:layout_width="match_parent"
@@ -521,34 +524,41 @@
             android:layout_marginHorizontal="15dp"
             android:background="@color/drawable" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:paddingVertical="8dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_weight="1"
-                android:text="중요"
+                android:text="@string/double_check"
+                android:paddingVertical="8dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:drawablePadding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:drawableLeftCompat="@drawable/baseline_priority_high_24" />
 
             <Switch
                 android:id="@+id/add_todo_switch2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:layout_width="match_parent"
@@ -563,7 +573,7 @@
             android:layout_marginHorizontal="15dp"
             android:drawablePadding="16dp"
             android:paddingVertical="8dp"
-            android:text="알림 없음"
+            android:text="@string/no_alert"
             android:textColor="@color/text"
             android:textSize="18sp"
             app:drawableLeftCompat="@drawable/baseline_notifications_active_24" />
@@ -583,7 +593,7 @@
             android:background="@android:color/transparent"
             android:drawablePadding="16dp"
             android:inputType="text"
-            android:hint="장소 추가"
+            android:hint="@string/location"
             android:maxLength="30"
             android:paddingVertical="8dp"
             android:textColor="@color/text"
@@ -620,7 +630,7 @@
                 android:layout_marginStart="40dp"
                 android:background="@android:color/transparent"
                 android:gravity="start"
-                android:hint="세부 메모"
+                android:hint="@string/notes"
                 android:paddingTop="4dp"
                 android:inputType="textMultiLine"
                 android:maxLength="2000"
@@ -652,7 +662,7 @@
             android:layout_weight="1"
             android:background="@color/gray2"
             android:gravity="center"
-            android:text="취소"
+            android:text="@string/cancel"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -664,7 +674,7 @@
             android:layout_weight="1"
             android:background="@color/blue_dark"
             android:gravity="center"
-            android:text="저장"
+            android:text="@string/save"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />

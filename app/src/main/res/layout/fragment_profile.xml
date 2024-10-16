@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="완료된 작업"
+        android:text="@string/complete"
         android:gravity="center_vertical"
         android:textColor="@color/text"
         android:textSize="18sp"
@@ -94,7 +94,7 @@
             <TextView
                 android:id="@+id/profile_add_todo"
                 android:padding="12dp"
-                android:text="일정 추가하기"
+                android:text="@string/add_todo"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
@@ -112,7 +112,7 @@
             <TextView
                 android:id="@+id/profile_priority"
                 android:padding="12dp"
-                android:text="중요한 작업"
+                android:text="@string/double_check"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
@@ -130,7 +130,7 @@
             <TextView
                 android:id="@+id/profile_donate"
                 android:padding="12dp"
-                android:text="기부"
+                android:text="@string/donate"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
@@ -148,7 +148,7 @@
             <TextView
                 android:id="@+id/profile_faq"
                 android:padding="12dp"
-                android:text="FAQ"
+                android:text="@string/faq"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
@@ -166,7 +166,7 @@
             <TextView
                 android:id="@+id/profile_share"
                 android:padding="12dp"
-                android:text="앱 공유하기"
+                android:text="@string/share_app"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
@@ -184,7 +184,7 @@
             <TextView
                 android:id="@+id/profile_setting"
                 android:padding="12dp"
-                android:text="설정"
+                android:text="@string/setting"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:gravity="center_vertical"

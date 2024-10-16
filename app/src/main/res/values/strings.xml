@@ -1,8 +1,73 @@
 <resources>
-    <string name="app_name">DailyList</string>
+    <string name="app_name" translatable="false">DailyTodo</string>
     <string name="add_widget" translatable="false">Add widget</string>
     <string name="system">system mode</string>
     <string name="light">light mode</string>
     <string name="dark">dark mode</string>
     <string name="image">image</string>
+    <string name="add_todo">Add a schedule</string>
+    <string name="title">Title</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">"End date  "</string>
+    <string name="all_day">All day</string>
+    <string name="double_check">Double-check</string>
+    <string name="no_alert">No alert</string>
+    <string name="location">Location</string>
+    <string name="notes">Notes</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="donate">Donate</string>
+    <string name="donate_text">You can make a donation to the developer on this page, but it is not required. Even if you do not make a donation, you can still access all features within the app, and we deeply appreciate your use of our app.</string>
+    <string name="d_1000">Donate 1.000 KRW</string>
+    <string name="d_2000">Donate 2,000 KRW</string>
+    <string name="d_5000">Donate 5,000 KRW</string>
+    <string name="d_10000">Donate 10,000 KRW</string>
+    <string name="faq_noti">How to enable notifications</string>
+    <string name="faq_noti_desc">1. Go to the app information.\n2. Click on "Notifications &amp; Reminders."\n3. Enable notification permissions.</string>
+    <string name="faq_widget">How to add a widget</string>
+    <string name="faq_widget_desc">1. Long press on an empty space on the home screen.\n2. Tap on \"Widgets\" that appears on the screen.\n3. Find the app.\n4. Add the widget to your desired location.</string>
+    <string name="faq_feedback">Feedback</string>
+    <string name="faq_feedback_desc">If you have any other questions or suggestions, please let us know via the email below.</string>
+    <string name="email" translatable="false">tmddn74757@gmail.com</string>
+    <string name="no_schedule">No schedule exist</string>
+    <string name="setting">Setting</string>
+    <string name="time">Time</string>
+    <string name="alert">Alert</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="edit">Edit</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="at_time">At time</string>
+    <string name="before_5min">5 mins before</string>
+    <string name="before_10min">10 mins before</string>
+    <string name="before_1hour">1 hour before</string>
+    <string name="before_1day">1 day before</string>
+    <string name="day_8am">Day of event at 8:00 AM</string>
+    <string name="set_time">Set time</string>
+    <string name="done">Done</string>
+    <string name="complete">Completed Schedules</string>
+    <string name="faq" translatable="false">FAQ</string>
+    <string name="share_app">Share App</string>
+    <string name="all">All</string>
+    <string name="complete2">Completed</string>
+    <string name="not_complete">Not-completed</string>
+    <string name="today_widget">Today\'s Schedule</string>
+    <string name="home">Home</string>
+    <string name="calendar">Calendar</string>
+    <string name="search">Search</string>
+    <string name="mine">Mine</string>
+    <string name="reset_all">Reset All Data</string>
+    <string name="set_display">Set Display Mode</string>
+    <string name="app_ver">App Version</string>
+    <string name="rate">Rate Us</string>
+    <string name="reset_date1">Would you like to reset all data?</string>
+    <string name="reset_data2">All data has been reset</string>
+    <string name="thank_you">thank you for your support!</string>
+    <string name="enter_title">Please enter a title</string>
+    <string name="allow_notification">Please allow notification permissions</string>
+    <string name="tap_back">Tap back again to exit</string>
+    <string name="delete_todo">Would you like to delete this schedule?</string>
+    <string name="cancel_schedule">The schedule has been marked as canceled</string>
+    <string name="complete_schedule">The schedule has been marked as completed</string>
+    <string name="reset">Reset</string>
 </resources>

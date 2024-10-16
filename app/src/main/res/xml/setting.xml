@@ -5,7 +5,7 @@
     <Preference
         android:key="todo_reset"
         android:icon="@drawable/baseline_delete_24"
-        android:title="초기화" />
+        android:title="@string/reset_all" />
 
     <ListPreference
         android:key="dark_mode"
@@ -15,32 +15,32 @@
         android:defaultValue="system"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="화면 모드 설정"/>
+        android:title="@string/set_display"/>
 
     <Preference
         android:key="donate"
         android:icon="@drawable/baseline_favorite_24"
-        android:title="기부하기"/>
+        android:title="@string/donate"/>
 
     <Preference
         android:key="app_rating"
         android:icon="@drawable/baseline_star_rate_24"
-        android:title="앱 평가하기"/>
+        android:title="@string/rate"/>
 
     <Preference
         android:key="app_share"
         android:icon="@drawable/baseline_share_24"
-        android:title="앱 공유하기"/>
+        android:title="@string/share_app"/>
 
     <Preference
         android:key="app_faq"
         android:icon="@drawable/baseline_question_answer_24"
-        android:title="FAQ"/>
+        android:title="@string/faq"/>
 
     <Preference
         android:key="app_version"
         android:icon="@drawable/baseline_apps_24"
-        android:title="버전"
+        android:title="@string/app_ver"
         android:summary="1.0.0"/>
 
 </androidx.preference.PreferenceScreen>

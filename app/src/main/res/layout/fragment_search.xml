@@ -38,7 +38,7 @@
                 android:textColor="@color/text"
                 android:layout_marginStart="20dp"
                 android:paddingHorizontal="3dp"
-                android:text="전체" />
+                android:text="@string/all" />
 
             <RadioButton
                 android:id="@+id/search_done"
@@ -49,7 +49,7 @@
                 android:textColor="@color/text"
                 android:layout_marginStart="4dp"
                 android:paddingHorizontal="3dp"
-                android:text="완료된 작업" />
+                android:text="@string/complete2" />
 
             <RadioButton
                 android:id="@+id/search_not_done"
@@ -60,7 +60,7 @@
                 android:textColor="@color/text"
                 android:layout_marginStart="4dp"
                 android:paddingHorizontal="3dp"
-                android:text="비완료된 작업" />
+                android:text="@string/not_complete" />
 
         </RadioGroup>
 
@@ -78,7 +78,7 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="일정이 존재하지 않습니다"
+        android:text="@string/no_schedule"
         android:textColor="@color/text"
         android:visibility="gone"
         android:textSize="18sp"

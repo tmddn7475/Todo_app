@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.ithink.dailylist"
+    namespace = "com.ithink.dailytodo"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.ithink.dailylist"
+        applicationId = "com.ithink.dailytodo"
         minSdk = 29
         targetSdk = 34
-        versionCode = 2
-        versionName = "2.0"
+        versionCode = 4
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

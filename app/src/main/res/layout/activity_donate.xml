@@ -36,7 +36,7 @@
             android:gravity="center"
             android:textColor="@color/text"
             android:textStyle="bold"
-            android:text="기부" />
+            android:text="@string/donate" />
 
     </RelativeLayout>
 
@@ -53,9 +53,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:text="해당 페이지에서 개발자에게 기부를 할 수 있습니다. 하지만 반드시 할 필요는 없습니다. 기부를 하지 않더라도 앱 내 모든 기능을 사용할 수 있으며 저희의 앱을 사용해 주시는 것에 깊은 감사를 드립니다."
+            android:text="@string/donate_text"
             android:textColor="@color/text"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/donate_1000"
@@ -66,7 +66,7 @@
             android:backgroundTint="@color/gray"
             android:textSize="16sp"
             android:textColor="@color/text"
-            android:text="1,000원 기부하기"/>
+            android:text="@string/d_1000"/>
 
         <Button
             android:id="@+id/donate_2000"
@@ -78,7 +78,7 @@
             android:backgroundTint="@color/gray"
             android:textSize="16sp"
             android:textColor="@color/text"
-            android:text="2,000원 기부하기"/>
+            android:text="@string/d_2000"/>
 
         <Button
             android:id="@+id/donate_5000"
@@ -90,7 +90,7 @@
             android:backgroundTint="@color/gray"
             android:textSize="16sp"
             android:textColor="@color/text"
-            android:text="5,000원 기부하기"/>
+            android:text="@string/d_5000"/>
 
         <Button
             android:id="@+id/donate_10000"
@@ -102,7 +102,7 @@
             android:backgroundTint="@color/gray"
             android:textSize="16sp"
             android:textColor="@color/text"
-            android:text="10,000원 기부하기"/>
+            android:text="@string/d_10000"/>
 
     </LinearLayout>
 

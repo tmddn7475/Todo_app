@@ -54,7 +54,7 @@
             android:paddingHorizontal="12dp">
 
             <TextView
-                android:text="알림 받는 법"
+                android:text="@string/faq_noti"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -71,12 +71,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="6dp"
-                android:text="1. 해당 앱 정보에 들어갑니다.\n2. 알림 및 미리 알림을 클릭합니다\n3. 알림 권한을 활성화합니다."
+                android:text="@string/faq_noti_desc"
                 android:textColor="@color/text"
                 android:textSize="16sp" />
 
             <TextView
-                android:text="위젯 추가하는 법"
+                android:text="@string/faq_widget"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -94,12 +94,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="6dp"
-                android:text="1. 홈 화면에서 빈 공간을 길게 터치합니다.\n2. 화면에 나타나는 위젯을 클릭합니다.\n3. 해당 앱을 찾으세요.\n4. 위젯을 원하는 위치에 추가하시면 됩니다."
+                android:text="@string/faq_widget_desc"
                 android:textColor="@color/text"
                 android:textSize="16sp" />
 
             <TextView
-                android:text="피드백"
+                android:text="@string/faq_feedback"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="6dp"
-                android:text="다른 질문이나 제안 사항이 있으시면 아래 이메일을 통해 말씀해주세요."
+                android:text="@string/faq_feedback_desc"
                 android:textColor="@color/text"
                 android:textSize="16sp" />
 
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="6dp"
                 android:textStyle="bold"
-                android:text="tmddn74757@gmail.com"
+                android:text="@string/email"
                 android:textColor="@color/text"
                 android:textSize="16sp" />
 
