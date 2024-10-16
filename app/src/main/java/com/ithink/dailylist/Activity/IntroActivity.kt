@@ -8,11 +8,13 @@ import android.os.Looper
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailylist.R
 
 class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(R.layout.activity_intro)
 
         val preference = getSharedPreferences("com.ithink.dailylist_preferences", Activity.MODE_PRIVATE)
@@ -41,7 +43,7 @@ class IntroActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finishAffinity()
-        }, 1500)
+        }, 1000)
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }

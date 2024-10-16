@@ -8,4 +8,5 @@
         <item name="appWidgetRadius">16dp</item>
         <item name="appWidgetInnerRadius">8dp</item>
     </style>
+
 </resources>

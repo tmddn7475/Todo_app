@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.ithink.dailylist.Fragment.CalendarFragment
 import com.ithink.dailylist.Fragment.HomeFragment
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
         // addTodoActivity
         binding.addTodo.setOnClickListener {
-            val intent = Intent(this, com.ithink.dailylist.Activity.AddTodoActivity::class.java)
+            val intent = Intent(this, AddTodoActivity::class.java)
             startActivity(intent)
         }
 
@@ -141,6 +143,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }

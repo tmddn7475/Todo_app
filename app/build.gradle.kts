@@ -12,8 +12,8 @@ android {
         applicationId = "com.ithink.dailylist"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.compose)
     implementation (libs.mpandroidchart)
 
+    implementation(libs.androidx.core.splashscreen)
     implementation (libs.billing)
     implementation(libs.billing.ktx)
 

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailylist.Dialog.SelectAlarmDialog
 import com.ithink.dailylist.Dialog.SelectTimeDialog
 import com.ithink.dailylist.Interface.SelectAlarmInterface
@@ -32,6 +33,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         db = TodoDatabase.getInstance(this@AddTodoActivity)!!
@@ -145,8 +147,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
             db.todoDAO().saveTodo(entity)
 
             runOnUiThread{
-                val mainActivity =
-                    com.ithink.dailylist.Activity.MainActivity.Companion.getInstance()
+                val mainActivity = MainActivity.getInstance()
                 val homeFragment = mainActivity?.homeFragment
                 val calendarFragment = mainActivity?.calendarFragment
 

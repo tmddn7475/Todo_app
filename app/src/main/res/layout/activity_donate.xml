@@ -58,6 +58,7 @@
             android:textSize="15sp" />
 
         <Button
+            android:id="@+id/donate_1000"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="12dp"
@@ -68,6 +69,7 @@
             android:text="1,000원 기부하기"/>
 
         <Button
+            android:id="@+id/donate_2000"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="12dp"
@@ -79,6 +81,7 @@
             android:text="2,000원 기부하기"/>
 
         <Button
+            android:id="@+id/donate_5000"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="12dp"
@@ -90,6 +93,7 @@
             android:text="5,000원 기부하기"/>
 
         <Button
+            android:id="@+id/donate_10000"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="12dp"

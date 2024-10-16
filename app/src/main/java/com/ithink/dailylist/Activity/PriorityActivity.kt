@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailylist.Adapter.TodoAdapter
 import com.ithink.dailylist.RoomDB.TodoDatabase
 import com.ithink.dailylist.RoomDB.TodoEntity
@@ -21,6 +22,7 @@ class PriorityActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityPriorityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
