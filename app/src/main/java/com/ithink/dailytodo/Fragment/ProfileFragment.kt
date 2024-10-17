@@ -26,6 +26,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.ithink.dailytodo.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -92,7 +93,7 @@ class ProfileFragment : Fragment() {
             val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
             intent.type = "text/plain"
 
-            val text = "https://github.com/tmddn7475"
+            val text = getString(R.string.app_share_text) + "\n\nhttps://github.com/tmddn7475"
             intent.putExtra(Intent.EXTRA_TEXT, text)
 
             val chooserTitle = ""
@@ -166,7 +167,7 @@ class ProfileFragment : Fragment() {
         barChart.setScaleEnabled(false)
 
         val valueList = ArrayList<BarEntry>()
-        val title = "완료한 작업"
+        val title = ""
 
         // 데이터 가져오기
         CoroutineScope(Dispatchers.IO).launch {

@@ -67,4 +67,5 @@
     <string name="cancel_schedule">해당 일정을 실행 취소로 표시하였습니다</string>
     <string name="complete_schedule">해당 일정을 완료로 표시하였습니다</string>
     <string name="reset">리셋</string>
+    <string name="app_share_text">DailyTodo를 사용해 일정을 추가하고 관리하세요. 아래의 링크를 눌러 다운로드하세요.</string>
 </resources>

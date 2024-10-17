@@ -59,7 +59,7 @@ class SettingFragment: PreferenceFragmentCompat() {
                 val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
                 intent.type = "text/plain"
 
-                val text = "https://github.com/tmddn7475"
+                val text = getString(R.string.app_share_text) + "\n\nhttps://github.com/tmddn7475"
                 intent.putExtra(Intent.EXTRA_TEXT, text)
 
                 val chooserTitle = ""
