@@ -2,7 +2,6 @@ package com.ithink.dailytodo.Activity
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener

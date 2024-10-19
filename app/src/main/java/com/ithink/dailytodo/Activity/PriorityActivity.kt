@@ -3,7 +3,6 @@ package com.ithink.dailytodo.Activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailytodo.Adapter.TodoAdapter
 import com.ithink.dailytodo.BaseActivity
