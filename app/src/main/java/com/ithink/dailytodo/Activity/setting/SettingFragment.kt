@@ -1,7 +1,9 @@
 package com.ithink.dailytodo.Activity.setting
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -10,11 +12,13 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.ithink.dailytodo.Activity.DonateActivity
 import com.ithink.dailytodo.Activity.FaqActivity
+import com.ithink.dailytodo.Activity.MainActivity
 import com.ithink.dailytodo.R
 import com.ithink.dailytodo.RoomDB.TodoDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class SettingFragment: PreferenceFragmentCompat() {
     private lateinit var db: TodoDatabase

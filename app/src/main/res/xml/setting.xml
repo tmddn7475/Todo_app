@@ -37,6 +37,16 @@
         android:icon="@drawable/baseline_question_answer_24"
         android:title="@string/faq"/>
 
+    <ListPreference
+        android:key="app_language"
+        android:icon="@drawable/baseline_language_24"
+        android:entries="@array/language"
+        android:entryValues="@array/language_value"
+        android:defaultValue="default"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/app_lang"/>
+
     <Preference
         android:key="app_version"
         android:icon="@drawable/baseline_apps_24"

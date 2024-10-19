@@ -1,10 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">DailyTodo</string>
-    <string name="add_widget" translatable="false">Add widget</string>
     <string name="system">system mode</string>
     <string name="light">light mode</string>
     <string name="dark">dark mode</string>
-    <string name="image" translatable="false">image</string>
     <string name="add_todo">Add a schedule</string>
     <string name="title">Title</string>
     <string name="start_date">Start date</string>
@@ -28,7 +26,6 @@
     <string name="faq_widget_desc">1. Long press on an empty space on the home screen.\n2. Tap on \"Widgets\" that appears on the screen.\n3. Find the app.\n4. Add the widget to your desired location.</string>
     <string name="faq_feedback">Feedback</string>
     <string name="faq_feedback_desc">If you have any other questions or suggestions, please let us know via the email below.</string>
-    <string name="email" translatable="false">tmddn74757@gmail.com</string>
     <string name="no_schedule">No schedule exist</string>
     <string name="setting">Setting</string>
     <string name="time">Time</string>
@@ -46,7 +43,6 @@
     <string name="set_time">Set time</string>
     <string name="done">Done</string>
     <string name="complete">Completed Schedules</string>
-    <string name="faq" translatable="false">FAQ</string>
     <string name="share_app">Share App</string>
     <string name="all">All</string>
     <string name="complete2">Completed</string>
