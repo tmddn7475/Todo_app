@@ -65,6 +65,12 @@ class SettingFragment: PreferenceFragmentCompat() {
                 val chooserTitle = ""
                 startActivity(Intent.createChooser(intent, chooserTitle))
             }
+            "app_language" -> {
+                preference.setOnPreferenceChangeListener{ _, newValue ->
+                    restart()
+                    true
+                }
+            }
         }
         return false
     }
@@ -76,12 +82,18 @@ class SettingFragment: PreferenceFragmentCompat() {
             CoroutineScope(Dispatchers.IO).launch {
                 db.todoDAO().deleteAll()
             }
-            Toast.makeText(requireContext(), getString(R.string.reset), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.reset_finished), Toast.LENGTH_SHORT).show()
         }
         alertEx.setPositiveButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.dismiss()
         }
         val alert = alertEx.create()
         alert.show()
+    }
+
+    private fun restart(){
+        val intent = requireActivity().intent
+        requireActivity().finish()
+        startActivity(intent)
     }
 }

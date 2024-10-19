@@ -61,7 +61,7 @@
     <string name="app_ver">App Version</string>
     <string name="rate">Rate Us</string>
     <string name="reset_date1">Would you like to reset all data?</string>
-    <string name="reset_data2">All data has been reset</string>
+    <string name="reset_finished">All data has been reset</string>
     <string name="thank_you">thank you for your support!</string>
     <string name="enter_title">Please enter a title</string>
     <string name="allow_notification">Please allow notification permissions</string>

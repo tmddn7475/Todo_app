@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.Dialog.SelectAlarmDialog
 import com.ithink.dailytodo.Dialog.SelectTimeDialog
 import com.ithink.dailytodo.Interface.SelectAlarmInterface
@@ -25,7 +26,7 @@ import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.util.Calendar
 
-class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInterface {
+class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface {
 
     private lateinit var db: TodoDatabase
     private lateinit var binding: ActivityAddTodoBinding
@@ -37,6 +38,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
         installSplashScreen()
         binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         db = TodoDatabase.getInstance(this@AddTodoActivity)!!
 
         // 데이터 가져오기
@@ -126,7 +128,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
             }
             val location: String = binding.todoLocation.text.toString()
             val desc: String = binding.todoDescription.text.toString()
-            val alarm: String = binding.todoAlarm.text.toString()
+            val alarm: String = Command.setAlert(this, binding.todoAlarm.text.toString())
 
             if(title.isEmpty()){
                 Toast.makeText(this, getString(R.string.enter_title), Toast.LENGTH_SHORT).show()
@@ -134,7 +136,7 @@ class AddTodoActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInt
                 val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate, startTime = startTime,
                     endTime = endTime, location = location, description = desc, alert = alarm, priorityHigh = binding.addTodoSwitch2.isChecked, doneDate = Command.getToday())
                 addData(todoEntity)
-                if(alarm != getString(R.string.no_alert)) Command.setAlarm(this, todoEntity)
+                if(alarm != "not") Command.setAlarm(this, todoEntity)
                 Command.widgetUpdate(this)
                 finish()
             }

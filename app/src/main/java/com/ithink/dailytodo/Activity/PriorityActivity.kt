@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailytodo.Adapter.TodoAdapter
+import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.RoomDB.TodoDatabase
 import com.ithink.dailytodo.RoomDB.TodoEntity
 import com.ithink.dailytodo.databinding.ActivityPriorityBinding
@@ -13,7 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PriorityActivity : AppCompatActivity() {
+class PriorityActivity : BaseActivity() {
 
     private lateinit var binding: ActivityPriorityBinding
     private lateinit var db: TodoDatabase

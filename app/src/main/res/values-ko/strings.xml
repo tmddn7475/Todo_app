@@ -57,7 +57,7 @@
     <string name="app_ver">버전</string>
     <string name="rate">앱 평가하기</string>
     <string name="reset_date1">모든 데이터를 초기화하시겠습니까?</string>
-    <string name="reset_data2">초기화되었습니다</string>
+    <string name="reset_finished">초기화되었습니다</string>
     <string name="thank_you">구매해주셔서 감사합니다!</string>
     <string name="enter_title">제목을 입력해주세요</string>
     <string name="allow_notification">알림 권한을 허용해주세요</string>

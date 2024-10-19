@@ -21,8 +21,9 @@ import com.ithink.dailytodo.Fragment.SearchFragment
 import com.ithink.dailytodo.R
 import com.ithink.dailytodo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import com.ithink.dailytodo.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var homeFragment: HomeFragment

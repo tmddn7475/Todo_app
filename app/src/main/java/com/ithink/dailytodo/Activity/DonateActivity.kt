@@ -13,10 +13,11 @@ import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
+import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.R
 import com.ithink.dailytodo.databinding.ActivityDonateBinding
 
-class DonateActivity : AppCompatActivity(), PurchasesUpdatedListener {
+class DonateActivity : BaseActivity(), PurchasesUpdatedListener {
 
     private lateinit var binding: ActivityDonateBinding
 

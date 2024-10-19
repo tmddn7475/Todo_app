@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.Object.Command
 import com.ithink.dailytodo.Dialog.SelectAlarmDialog
 import com.ithink.dailytodo.Dialog.SelectTimeDialog
@@ -25,7 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarmInterface {
+class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface {
 
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
@@ -70,7 +71,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                 } else {
                     binding.todoDetailTime.text = "${data.startTime} ~ ${data.endTime}"
                 }
-                binding.todoDetailAlarm.text = data.alert
+                binding.todoDetailAlarm.text = Command.getAlert(this@TodoDetailActivity, data.alert)
 
                 if(data.location.isEmpty()){
                     binding.todoDetailLocation.visibility = View.GONE
@@ -105,7 +106,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     binding.editTime2.text = data.endTime
                 }
                 binding.addTodoSwitch2.isChecked = data.priorityHigh
-                binding.editAlarm.text = data.alert
+                binding.editAlarm.text = Command.getAlert(this@TodoDetailActivity, data.alert)
                 binding.editLocation.setText(data.location)
                 binding.editDescription.setText(data.description)
             }
@@ -239,7 +240,7 @@ class TodoDetailActivity : AppCompatActivity(), SelectTimeInterface, SelectAlarm
                     data.endTime = binding.editTime2.text.toString()
                 }
                 data.priorityHigh = binding.addTodoSwitch2.isChecked
-                data.alert = binding.editAlarm.text.toString()
+                data.alert = Command.setAlert(this, binding.editAlarm.text.toString())
                 data.location = binding.editLocation.text.toString()
                 data.description = binding.editDescription.text.toString()
 

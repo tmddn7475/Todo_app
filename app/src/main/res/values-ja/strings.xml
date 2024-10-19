@@ -57,7 +57,7 @@
     <string name="app_ver">アプリのバージョン</string>
     <string name="rate">評価する</string>
     <string name="reset_date1">すべてのデータをリセットしますか？</string>
-    <string name="reset_data2">すべてのデータがリセットされました</string>
+    <string name="reset_finished">すべてのデータがリセットされました</string>
     <string name="thank_you">ご支援ありがとうございます！</string>
     <string name="enter_title">タイトルを入力してください</string>
     <string name="allow_notification">通知の権限を許可してください</string>

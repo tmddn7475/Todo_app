@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/text"
-        android:text="일정이 존재하지 않습니다"
+        android:text="@string/no_schedule"
         android:textColor="@color/text"
         android:textSize="18sp"
         android:gravity="center"

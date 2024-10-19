@@ -93,16 +93,16 @@ object Command {
             c.set(Calendar.SECOND, 0)
 
             when (data.alert) {
-                context.getString(R.string.before_5min) -> {
+                "before_5m" -> {
                     c.add(Calendar.MINUTE, -5)
                 }
-                context.getString(R.string.before_10min) -> {
+                "before_10m" -> {
                     c.add(Calendar.MINUTE, -10)
                 }
-                context.getString(R.string.before_1hour) -> {
+                "before_1h" -> {
                     c.add(Calendar.HOUR_OF_DAY, -1)
                 }
-                context.getString(R.string.before_1day) -> {
+                "before_1d" -> {
                     c.add(Calendar.DAY_OF_MONTH, -1)
                 }
             }
@@ -122,5 +122,41 @@ object Command {
     fun widgetUpdate(owner: ViewModelStoreOwner){
         val widgetViewModel = ViewModelProvider(owner)[WidgetViewModel::class.java]
         widgetViewModel.updateWidget()
+    }
+
+    fun setAlert(context: Context, str: String): String {
+        val result: String = when(str){
+            context.getString(R.string.no_alert) -> "no_alert"
+            context.getString(R.string.at_time) -> "at_time"
+            context.getString(R.string.before_5min) -> "before_5m"
+            context.getString(R.string.before_10min) -> "before_10m"
+            context.getString(R.string.before_1hour) -> "before_1h"
+            context.getString(R.string.before_1day) -> "before_1d"
+            context.getString(R.string.day_8am) -> "8am"
+            else -> "null"
+        }
+
+        return result
+    }
+
+    fun getAlert(context: Context, str: String): String {
+        val result: String = when(str){
+            "no_alert" -> context.getString(R.string.no_alert)
+            "at_time" -> context.getString(R.string.at_time)
+            "before_5m" -> context.getString(R.string.before_5min)
+            "before_10m" -> context.getString(R.string.before_10min)
+            "before_1h" -> context.getString(R.string.before_1hour)
+            "before_1d" -> context.getString(R.string.before_1day)
+            "8am" -> context.getString(R.string.day_8am)
+            else -> context.getString(R.string.at_time)
+        }
+
+        return result
+    }
+
+    // 언어설정
+    fun getLanguage(context: Context): String? {
+        val prefs = context.getSharedPreferences("com.ithink.dailytodo_preferences", Context.MODE_PRIVATE)
+        return prefs.getString("app_language", "default")
     }
 }

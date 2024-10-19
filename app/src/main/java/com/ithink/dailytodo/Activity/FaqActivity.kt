@@ -3,9 +3,10 @@ package com.ithink.dailytodo.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.databinding.ActivityFaqBinding
 
-class FaqActivity : AppCompatActivity() {
+class FaqActivity : BaseActivity() {
 
     private lateinit var binding: ActivityFaqBinding
 
