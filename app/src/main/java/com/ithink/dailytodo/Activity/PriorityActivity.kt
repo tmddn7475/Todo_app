@@ -14,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PriorityActivity : BaseActivity() {
-
     private lateinit var binding: ActivityPriorityBinding
     private lateinit var db: TodoDatabase
     private lateinit var listAdapter: TodoAdapter

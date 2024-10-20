@@ -51,7 +51,7 @@
     <string name="home">ホーム</string>
     <string name="calendar">カレンダー</string>
     <string name="search">検索</string>
-    <string name="mine">マイページ</string>
+    <string name="mine">私の情報</string>
     <string name="reset_all">すべてのデータをリセット</string>
     <string name="set_display">表示モードを設定</string>
     <string name="app_ver">アプリのバージョン</string>

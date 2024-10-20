@@ -26,7 +26,7 @@
     <string name="faq_widget_desc">1. Long press on an empty space on the home screen.\n2. Tap on \"Widgets\" that appears on the screen.\n3. Find the app.\n4. Add the widget to your desired location.</string>
     <string name="faq_feedback">Feedback</string>
     <string name="faq_feedback_desc">If you have any other questions or suggestions, please let us know via the email below.</string>
-    <string name="no_schedule">No schedule exist</string>
+    <string name="no_schedule">No schedule exist.</string>
     <string name="setting">Setting</string>
     <string name="time">Time</string>
     <string name="alert">Alert</string>

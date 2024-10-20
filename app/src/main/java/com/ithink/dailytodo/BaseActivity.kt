@@ -8,7 +8,12 @@ import java.util.Locale
 
 open class BaseActivity: AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) {
-        val languageCode = Command.getLanguage(newBase) ?: Locale.getDefault().language
+        var languageCode = Command.getLanguage(newBase) ?: Locale.getDefault().language
+
+        if(languageCode == "default" || languageCode == "null"){
+            languageCode = Locale.getDefault().language
+        }
+
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
 
