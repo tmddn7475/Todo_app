@@ -255,7 +255,7 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
                         }
                         // 알림
                         Command.delAlarm(this@TodoDetailActivity, data)
-                        if(data.alert != getString(R.string.no_alert)){
+                        if(data.alert != "no_alert"){
                             Command.setAlarm(this@TodoDetailActivity, data)
                         }
                         Command.widgetUpdate(this@TodoDetailActivity)
@@ -285,6 +285,7 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
                                     calendarFragment.refresh()
                                 }
                             }
+                            Command.delAlarm(this@TodoDetailActivity, data)
                             Command.widgetUpdate(this@TodoDetailActivity)
                             finish()
                         }

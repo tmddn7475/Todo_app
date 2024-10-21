@@ -133,7 +133,7 @@ object Command {
             context.getString(R.string.before_1hour) -> "before_1h"
             context.getString(R.string.before_1day) -> "before_1d"
             context.getString(R.string.day_8am) -> "8am"
-            else -> "null"
+            else -> "no_alert"
         }
 
         return result
@@ -148,7 +148,7 @@ object Command {
             "before_1h" -> context.getString(R.string.before_1hour)
             "before_1d" -> context.getString(R.string.before_1day)
             "8am" -> context.getString(R.string.day_8am)
-            else -> context.getString(R.string.at_time)
+            else -> context.getString(R.string.no_alert)
         }
 
         return result

@@ -135,7 +135,7 @@ class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterfac
                 val todoEntity = TodoEntity(title = title, startDate = startDate, endDate = endDate, startTime = startTime,
                     endTime = endTime, location = location, description = desc, alert = alarm, priorityHigh = binding.addTodoSwitch2.isChecked, doneDate = Command.getToday())
                 addData(todoEntity)
-                if(alarm != "not") Command.setAlarm(this, todoEntity)
+                if(alarm != "no_alert") Command.setAlarm(this, todoEntity)
                 Command.widgetUpdate(this)
                 finish()
             }
