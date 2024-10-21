@@ -8,7 +8,7 @@
     <string name="start_date">開始日</string>
     <string name="end_date">終了日</string>
     <string name="all_day">終日</string>
-    <string name="double_check">確認する</string>
+    <string name="double_check">重要</string>
     <string name="no_alert">通知なし</string>
     <string name="location">場所</string>
     <string name="notes">メモ</string>

@@ -8,7 +8,7 @@
     <string name="start_date">Date de début</string>
     <string name="end_date">Date de fin</string>
     <string name="all_day">Toute la journée</string>
-    <string name="double_check">Vérification</string>
+    <string name="double_check">important</string>
     <string name="no_alert">Pas d\'alerte</string>
     <string name="location">Lieu</string>
     <string name="notes">Notes</string>
