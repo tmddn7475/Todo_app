@@ -18,6 +18,7 @@
 
         <ImageView
             android:id="@+id/priority_back_btn"
+            android:contentDescription="@string/image"
             android:padding="3dp"
             android:layout_width="32dp"
             android:layout_height="32dp"

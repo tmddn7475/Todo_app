@@ -259,7 +259,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:orientation="horizontal"
         android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -269,7 +269,7 @@
         <TextView
             android:id="@+id/todo_detail_copy_btn"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:maxLines="1"
             android:backgroundTint="@color/gray"
@@ -278,14 +278,14 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="@string/duplicate"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_file_copy_24" />
 
         <TextView
             android:id="@+id/todo_detail_edit_btn"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:maxLines="1"
             android:paddingBottom="4dp"
@@ -294,14 +294,14 @@
             android:gravity="center"
             android:backgroundTint="@color/gray"
             android:text="@string/edit"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_edit_24" />
 
         <TextView
             android:id="@+id/todo_detail_share_btn"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:maxLines="1"
             android:paddingBottom="4dp"
@@ -310,14 +310,14 @@
             android:gravity="center"
             android:backgroundTint="@color/gray"
             android:text="@string/share"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_share_24" />
 
         <TextView
             android:id="@+id/todo_detail_delete_btn"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:maxLines="1"
             android:backgroundTint="@color/gray"
@@ -326,7 +326,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="4dp"
             android:text="@string/delete"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:textColor="@color/text"
             app:drawableTopCompat="@drawable/baseline_delete_24" />
 

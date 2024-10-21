@@ -35,7 +35,7 @@
             android:gravity="center"
             android:textColor="@color/text"
             android:textStyle="bold"
-            android:text="FAQ" />
+            android:text="@string/faq" />
 
     </RelativeLayout>
 
