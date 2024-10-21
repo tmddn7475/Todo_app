@@ -171,7 +171,7 @@ class ProfileFragment : Fragment() {
 
         // 데이터 가져오기
         CoroutineScope(Dispatchers.IO).launch {
-            val todoData = db.todoDAO().getTodo2() as ArrayList<TodoEntity>
+            val todoData = db.todoDAO().getTodoFinished() as ArrayList<TodoEntity>
             activity?.runOnUiThread {
                 val arr = getWeekRange(startOfWeek, endOfWeek, todoData)
                 for (i in arr.indices) {

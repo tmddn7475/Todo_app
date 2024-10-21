@@ -35,12 +35,10 @@ class PriorityActivity : BaseActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             listAdapter.clearList()
-            val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
-            runOnUiThread{
+            val data = db.todoDAO().getTodoPriority() as ArrayList<TodoEntity>
+            runOnUiThread {
                 for(item in data){
-                    if(item.priorityHigh){
-                        listAdapter.addListItem(item)
-                    }
+                    listAdapter.addListItem(item)
                 }
                 listAdapter.notifyDataSetChanged()
                 if(listAdapter.itemCount == 0){

@@ -34,37 +34,38 @@
             android:layout_marginTop="4dp"
             android:hint="@string/title"
             android:inputType="text"
-            android:textColor="@color/text" />
+            android:textColor="@color/text"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:paddingVertical="3dp"
+            android:text="@string/start_date"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="4dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/start_date"
-                android:textColor="@color/text"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="12dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="12dp"
+                android:layout_height="42dp"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/black"
                 app:strokeWidth="1dp">
@@ -81,8 +82,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView2"
-                android:layout_width="96dp"
-                android:layout_height="48dp"
+                android:layout_width="120dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="12dp"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="6dp"
@@ -97,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="12:00"
+                    android:text="@string/clock12"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -105,35 +106,35 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:paddingVertical="3dp"
+            android:text="@string/end_date"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/end_date"
-                android:textColor="@color/text"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="12dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView3"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="12dp"
+                android:layout_height="42dp"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/materialCardView4"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/black"
                 app:strokeWidth="1dp">
@@ -150,8 +151,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView4"
-                android:layout_width="96dp"
-                android:layout_height="48dp"
+                android:layout_width="120dp"
+                android:layout_height="42dp"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -165,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="12:00"
+                    android:text="@string/clock12"
                     android:textColor="@color/text"
                     android:textSize="18sp" />
 
@@ -272,7 +273,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="15dp"
-            android:background="@color/drawable" />
+            android:background="@color/drawable"
+            android:importantForAutofill="no"/>
 
         <EditText
             android:id="@+id/todo_location"
@@ -288,6 +290,7 @@
             android:paddingVertical="8dp"
             android:textColor="@color/text"
             android:textSize="18sp"
+            android:importantForAutofill="no"
             app:drawableLeftCompat="@drawable/baseline_location_pin_24" />
 
         <View
@@ -325,6 +328,7 @@
                 android:maxLength="2000"
                 android:textColor="@color/text"
                 android:textSize="18sp"
+                android:importantForAutofill="no"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -344,24 +348,26 @@
 
         <TextView
             android:id="@+id/todo_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@color/gray"
             android:gravity="center"
             android:text="@string/cancel"
+            android:maxLines="1"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/todo_save"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@color/blue_dark"
             android:gravity="center"
             android:text="@string/save"
+            android:maxLines="1"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />

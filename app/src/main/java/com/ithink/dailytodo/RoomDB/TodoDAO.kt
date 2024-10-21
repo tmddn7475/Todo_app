@@ -14,7 +14,13 @@ interface TodoDAO {
     suspend fun getTodo(): List<TodoEntity>
 
     @Query("select * from todo where isDone is 1")
-    suspend fun getTodo2(): List<TodoEntity>
+    suspend fun getTodoFinished(): List<TodoEntity>
+
+    @Query("select * from todo where isDone is 0")
+    suspend fun getTodoNotFinished(): List<TodoEntity>
+
+    @Query("select * from todo where priorityHigh is 1")
+    suspend fun getTodoPriority(): List<TodoEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) // 알람은 중복되지 않게 저장
     fun saveTodo(todoEntity: TodoEntity)

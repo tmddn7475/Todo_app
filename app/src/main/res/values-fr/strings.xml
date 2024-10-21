@@ -51,7 +51,7 @@
     <string name="home">Accueil</string>
     <string name="calendar">Calendrier</string>
     <string name="search">Rechercher</string>
-    <string name="mine">mes informations</string>
+    <string name="mine">Le mien</string>
     <string name="reset_all">Réinitialiser toutes les données</string>
     <string name="set_display">Définir le mode d\'affichage</string>
     <string name="app_ver">Version de l\'application</string>

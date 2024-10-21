@@ -5,8 +5,8 @@
     <string name="dark">다크 모드</string>
     <string name="add_todo">일정 추가하기</string>
     <string name="title">제목</string>
-    <string name="start_date">시작</string>
-    <string name="end_date">종료</string>
+    <string name="start_date">시작 날짜</string>
+    <string name="end_date">종료 날짜</string>
     <string name="all_day">하루종일</string>
     <string name="double_check">중요</string>
     <string name="no_alert">알림 없음</string>

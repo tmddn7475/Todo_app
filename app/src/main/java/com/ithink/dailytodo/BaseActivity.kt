@@ -10,7 +10,7 @@ open class BaseActivity: AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) {
         var languageCode = Command.getLanguage(newBase) ?: Locale.getDefault().language
 
-        if(languageCode == "default" || languageCode == "null"){
+        if(languageCode == "default" || languageCode == null){
             languageCode = Locale.getDefault().language
         }
 

@@ -6,7 +6,7 @@
     <string name="add_todo">Add a schedule</string>
     <string name="title">Title</string>
     <string name="start_date">Start date</string>
-    <string name="end_date">"End date  "</string>
+    <string name="end_date">End date</string>
     <string name="all_day">All day</string>
     <string name="double_check">Double-check</string>
     <string name="no_alert">No alert</string>

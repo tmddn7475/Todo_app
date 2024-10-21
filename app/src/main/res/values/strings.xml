@@ -8,7 +8,7 @@
     <string name="add_todo">Add a schedule</string>
     <string name="title">Title</string>
     <string name="start_date">Start date</string>
-    <string name="end_date">"End date  "</string>
+    <string name="end_date">"End date"</string>
     <string name="all_day">All day</string>
     <string name="double_check">Double-check</string>
     <string name="no_alert">No alert</string>
@@ -73,4 +73,5 @@
     <string name="app_share_text">Use DailyTodo to add and manage your schedule. Click the link below to download.</string>
     <string name="app_lang">Language</string>
     <string name="system_default">System default</string>
+    <string name="clock12" translatable="false">12:00</string>
 </resources>

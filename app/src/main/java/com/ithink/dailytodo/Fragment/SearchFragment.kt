@@ -32,15 +32,15 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         db = TodoDatabase.getInstance(requireContext())!!
-        getData()
+        getData(1)
 
         binding.searchAll.isChecked = true
 
         binding.searchRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId){
-                R.id.search_all -> getData()
-                R.id.search_done -> getData()
-                R.id.search_not_done -> getData()
+                R.id.search_all -> getData(1)
+                R.id.search_done -> getData(2)
+                R.id.search_not_done -> getData(3)
             }
         }
 
@@ -63,30 +63,57 @@ class SearchFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun getData(){
-        CoroutineScope(Dispatchers.IO).launch {
-            calendarTodoAdapter.clearList()
-            val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
-            activity?.runOnUiThread{
-                for(item in data){
-                    if(binding.searchRadioGroup.checkedRadioButtonId == R.id.search_done){
-                        if(item.isDone){
+    private fun getData(num: Int){
+        calendarTodoAdapter.clearList()
+        when(num){
+            1 -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val data = db.todoDAO().getTodo() as ArrayList<TodoEntity>
+                    activity?.runOnUiThread{
+                        for(item in data){
                             calendarTodoAdapter.addListItem(item)
                         }
-                    } else if (binding.searchRadioGroup.checkedRadioButtonId == R.id.search_not_done){
-                        if(!item.isDone){
-                            calendarTodoAdapter.addListItem(item)
+                        if(calendarTodoAdapter.itemCount == 0){
+                            binding.text.visibility = View.VISIBLE
+                        } else {
+                            binding.text.visibility = View.GONE
                         }
-                    } else {
-                        calendarTodoAdapter.addListItem(item)
+                        calendarTodoAdapter.notifyDataSetChanged()
                     }
                 }
-                if(calendarTodoAdapter.itemCount == 0){
-                    binding.text.visibility = View.VISIBLE
-                } else {
-                    binding.text.visibility = View.GONE
+            }
+            2 -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val data = db.todoDAO().getTodoFinished() as ArrayList<TodoEntity>
+                    activity?.runOnUiThread{
+                        for(item in data){
+                            calendarTodoAdapter.addListItem(item)
+                        }
+                        if(calendarTodoAdapter.itemCount == 0){
+                            binding.text.visibility = View.VISIBLE
+                        } else {
+                            binding.text.visibility = View.GONE
+                        }
+                        calendarTodoAdapter.notifyDataSetChanged()
+                    }
                 }
-                calendarTodoAdapter.notifyDataSetChanged()
+
+            }
+            3 -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val data = db.todoDAO().getTodoNotFinished() as ArrayList<TodoEntity>
+                    activity?.runOnUiThread{
+                        for(item in data){
+                            calendarTodoAdapter.addListItem(item)
+                        }
+                        if(calendarTodoAdapter.itemCount == 0){
+                            binding.text.visibility = View.VISIBLE
+                        } else {
+                            binding.text.visibility = View.GONE
+                        }
+                        calendarTodoAdapter.notifyDataSetChanged()
+                    }
+                }
             }
         }
     }
