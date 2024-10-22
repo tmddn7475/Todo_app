@@ -157,7 +157,7 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
             if(data.location.isNotEmpty()) text += "${data.location}\n"
             if(data.description.isNotEmpty()) text += "${data.description}\n"
 
-            val text2 = "https://github.com/tmddn7475"
+            val text2 = "https://play.google.com/store/apps/details?id=com.ithink.dailytodo"
 
             intent.putExtra(Intent.EXTRA_TEXT, "$text\n$text2")
 

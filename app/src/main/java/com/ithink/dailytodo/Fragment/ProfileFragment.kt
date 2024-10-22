@@ -93,7 +93,7 @@ class ProfileFragment : Fragment() {
             val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
             intent.type = "text/plain"
 
-            val text = getString(R.string.app_share_text) + "\n\nhttps://github.com/tmddn7475"
+            val text = getString(R.string.app_share_text) + "\n\nhttps://play.google.com/store/apps/details?id=com.ithink.dailytodo"
             intent.putExtra(Intent.EXTRA_TEXT, text)
 
             val chooserTitle = ""

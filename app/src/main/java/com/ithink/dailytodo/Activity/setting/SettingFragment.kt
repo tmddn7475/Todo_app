@@ -2,6 +2,7 @@ package com.ithink.dailytodo.Activity.setting
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -55,18 +56,23 @@ class SettingFragment: PreferenceFragmentCompat() {
                 val intent = Intent(requireContext(), FaqActivity::class.java)
                 startActivity(intent)
             }
+            "app_rating" -> {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("https://play.google.com/store/apps/details?id=com.ithink.dailytodo")
+                startActivity(intent)
+            }
             "app_share" -> {
                 val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
                 intent.type = "text/plain"
 
-                val text = getString(R.string.app_share_text) + "\n\nhttps://github.com/tmddn7475"
+                val text = getString(R.string.app_share_text) + "\n\nhttps://play.google.com/store/apps/details?id=com.ithink.dailytodo"
                 intent.putExtra(Intent.EXTRA_TEXT, text)
 
                 val chooserTitle = ""
                 startActivity(Intent.createChooser(intent, chooserTitle))
             }
             "app_language" -> {
-                preference.setOnPreferenceChangeListener{ _, newValue ->
+                preference.setOnPreferenceChangeListener{ _, _ ->
                     restart()
                     true
                 }
