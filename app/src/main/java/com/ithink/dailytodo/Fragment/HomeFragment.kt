@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         todayListAdapter = TodoAdapter(this)
@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
             activity?.finishAffinity()
         }
 
-        return binding.root
+        return _binding?.root
     }
     
     // 리스트 업데이트
