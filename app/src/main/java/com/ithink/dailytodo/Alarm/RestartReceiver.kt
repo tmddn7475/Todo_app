@@ -20,10 +20,10 @@ class RestartReceiver: BroadcastReceiver() {
             if (intent.action.equals("android.intent.action.BOOT_COMPLETED")) {
                 coroutineScope.launch {
                     val db = TodoDatabase.getInstance(context!!)
-                    val list = db!!.todoDAO().getTodo()
+                    val list = db!!.todoDAO().getTodoAlert()
                     list.let {
                         for (i in list.indices){
-                            if(list[i].alert != "알림 없음" && checkDate(list[i].startDate)){
+                            if(checkDate(list[i].startDate)){
                                 Command.setAlarm(context, list[i])
                             }
                         }

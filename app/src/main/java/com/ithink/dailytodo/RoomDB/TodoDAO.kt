@@ -19,6 +19,9 @@ interface TodoDAO {
     @Query("select * from todo where isDone is 0")
     suspend fun getTodoNotFinished(): List<TodoEntity>
 
+    @Query("select * from todo where alert != 'no_alert'")
+    suspend fun getTodoAlert(): List<TodoEntity>
+
     @Query("select * from todo where priorityHigh is 1")
     suspend fun getTodoPriority(): List<TodoEntity>
 
