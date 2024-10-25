@@ -74,9 +74,9 @@ class SearchFragment : Fragment() {
                             calendarTodoAdapter.addListItem(item)
                         }
                         if(calendarTodoAdapter.itemCount == 0){
-                            binding.text.visibility = View.VISIBLE
+                            binding.recyclerView.visibility = View.GONE
                         } else {
-                            binding.text.visibility = View.GONE
+                            binding.recyclerView.visibility = View.VISIBLE
                         }
                         calendarTodoAdapter.notifyDataSetChanged()
                     }
@@ -90,9 +90,9 @@ class SearchFragment : Fragment() {
                             calendarTodoAdapter.addListItem(item)
                         }
                         if(calendarTodoAdapter.itemCount == 0){
-                            binding.text.visibility = View.VISIBLE
+                            binding.recyclerView.visibility = View.GONE
                         } else {
-                            binding.text.visibility = View.GONE
+                            binding.recyclerView.visibility = View.VISIBLE
                         }
                         calendarTodoAdapter.notifyDataSetChanged()
                     }
@@ -107,9 +107,9 @@ class SearchFragment : Fragment() {
                             calendarTodoAdapter.addListItem(item)
                         }
                         if(calendarTodoAdapter.itemCount == 0){
-                            binding.text.visibility = View.VISIBLE
+                            binding.recyclerView.visibility = View.GONE
                         } else {
-                            binding.text.visibility = View.GONE
+                            binding.recyclerView.visibility = View.VISIBLE
                         }
                         calendarTodoAdapter.notifyDataSetChanged()
                     }

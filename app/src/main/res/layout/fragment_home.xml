@@ -15,7 +15,7 @@
         <RelativeLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:padding="6dp"
             tools:ignore="UselessParent">
 
@@ -51,14 +51,14 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/text"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="6dp"/>
+            android:layout_marginBottom="6dp"
+            android:layout_marginHorizontal="12dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/today_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/today_item"/>
 
@@ -67,6 +67,7 @@
             android:text="@string/no_schedule"
             android:textColor="@color/text"
             android:textSize="18sp"
+            android:visibility="visible"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

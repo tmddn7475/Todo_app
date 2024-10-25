@@ -1,90 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.SearchFragment">
 
-    <LinearLayout
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@drawable/baseline_search_24"
+        app:queryBackground="@null"
+        android:layout_width="match_parent"
+        android:paddingStart="4dp"
+        android:paddingEnd="0dp"
+        android:layout_height="48dp"
+        android:inputType="textPersonName"/>
+
+    <RadioGroup
+        android:id="@+id/search_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginVertical="6dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/search_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:textColor="@color/text"
+            android:layout_marginStart="20dp"
+            android:paddingHorizontal="3dp"
+            android:text="@string/all" />
+
+        <RadioButton
+            android:id="@+id/search_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/text"
+            android:layout_marginStart="4dp"
+            android:paddingHorizontal="3dp"
+            android:text="@string/complete2" />
+
+        <RadioButton
+            android:id="@+id/search_not_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/text"
+            android:layout_marginStart="4dp"
+            android:paddingHorizontal="3dp"
+            android:text="@string/not_complete" />
+
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            app:iconifiedByDefault="false"
-            app:searchIcon="@drawable/baseline_search_24"
-            app:queryBackground="@null"
-            android:layout_width="match_parent"
-            android:paddingStart="4dp"
-            android:paddingEnd="0dp"
-            android:layout_height="48dp"
-            android:inputType="textPersonName"/>
-
-        <RadioGroup
-            android:id="@+id/search_radio_group"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginVertical="6dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/search_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:maxLines="1"
-                android:textColor="@color/text"
-                android:layout_marginStart="20dp"
-                android:paddingHorizontal="3dp"
-                android:text="@string/all" />
-
-            <RadioButton
-                android:id="@+id/search_done"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:textColor="@color/text"
-                android:layout_marginStart="4dp"
-                android:paddingHorizontal="3dp"
-                android:text="@string/complete2" />
-
-            <RadioButton
-                android:id="@+id/search_not_done"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:textColor="@color/text"
-                android:layout_marginStart="4dp"
-                android:paddingHorizontal="3dp"
-                android:text="@string/not_complete" />
-
-        </RadioGroup>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/calendar_todo_item"
-            android:visibility="visible"/>
-
-    </LinearLayout>
+        android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/calendar_todo_item"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/no_schedule"
+        android:paddingBottom="4dp"
         android:textColor="@color/text"
-        android:visibility="gone"
         android:textSize="18sp"
         android:gravity="center"/>
 
-</FrameLayout>
+</LinearLayout>
