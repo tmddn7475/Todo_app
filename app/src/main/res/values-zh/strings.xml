@@ -69,4 +69,5 @@
     <string name="app_share_text">使用DailyTodo添加和管理您的日程。点击下面的链接下载。</string>
     <string name="app_lang">语言</string>
     <string name="system_default">系统默认</string>
+    <string name="privacy">隐私政策</string>
 </resources>

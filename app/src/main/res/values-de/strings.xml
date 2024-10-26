@@ -69,4 +69,5 @@
     <string name="app_share_text">Verwenden Sie DailyTodo, um Ihren Termin hinzuzufügen und zu verwalten. Klicken Sie auf den untenstehenden Link, um herunterzuladen.</string>
     <string name="app_lang">Sprache</string>
     <string name="system_default">Systemstandard</string>
+    <string name="privacy">Datenschutzrichtlinie</string>
 </resources>

@@ -69,4 +69,5 @@
     <string name="app_share_text">DailyTodoを使用してスケジュールを追加および管理しましょう。以下のリンクをクリックしてダウンロードしてください。</string>
     <string name="app_lang">言語</string>
     <string name="system_default">システムデフォルト</string>
+    <string name="privacy">プライバシーポリシー</string>
 </resources>

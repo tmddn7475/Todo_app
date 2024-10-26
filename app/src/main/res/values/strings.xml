@@ -74,4 +74,5 @@
     <string name="app_lang">Language</string>
     <string name="system_default">System default</string>
     <string name="clock12" translatable="false">12:00</string>
+    <string name="privacy">Privacy policy</string>
 </resources>

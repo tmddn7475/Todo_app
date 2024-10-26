@@ -77,6 +77,10 @@ class SettingFragment: PreferenceFragmentCompat() {
                     true
                 }
             }
+            "privacy" -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.freeprivacypolicy.com/live/6580c459-168f-4266-9dbb-c95911cc8a6f"))
+                startActivity(intent)
+            }
         }
         return false
     }

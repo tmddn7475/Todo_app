@@ -69,4 +69,5 @@
     <string name="app_share_text">Utilisez DailyTodo pour ajouter et gérer votre programme. Cliquez sur le lien ci-dessous pour télécharger.</string>
     <string name="app_lang">Langue</string>
     <string name="system_default">Valeur par défaut du système</string>
+    <string name="privacy">Politique de confidentialité</string>
 </resources>
