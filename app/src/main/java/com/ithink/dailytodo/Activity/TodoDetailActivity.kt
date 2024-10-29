@@ -31,7 +31,7 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
     private lateinit var data: TodoEntity
-    private var id: Long = 0
+    private var id: Long = 1
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
