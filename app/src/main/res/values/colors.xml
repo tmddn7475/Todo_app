@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="drawable">#FF000000</color>
-    <color name="dialog">#FFFFFFFF</color>
+    <color name="dialog">#F8F8F8</color>
     <color name="gray">#EFEFEF</color>"
     <color name="gray2">#7C7C7C</color>"
     <color name="blue_dark">#00B3EF</color>
@@ -11,8 +11,4 @@
     <color name="text">#101010</color>
     <color name="background">#FFFFFF</color>
     <color name="intro">#D4E7EB</color>
-    <color name="light_blue_50">#FFE1F5FE</color>
-    <color name="light_blue_200">#FF81D4FA</color>
-    <color name="light_blue_600">#FF039BE5</color>
-    <color name="light_blue_900">#FF01579B</color>
 </resources>

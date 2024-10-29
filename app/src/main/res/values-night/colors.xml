@@ -7,7 +7,7 @@
     <color name="blue_dark">#00B3EF</color>
     <color name="red">#FF0052</color>
     <color name="drawable">#FFFFFFFF</color>
-    <color name="dialog">#FF000000</color>
+    <color name="dialog">#0F0F0F</color>
     <color name="text">#FFFFFFFF</color>
     <color name="background">#000000</color>
     <color name="intro">#D4E7EB</color>
