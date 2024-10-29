@@ -52,7 +52,7 @@ class SelectTimeDialog(private var textView: TextView, private var selectTimeInt
             } else {
                 "${binding.timePicker.hour}:${binding.timePicker.minute * 5}"
             }
-            selectTimeInterface.selected(textView, time)
+            selectTimeInterface.selectedTime(textView, time)
             dismiss()
         }
         binding.timeBtnNo.setOnClickListener{

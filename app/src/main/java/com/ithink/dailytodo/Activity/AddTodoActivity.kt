@@ -1,7 +1,6 @@
 package com.ithink.dailytodo.Activity
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +17,8 @@ import com.ithink.dailytodo.Object.Command
 import com.ithink.dailytodo.R
 import com.ithink.dailytodo.RoomDB.TodoDatabase
 import com.ithink.dailytodo.RoomDB.TodoEntity
+import com.ithink.dailytodo.Dialog.SelectDateDialog
+import com.ithink.dailytodo.Interface.SelectDateInterface
 import com.ithink.dailytodo.databinding.ActivityAddTodoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +26,8 @@ import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.util.Calendar
 
-class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface {
+class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface,
+    SelectDateInterface {
 
     private lateinit var db: TodoDatabase
     private lateinit var binding: ActivityAddTodoBinding
@@ -70,25 +72,11 @@ class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterfac
 
         // 날짜 설정
         binding.todoDate.setOnClickListener{
-            DatePickerDialog(this, { _, year, month, day ->
-                run {
-                    binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-                    if(Command.compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())){
-                        binding.todoDate2.text = binding.todoDate.text.toString()
-                    }
-                }
-            }, year, month, day).show()
+            SelectDateDialog(binding.todoDate, this).show(supportFragmentManager, "selectTimeDialog")
         }
 
         binding.todoDate2.setOnClickListener{
-            DatePickerDialog(this, { _, year, month, day ->
-                run {
-                    binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-                    if(Command.compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())){
-                        binding.todoDate2.text = binding.todoDate.text.toString()
-                    }
-                }
-            }, year, month, day).show()
+            SelectDateDialog(binding.todoDate2, this).show(supportFragmentManager, "selectTimeDialog")
         }
 
         // 시간 설정
@@ -162,13 +150,18 @@ class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterfac
         }
     }
 
-    override fun selected(textView: TextView, str: String) {
+    override fun selectedDate(textView: TextView, str: String) {
+        textView.text = str
+        if(Command.compareDates(binding.todoDate.text.toString(), binding.todoDate2.text.toString())){
+            binding.todoDate2.text = binding.todoDate.text.toString()
+        }
+    }
+    override fun selectedTime(textView: TextView, str: String) {
         textView.text = str
         if(Command.compareTime(binding.todoDate.text.toString(), binding.todoDate2.text.toString(), binding.todoTime.text.toString(), binding.todoTime2.text.toString())){
             binding.todoTime2.text = str
         }
     }
-
     override fun selectedAlarm(textView: TextView, str: String) {
         textView.text = str
     }

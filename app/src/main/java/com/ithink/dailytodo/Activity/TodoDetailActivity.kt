@@ -2,7 +2,6 @@ package com.ithink.dailytodo.Activity
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -19,13 +18,15 @@ import com.ithink.dailytodo.Interface.SelectTimeInterface
 import com.ithink.dailytodo.R
 import com.ithink.dailytodo.RoomDB.TodoDatabase
 import com.ithink.dailytodo.RoomDB.TodoEntity
+import com.ithink.dailytodo.Dialog.SelectDateDialog
+import com.ithink.dailytodo.Interface.SelectDateInterface
 import com.ithink.dailytodo.databinding.ActivityTodoDetailBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Calendar
 
-class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface {
+class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface,
+    SelectDateInterface {
 
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
@@ -188,25 +189,11 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
 
         // 날짜
         binding.editDate.setOnClickListener{
-            val cal = Calendar.getInstance()
-            val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                binding.editDate.text = "${year}.${month+1}.${day}"
-                if(Command.compareDates(binding.editDate.text.toString(), binding.editDate2.text.toString())){
-                    binding.editDate2.text = binding.editDate.text.toString()
-                }
-            }
-            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+            SelectDateDialog(binding.editDate, this).show(supportFragmentManager, "selectTimeDialog")
         }
 
         binding.editDate2.setOnClickListener{
-            val cal = Calendar.getInstance()
-            val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                binding.editDate2.text = "${year}.${month+1}.${day}"
-                if(Command.compareDates(binding.editDate.text.toString(), binding.editDate2.text.toString())){
-                    binding.editDate2.text = binding.editDate.text.toString()
-                }
-            }
-            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+            SelectDateDialog(binding.editDate, this).show(supportFragmentManager, "selectTimeDialog")
         }
 
         // time
@@ -300,13 +287,18 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
         }
     }
 
-    override fun selected(textView: TextView, str: String) {
+    override fun selectedDate(textView: TextView, str: String) {
+        textView.text = str
+        if(Command.compareDates(binding.editDate.text.toString(), binding.editDate2.text.toString())){
+            binding.editDate2.text = binding.editDate.text.toString()
+        }
+    }
+    override fun selectedTime(textView: TextView, str: String) {
         textView.text = str
         if(Command.compareTime(binding.editDate.text.toString(), binding.editDate2.text.toString(), binding.editTime.text.toString(), binding.editTime2.text.toString())){
             binding.editTime2.text = str
         }
     }
-
     override fun selectedAlarm(textView: TextView, str: String) {
         textView.text = str
     }
