@@ -6,6 +6,7 @@ import android.content.ComponentName
 import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import com.ithink.dailytodo.R
+import com.ithink.dailytodo.Widget.Today.TodoWidget
 
 // 위젯 업데이트
 class WidgetViewModel(application: Application) : AndroidViewModel(application) {
@@ -14,7 +15,7 @@ class WidgetViewModel(application: Application) : AndroidViewModel(application) 
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
         val appWidgetManager = AppWidgetManager.getInstance(getApplication())
         val appWidgetIds = appWidgetManager.getAppWidgetIds(
-            ComponentName(getApplication(), TodoWidget::class.java)
+            ComponentName(getApplication(), TodoWidget::class.java),
         )
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list)
     }

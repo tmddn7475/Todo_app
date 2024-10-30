@@ -1,4 +1,4 @@
-package com.ithink.dailytodo.Widget
+package com.ithink.dailytodo.Widget.Today
 
 import android.annotation.SuppressLint
 import android.content.Context
