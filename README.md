@@ -3,7 +3,7 @@ DailyTodo (android todo app)
 
 ![download](https://github.com/user-attachments/assets/c6180d2d-0a47-4805-91cf-830da58ade87) 
 
-개발기간 = 2024.09.02 ~ 2024.10.23
+Development period = 2024.09.02 ~ 2024.10.23
 
 Manage your schedule with DailyTodo.
 
