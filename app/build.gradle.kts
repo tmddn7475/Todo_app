@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.ithink.dailytodo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ithink.dailytodo"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 4
         versionName = "1.0.3"
 

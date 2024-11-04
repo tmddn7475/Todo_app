@@ -147,8 +147,8 @@ class CalendarFragment : Fragment() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun getTodos(date: String): Boolean {
-        var result = false
+    private fun getTodos(date: String): Int {
+        var result = 0
         val dateFormat = SimpleDateFormat("yyyy.MM.dd")
 
         for(todo in todoList){
@@ -159,7 +159,7 @@ class CalendarFragment : Fragment() {
                 val date2: Date = dateFormat.parse(todo.endDate)!!
 
                 if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
-                    result = true
+                    result++
                     break
                 }
             } catch (e: ParseException) {
@@ -200,10 +200,22 @@ class CalendarFragment : Fragment() {
                 val layout = container.binding.dayLayout
                 textView.text = data.date.dayOfMonth.toString()
 
-                if (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))) {
-                    container.binding.dayTodo1.visibility = View.VISIBLE
-                } else {
+                if (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))) == 0) {
                     container.binding.dayTodo1.visibility = View.GONE
+                    container.binding.dayTodo2.visibility = View.GONE
+                    container.binding.dayTodo3.visibility = View.GONE
+                } else if (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))) == 1){
+                    container.binding.dayTodo1.visibility = View.VISIBLE
+                    container.binding.dayTodo2.visibility = View.GONE
+                    container.binding.dayTodo3.visibility = View.GONE
+                } else if (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))) == 2){
+                    container.binding.dayTodo1.visibility = View.VISIBLE
+                    container.binding.dayTodo2.visibility = View.VISIBLE
+                    container.binding.dayTodo3.visibility = View.GONE
+                } else if (getTodos(data.date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))) >= 3){
+                    container.binding.dayTodo1.visibility = View.VISIBLE
+                    container.binding.dayTodo2.visibility = View.VISIBLE
+                    container.binding.dayTodo3.visibility = View.VISIBLE
                 }
 
                 if (data.position == DayPosition.MonthDate) {
