@@ -7,11 +7,11 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.ithink.dailytodo.R
@@ -50,7 +50,9 @@ class TodoAdapter(private val viewModelStoreOwner: ViewModelStoreOwner): Recycle
         fun bind(todoItem : TodoEntity) {
             // 제목
             binding.todayTitle.text = todoItem.title
-            binding.todayTitle.setSingleLine(true)
+            binding.todayTitle.isSingleLine = true
+            binding.todayTitle.ellipsize = TextUtils.TruncateAt.MARQUEE
+            binding.todayTitle.isSelected = true
             
             // 작업 완료 시 취소선
             if(todoItem.isDone){
