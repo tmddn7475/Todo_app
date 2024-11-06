@@ -8,25 +8,29 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.widget.RemoteViews
+import androidx.annotation.RequiresApi
+import com.ithink.dailytodo.Activity.AddTodoActivity
 import com.ithink.dailytodo.Activity.TodoDetailActivity
 import com.ithink.dailytodo.R
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class TodoWidget : AppWidgetProvider() {
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
         for (appWidgetId in appWidgetIds) {
+            val views = RemoteViews(context.packageName, R.layout.todo_widget)
+            views.setTextViewText(R.id.widget_title, getToday())
+
             val intent = Intent(context, WidgetService::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
-
-            val views = RemoteViews(context.packageName, R.layout.todo_widget)
-            views.setTextViewText(R.id.widget_title, getToday())
             views.setRemoteAdapter(R.id.widget_list, intent)
 
             // 클릭 시 TodoDetailActivity 실행
@@ -35,15 +39,16 @@ class TodoWidget : AppWidgetProvider() {
                 context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
             views.setPendingIntentTemplate(R.id.widget_list, pendingIntent)
 
-            val newTodoIntent = Intent(context, com.ithink.dailytodo.Activity.AddTodoActivity::class.java)
+            val newTodoIntent = Intent(context, AddTodoActivity::class.java)
             val newTodoPendingIntent = PendingIntent.getActivity(
                 context, 0, newTodoIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
             views.setOnClickPendingIntent(R.id.widget_new_todo, newTodoPendingIntent)
 
             // 위젯을 새로고침
             appWidgetManager.updateAppWidget(appWidgetId, views)
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.widget_list)
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list)
         }
+        super.onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -53,7 +58,67 @@ class TodoWidget : AppWidgetProvider() {
 
         return dateFormat.format(date)
     }
+    /*
+    @RequiresApi(Build.VERSION_CODES.S)
+    private fun getItems(context: Context): RemoteViews.RemoteCollectionItems {
+        val db = TodoDatabase.getInstance(context)!!
+        val itemsBuilder = RemoteViews.RemoteCollectionItems.Builder()
 
+        runBlocking {
+            val todos = db.todoDAO().getTodo()
+            for(i in todos.indices){
+                if(todayTodos(todos[i].startDate, todos[i].endDate)){
+                    val itemView = RemoteViews(context.packageName, R.layout.widget_item)
+                    if(todos[i].priorityHigh){
+                        itemView.setViewVisibility(R.id.item_priority, View.VISIBLE)
+                    } else {
+                        itemView.setViewVisibility(R.id.item_priority, View.GONE)
+                    }
+                    itemView.setTextViewText(R.id.item_title, todos[i].title)
+                    if(todos[i].startTime == "all day" && todos[i].startDate == todos[i].endDate){
+                        itemView.setTextViewText(R.id.item_time, context.getString(R.string.all_day))
+                    } else if (todos[i].startDate == todos[i].endDate) {
+                        itemView.setTextViewText(R.id.item_time, "${todos[i].startTime} ~ ${todos[i].endTime}")
+                    } else {
+                        itemView.setTextViewText(R.id.item_time, "${todos[i].startDate} ~ ${todos[i].endDate}")
+                    }
+                    // 클릭 시 실행될 Intent 생성 및 데이터 추가
+                    val intent = Intent()
+                    intent.putExtra("id", todos[i].id)
+                    itemView.setOnClickFillInIntent(R.id.item_main, intent)
+
+                    itemsBuilder.addItem(i.toLong(), itemView) // 아이템 ID와 RemoteView 추가
+                }
+            }
+        }
+
+        return itemsBuilder.build()
+    }
+
+    // 오늘 할일 가져오기
+    @SuppressLint("SimpleDateFormat")
+    private fun todayTodos(startDate: String, endDate: String): Boolean {
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val simpleDate: String = getToday()
+
+        var bool = false
+
+        try {
+            // 문자열을 Date 객체로 변환
+            val today: Date = dateFormat.parse(simpleDate)!!
+            val date1: Date = dateFormat.parse(startDate)!!
+            val date2: Date = dateFormat.parse(endDate)!!
+
+            if((today.after(date1) && today.before(date2)) || today == date1 || today == date2){
+                bool = true
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return bool
+    }*/
+
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         if (AppWidgetManager.ACTION_APPWIDGET_UPDATE == intent.action) {

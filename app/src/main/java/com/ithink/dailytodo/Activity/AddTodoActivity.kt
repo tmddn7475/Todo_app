@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.Dialog.SelectAlarmDialog
 import com.ithink.dailytodo.Dialog.SelectTimeDialog
@@ -36,7 +35,6 @@ class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterfac
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

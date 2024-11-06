@@ -2,7 +2,6 @@ package com.ithink.dailytodo.Activity
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
@@ -25,7 +24,6 @@ class DonateActivity : BaseActivity(), PurchasesUpdatedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         binding = ActivityDonateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

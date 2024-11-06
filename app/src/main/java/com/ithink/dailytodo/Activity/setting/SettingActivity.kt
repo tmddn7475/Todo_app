@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.preference.PreferenceManager
 import com.ithink.dailytodo.Activity.MainActivity
 import com.ithink.dailytodo.BaseActivity
@@ -14,7 +13,6 @@ import com.ithink.dailytodo.R
 class SettingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         setContentView(R.layout.activity_setting)
 
         supportFragmentManager.beginTransaction().replace(R.id.setting_layout, SettingFragment()).commit()

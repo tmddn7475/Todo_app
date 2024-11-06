@@ -8,7 +8,6 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.ithink.dailytodo.BaseActivity
 import com.ithink.dailytodo.Object.Command
 import com.ithink.dailytodo.Dialog.SelectAlarmDialog
@@ -25,9 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface,
-    SelectDateInterface {
-
+class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterface, SelectDateInterface {
     private lateinit var binding: ActivityTodoDetailBinding
     private lateinit var db: TodoDatabase
     private lateinit var data: TodoEntity
@@ -36,7 +33,6 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         binding = ActivityTodoDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
