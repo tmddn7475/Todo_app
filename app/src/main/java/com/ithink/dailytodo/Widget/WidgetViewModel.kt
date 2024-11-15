@@ -14,6 +14,7 @@ class WidgetViewModel(application: Application) : AndroidViewModel(application) 
         val intent = Intent(getApplication(), TodoWidget::class.java)
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
         val appWidgetManager = AppWidgetManager.getInstance(getApplication())
+
         val appWidgetIds = appWidgetManager.getAppWidgetIds(
             ComponentName(getApplication(), TodoWidget::class.java),
         )
