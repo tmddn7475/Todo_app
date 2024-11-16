@@ -3,6 +3,10 @@ DailyTodo (android todo app)
 
 ![download](https://github.com/user-attachments/assets/c6180d2d-0a47-4805-91cf-830da58ade87) 
 
+Download
+-------------
+[![Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.ithink.dailytodo)
+
 Development period = 2024.09.02 ~ 2024.10.23
 
 Manage your schedule with DailyTodo.
