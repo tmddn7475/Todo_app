@@ -8,16 +8,10 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import android.view.View
 import android.widget.RemoteViews
-import androidx.annotation.RequiresApi
 import com.ithink.dailytodo.Activity.AddTodoActivity
 import com.ithink.dailytodo.Activity.TodoDetailActivity
 import com.ithink.dailytodo.R
-import com.ithink.dailytodo.RoomDB.TodoDatabase
-import kotlinx.coroutines.runBlocking
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -32,14 +26,10 @@ class TodoWidget : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.todo_widget)
             views.setTextViewText(R.id.widget_title, getToday())
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
-                views.setRemoteAdapter(R.id.widget_list, getItems(context))
-            } else {
-                val intent = Intent(context, WidgetService::class.java)
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
-                views.setRemoteAdapter(R.id.widget_list, intent)
-            }
+            val intent = Intent(context, WidgetService::class.java)
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+            intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
+            views.setRemoteAdapter(R.id.widget_list, intent)
 
             // 클릭 시 TodoDetailActivity 실행
             val clickIntent = Intent(context, TodoDetailActivity::class.java)
@@ -67,6 +57,7 @@ class TodoWidget : AppWidgetProvider() {
         return dateFormat.format(date)
     }
 
+    /*
     @RequiresApi(Build.VERSION_CODES.S)
     private fun getItems(context: Context): RemoteViews.RemoteCollectionItems {
         val db = TodoDatabase.getInstance(context)!!
@@ -124,7 +115,7 @@ class TodoWidget : AppWidgetProvider() {
             e.printStackTrace()
         }
         return bool
-    }
+    }*/
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)

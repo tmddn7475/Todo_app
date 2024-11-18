@@ -43,7 +43,7 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
         db = TodoDatabase.getInstance(this)!!
         id = intent.getLongExtra("id", 1)
 
-        binding.todoDetailTitle.setSingleLine(true)
+        binding.todoDetailTitle.isSingleLine = true
         binding.todoDetailTitle.ellipsize = TextUtils.TruncateAt.MARQUEE // 흐르게 만들기
         binding.todoDetailTitle.isSelected = true
 

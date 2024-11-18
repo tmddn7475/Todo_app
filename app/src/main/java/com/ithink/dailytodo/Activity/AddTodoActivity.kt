@@ -42,18 +42,21 @@ class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterfac
 
         // 데이터 가져오기
         data = intent.intentSerializable("todoEntity", TodoEntity::class.java)
-        if(data != null) copy(data!!)
+        if(data != null) {
+            copy(data!!)
+        } else {
+            // 현재 날짜 가져옴
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
 
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-
-        binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-        binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
-        binding.todoTime.text = "${hour}:00"
-        binding.todoTime2.text = "${hour+1}:00"
+            binding.todoDate.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
+            binding.todoDate2.text = year.toString() + "." + (month + 1).toString() + "." + day.toString()
+            binding.todoTime.text = "${hour}:00"
+            binding.todoTime2.text = "${hour+1}:00"
+        }
 
         // 하루종일 체크
         binding.addTodoSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -179,7 +182,7 @@ class AddTodoActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInterfac
             binding.todoTime.text = todos.startTime
             binding.todoTime2.text = todos.endTime
         }
-        binding.todoAlarm.text = todos.alert
+        binding.todoAlarm.text = Command.getAlert(this@AddTodoActivity, todos.alert)
         binding.todoLocation.setText(todos.location)
         binding.todoDescription.setText(todos.description)
         binding.addTodoSwitch2.isChecked = todos.priorityHigh
