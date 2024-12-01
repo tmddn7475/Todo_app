@@ -56,6 +56,6 @@
         android:key="app_version"
         android:icon="@drawable/baseline_apps_24"
         android:title="@string/app_ver"
-        android:summary="1.0.5"/>
+        android:summary="1.0.6"/>
 
 </androidx.preference.PreferenceScreen>
