@@ -189,7 +189,7 @@ class TodoDetailActivity : BaseActivity(), SelectTimeInterface, SelectAlarmInter
         }
 
         binding.editDate2.setOnClickListener{
-            SelectDateDialog(binding.editDate, this).show(supportFragmentManager, "selectTimeDialog")
+            SelectDateDialog(binding.editDate2, this).show(supportFragmentManager, "selectTimeDialog")
         }
 
         // time
